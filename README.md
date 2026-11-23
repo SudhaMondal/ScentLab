@@ -46,10 +46,13 @@ Never expose a Supabase service-role key in browser code.
 
 1. Download and unzip this project.
 2. Create a new **private or public GitHub repository**.
-3. Upload the contents of the unzipped `scentlab/` folder to the repository root (the `package.json` must be at the root, not inside an extra nested folder).
-4. Commit and push the files.
+3. Upload the contents of the extracted folder to the repository root (the `package.json` must be at the root, not inside an extra nested folder).
+4. Commit the files to `main`.
 5. In the builder, choose **Import Project → Frontends, backends or agents from a repository**, connect GitHub, and select this repository and branch.
-6. Add environment variables in the builder's secrets/environment settings. Do not commit `.env.local` or API secrets.
+6. Use `EMERGENT_BUILD_PROMPT.md` as the next build instruction.
+7. Add environment variables in the builder's secrets/environment settings. Do not commit `.env.local` or API secrets.
+
+See `GITHUB_AND_EMERGENT_IMPORT.md` for the step-by-step GitHub upload guide.
 
 If the importer accepts a ZIP upload directly, you can use the ZIP instead of the GitHub steps. If it only accepts a repository URL, the GitHub route is required.
 
