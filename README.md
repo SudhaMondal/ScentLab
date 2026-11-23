@@ -64,3 +64,16 @@ If the importer accepts a ZIP upload directly, you can use the ZIP instead of th
 ## Safety and trust
 
 ScentLab must distinguish community-submitted, expert-reviewed and independently safety-assessed formulas. A recipe must not be labelled skin-safe or IFRA-compliant unless the exact materials, dilutions, intended product category and applicable current standards have been assessed by a qualified reviewer with traceable documentation.
+
+## Repeatable discovery-to-brew milestone (`/journey`)
+
+The new Brew Lab page demonstrates the core loop: search rosemary or chocolate, distinguish a cocoa-absolute material match from a chocolate-smelling accord, choose a formula snapshot, scale the batch, record mixing/resting observations, and create an attributed remix. The homepage now links its create/community calls to this workflow.
+
+- Formula snapshots carry a version number in the demo; the SQL foundation adds append-only `recipe_versions` and lets brew logs reference the exact version used.
+- Publishing, brew logs, and remixes currently persist in browser `localStorage` only. The profile selector is a demo persona switch, **not authentication or two real accounts**.
+- SQL additions include version snapshots, remix source-version attribution, and a content-report queue. They are schema foundations only; explicit production RLS policies, moderator roles, auth integration, server-side validation, and API wiring remain required.
+- All example formula rows and quantities on `/journey` are synthetic UI test data. They are not usable manufacturing instructions, validated formulas, skin-safe formulas, or evidence of IFRA compliance.
+
+### Suggested next integration milestone
+
+Connect Supabase Auth (email/password + Google), provision profiles, implement server actions/API routes for recipe creation and immutable version snapshots, and enforce RLS for published recipes, private drafts, brew logs, remixes, and reports. Then verify the end-to-end flow with two independently authenticated accounts.
