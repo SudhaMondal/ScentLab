@@ -1,43 +1,54 @@
-# Upload ScentLab to GitHub, then import it into Emergent
+# Upload ScentLab to GitHub and import it into Emergent
 
-Your GitHub profile: https://github.com/SudhaMondal
+GitHub profile: https://github.com/SudhaMondal
 
-## 1. Create a repository
+## Part 1 — Create the GitHub repository
 
-1. Open https://github.com/new while signed in.
-2. Repository name: `scentlab`.
-3. Choose Private or Public (either works for an import if Emergent has permission to access it).
-4. Do not initialize it with a README, `.gitignore`, or license; this ZIP already contains the project files.
-5. Create the repository.
+1. Sign in to GitHub.
+2. Visit https://github.com/new
+3. Repository name: `scentlab`
+4. Choose Public or Private.
+5. Leave **Add a README**, `.gitignore` and license unchecked because this package already includes those files.
+6. Click **Create repository**.
 
-## 2. Upload this project's files
+## Part 2 — Upload this project
 
-1. Download and unzip `scentlab-github-import.zip`.
-2. Open the extracted folder. You should see `package.json`, `README.md`, `app/`, `components/`, `lib/`, and `supabase/` immediately inside it.
-3. In your new GitHub repository, choose **Add file → Upload files**.
-4. Drag the CONTENTS of the extracted folder into the upload area. Do not upload an extra enclosing `scentlab` folder.
-5. Commit the upload to the `main` branch.
+1. Download `scentlab-github-import.zip`.
+2. Extract the ZIP on your computer.
+3. Open the extracted `scentlab-github-import` folder.
+4. Select everything inside it (`app`, `components`, `lib`, `package.json`, `README.md`, etc.).
+5. In your empty GitHub repository, choose **Add file → Upload files**.
+6. Drag the selected contents into GitHub. Do not upload an extra parent folder.
+7. Commit the files to the `main` branch.
 
-The important check: `package.json` must be at the repository root. The repository URL will look like `https://github.com/SudhaMondal/scentlab`.
+Check the repository homepage: `package.json`, `app/`, `components/`, `lib/` and `EMERGENT_BUILD_PROMPT.md` should be visible at the repository root.
 
-## 3. Import into Emergent
+Your repository URL will be:
+
+`https://github.com/SudhaMondal/scentlab`
+
+## Part 3 — Import into Emergent
 
 1. Open Emergent.
-2. Choose **Import Project → Frontends, backends or agents from a repository**.
-3. Connect/authorize GitHub if prompted.
-4. Select `SudhaMondal/scentlab` and the `main` branch.
-5. Start the import and let Emergent inspect the repository.
-6. After import, open `EMERGENT_BUILD_PROMPT.md` in the repository and give its contents to the Emergent agent. It tells the agent to continue the existing work and implement the real two-account journey rather than replacing the project.
+2. Choose **Import Project** (the option for importing a project from a GitHub repository).
+3. Connect or authorize your GitHub account if asked.
+4. Select `SudhaMondal/scentlab` and branch `main`.
+5. Let Emergent inspect and import the repository.
+6. Open `EMERGENT_BUILD_PROMPT.md` in the imported project.
+7. Copy the complete contents of that file into the Emergent agent and ask it to implement the brief in stages.
+8. Ask Emergent to inspect and run the project before making large changes. Keep a checkpoint/commit before each major implementation stage.
 
-## 4. Environment variables
+## Part 4 — Configure Supabase later
 
-The starter includes `.env.example`. When you configure Supabase, add the actual values through Emergent's environment/secrets settings, not by committing them to GitHub:
+The UI starter can be explored before authentication is configured. For real accounts and community persistence, create a Supabase project and add these values in Emergent's environment/secrets settings:
 
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
-Configure Google OAuth and the Supabase redirect/callback URLs in the Supabase and Google provider dashboards once the app's deployed URL is known. Never put a Supabase service-role key in browser-exposed variables.
+Then configure Google OAuth in Supabase and Google Cloud using the callback URL supplied by Supabase. Ask Emergent to document the exact redirect URLs for the deployed app.
 
-## What this package is
+Never commit `.env.local`, passwords, OAuth secrets or a Supabase service-role key. Never expose the service-role key in browser code.
 
-This is the importable source available in this workspace, with the current Brew Lab milestone and SQL schema foundation. It is not a download of the private code or managed backend from an existing Emergent preview. The `/journey` publishing, brew logs, and remix interactions are currently browser-local demo behavior; the fake persona selector is not real authentication. The handoff prompt asks Emergent to connect real accounts, persistence, RLS, immutable versioning, and moderation.
+## What to expect
+
+This repository contains an actual Next.js application starter and working seeded discovery/detail UI. It is not yet a production social network. Real auth, server persistence, comments, follows, brew logs, remix attribution, moderation and analytics are specified in the Emergent prompt and still need implementation and verification.
