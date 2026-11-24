@@ -1363,3 +1363,195 @@ footer > small {
     font-size: 22px;
   }
 }
+
+/* =========================================
+   SCENTLAB — COMIC STRIPES, GEMS & GINGHAM
+   ========================================= */
+
+:root {
+  --gem-pink: #e8b9c6;
+  --gem-lilac: #c9c1df;
+  --gem-yellow: #e9d18c;
+  --gem-sage: #a9bea0;
+}
+
+/* 1. COMIC-BOOK STRIPES ON BUTTONS */
+
+.pixel-btn {
+  background-color: var(--green);
+  background-image:
+    repeating-linear-gradient(
+      135deg,
+      transparent 0 9px,
+      rgba(255,255,255,.10) 9px 12px
+    );
+  border: 2px solid #344b39;
+}
+
+.pixel-btn:hover {
+  background-color: #587258;
+}
+
+/* Little striped label on the hero */
+
+.eyebrow {
+  display: inline-block;
+  padding: 9px 12px;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      #f0e4d4 0 5px,
+      #f8f2e8 5px 10px
+    );
+  border: 1px solid #d9cbb5;
+  color: #586b54;
+}
+
+/* 2. CUTE PIXEL GEMS */
+
+.hero-copy {
+  position: relative;
+}
+
+.hero-copy::before {
+  content: "◆";
+  position: absolute;
+  top: -38px;
+  right: 10%;
+  color: var(--gem-pink);
+  font-size: 23px;
+  text-shadow: 4px 4px 0 #f4dce2;
+  transform: rotate(12deg);
+}
+
+.hero-copy::after {
+  content: "✦";
+  position: absolute;
+  right: 2%;
+  bottom: 15%;
+  color: #c7a85e;
+  font-size: 25px;
+}
+
+.section-heading {
+  position: relative;
+}
+
+.section-heading::after {
+  content: "✧";
+  color: #b79bbd;
+  font-size: 35px;
+  position: absolute;
+  right: 3%;
+  top: -18px;
+  transform: rotate(15deg);
+}
+
+/* Tiny gem details on recipe cards */
+
+.recipe-card {
+  position: relative;
+}
+
+.recipe-card::before {
+  content: "◆";
+  position: absolute;
+  top: 8px;
+  left: -10px;
+  z-index: 4;
+  font-size: 13px;
+  color: var(--gem-lilac);
+  text-shadow: 2px 2px #eee4f0;
+  pointer-events: none;
+}
+
+/* 3. SOFT GINGHAM / CHECK PATTERNS */
+
+.recipe-art {
+  background-image:
+    linear-gradient(90deg, #ffffff30 1px, transparent 1px),
+    linear-gradient(#ffffff30 1px, transparent 1px),
+    repeating-linear-gradient(
+      45deg,
+      transparent 0 12px,
+      rgba(255,255,255,.09) 12px 24px
+    );
+  background-size: 18px 18px, 18px 18px, 34px 34px;
+}
+
+/* Checked detail on the library divider */
+
+.library-rule {
+  background-color: #f4efe3;
+  background-image:
+    linear-gradient(45deg, #dce4d1 25%, transparent 25%),
+    linear-gradient(-45deg, #dce4d1 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #dce4d1 75%),
+    linear-gradient(-45deg, transparent 75%, #dce4d1 75%);
+  background-size: 12px 12px;
+  background-position: 0 0, 0 6px, 6px -6px, -6px 0;
+  background-repeat: repeat-x;
+}
+
+/* 4. CUTE CHECKERED FOOTER */
+
+footer {
+  background-color: #fbf8ef;
+  background-image:
+    linear-gradient(45deg, #e6e9dc 25%, transparent 25%),
+    linear-gradient(-45deg, #e6e9dc 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e6e9dc 75%),
+    linear-gradient(-45deg, transparent 75%, #e6e9dc 75%);
+  background-size: 14px 14px;
+  background-position: 0 0, 0 7px, 7px -7px, -7px 0;
+  background-repeat: repeat-x;
+  background-color: #fbf8ef;
+}
+
+/* 5. GEM-LIKE HOVER EFFECT */
+
+.recipe-art {
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.recipe-card:hover .recipe-art {
+  transform: translateY(-3px);
+  box-shadow: 5px 5px 0 #d8c8d8;
+}
+
+/* 6. MOBILE POLISH */
+
+@media (max-width: 650px) {
+  .hero-copy::before {
+    right: 5%;
+    top: -25px;
+    font-size: 18px;
+  }
+
+  .hero-copy::after {
+    right: 0;
+    bottom: 5%;
+    font-size: 19px;
+  }
+
+  .section-heading::after {
+    right: 2%;
+    top: -10px;
+    font-size: 25px;
+  }
+
+  .recipe-card::before {
+    left: -5px;
+    font-size: 10px;
+  }
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  .recipe-art,
+  .recipe-card,
+  .pixel-btn {
+    transition: none;
+  }
+}
