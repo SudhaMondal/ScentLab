@@ -3271,3 +3271,88 @@ textarea:focus-visible, select:focus-visible {
   .recipe-card > p { font-size: 13px; line-height: 1.55; }
   .recipe-card .note-tags span { font-size: 10px; }
 }
+
+
+/* PERFUMER'S NOTEBOOK — TEMPLATE PICKER */
+.notebook-template-panel {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  margin: 4px 0 20px;
+  border: 2px solid #d8c3e8;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f6efff 0%, #fff5ed 100%);
+}
+.notebook-template-panel > div {
+  display: grid;
+  gap: 5px;
+}
+.notebook-template-panel strong {
+  color: #30213f;
+  font-size: 15px;
+  font-weight: 800;
+}
+.notebook-template-panel small,
+.notebook-template-panel p {
+  color: #51445f;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.notebook-template-panel p {
+  margin: 0;
+}
+.notebook-template-panel label {
+  margin: 0;
+  color: #352541;
+  font-size: 13px;
+  font-weight: 800;
+}
+.notebook-template-panel select {
+  width: 100%;
+  margin-top: 7px;
+  padding: 12px;
+  border: 2px solid #9275a8;
+  border-radius: 9px;
+  background: #fff;
+  color: #21182f;
+  font-size: 14px;
+  font-weight: 700;
+}
+.create-modal form > label {
+  display: grid;
+  gap: 7px;
+  margin: 0 0 17px;
+  color: #30213f;
+  font-size: 13px;
+  font-weight: 800;
+}
+.create-modal form > label small {
+  color: #514b60;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.create-modal form input,
+.create-modal form textarea,
+.create-modal form select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  color: #21182f;
+  background: #fff;
+  border: 1.5px solid #9275a8;
+  border-radius: 8px;
+  padding: 11px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.create-modal form textarea {
+  min-height: 105px;
+  resize: vertical;
+}
+.create-modal form input:focus,
+.create-modal form textarea:focus,
+.create-modal form select:focus {
+  border-color: #74153f;
+  outline: 3px solid #74153f30;
+}
