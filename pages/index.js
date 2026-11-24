@@ -1054,9 +1054,10 @@ export default function Home() {
                 <section className="preparation">
                   <h3>How to make it</h3>
                   <p className="preparation-intro">
-                    The numbered method is written for a 10.00 g standard batch.
-                    If you change the target batch, follow the recalculated weights
-                    above; keep the same addition sequence and mixing times.
+                    Gram amounts in the numbered steps are for a 10.00 g
+                    reference batch. For another batch size, multiply every step
+                    amount by target batch ÷ 10; the live ingredient list above
+                    is the exact weight guide. Keep the same order and timings.
                   </p>
                   {(selected.instructions || []).length ? (
                     <ol>
