@@ -2066,3 +2066,28 @@ footer::after {
   flex: 0 0 auto;
   white-space: nowrap;
 }
+
+
+/* REAL INGREDIENT PHOTOGRAPHS + IMAGE ATTRIBUTION */
+.ingredient-photo-credit {
+  display: block;
+  margin-top: 4px;
+  color: #928a7b;
+  font: 8px/1.45 var(--mono);
+  letter-spacing: .1px;
+}
+.ingredient-photo-credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #c9bda9;
+  text-underline-offset: 2px;
+}
+.ingredient-photo-credit a:hover {
+  color: #a87587;
+}
+.preparation-intro {
+  margin: -4px 0 14px;
+  color: #7d796d;
+  font-size: 10px;
+  line-height: 1.75;
+}
