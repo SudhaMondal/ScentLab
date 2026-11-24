@@ -323,3 +323,61 @@ end
 where user_id is null
 and name in ('Rosemary After Rain','Midnight Cacao','Petals in Paris','Golden Hour','Citrus Club','Velvet Library')
 and coalesce(cardinality(instructions), 0) = 0;
+
+
+-- Replace generic starter instructions with measured, timed blotter-test procedures.
+-- These are 10 g educational accord blends, not skin-safe finished perfumes.
+update public.recipes
+set instructions = case name
+  when 'Rosemary After Rain' then array[
+    'Standard batch: 10.00 g. Work at 20–25°C with good ventilation, away from flames, sparks and hot surfaces. Wear nitrile gloves and eye protection. Use a 0.01 g scale, clean dry 30–50 mL glass beaker, glass rod, four weighing cups, disposable pipettes, blotter strips and a clean 10–15 mL amber glass vial. Do not heat.',
+    'Tare separate cups and weigh: Rosemary accord 4.00 g; Bergamot accord 3.00 g; Cedarwood accord 2.00 g; perfumer''s alcohol 1.00 g. Keep alcohol capped. The app''s live ingredient list recalculates weights for other batch sizes.',
+    'Add 2.00 g Cedarwood accord and 4.00 g Rosemary accord to the beaker. Stir slowly for 90 seconds until uniform.',
+    'Add 3.00 g Bergamot accord in 3 equal 1.00 g portions, 30 seconds apart. Stir 45 seconds after each portion, then stir 60 seconds more.',
+    'Add 1.00 g perfumer''s alcohol in 4 equal 0.25 g portions, 30 seconds apart. Stir 30 seconds after each addition, then stir continuously for 2 minutes. Keep the beaker loosely covered between additions; never seal while mixing.',
+    'Transfer to the labelled vial, cap tightly and gently invert 10 times. Record date and ingredient lot numbers. Rest upright in a cool, dark place for 48 hours; assess again after 7 days. Apply one small drop to a blotter and record at 5 minutes, 30 minutes, 2 hours and 24 hours. Blotter-only; not approved for skin use.'
+  ]
+  when 'Midnight Cacao' then array[
+    'Standard batch: 10.00 g. Work at 20–25°C with good ventilation, away from flames, sparks and hot surfaces. Wear nitrile gloves and eye protection. Use a 0.01 g scale, clean dry 30–50 mL glass beaker, glass rod, four weighing cups, disposable pipettes, blotter strips and a clean 10–15 mL amber glass vial. Do not heat.',
+    'Tare separate cups and weigh: Cacao accord 4.00 g; Vanilla accord 3.00 g; Tonka accord 2.00 g; perfumer''s alcohol 1.00 g. Keep alcohol capped. The app''s live ingredient list recalculates weights for other batch sizes.',
+    'Add 2.00 g Tonka accord and 3.00 g Vanilla accord to the beaker. Stir slowly for 90 seconds until uniform.',
+    'Add 4.00 g Cacao accord in 4 equal 1.00 g portions, 30 seconds apart. Stir 45 seconds after each portion, then stir 60 seconds more.',
+    'Add 1.00 g perfumer''s alcohol in 4 equal 0.25 g portions, 30 seconds apart. Stir 30 seconds after each addition, then stir continuously for 2 minutes. Keep the beaker loosely covered between additions; never seal while mixing.',
+    'Transfer to the labelled vial, cap tightly and gently invert 10 times. Record date and ingredient lot numbers. Rest upright in a cool, dark place for 48 hours; assess again after 7 days. Apply one small drop to a blotter and record at 5 minutes, 30 minutes, 2 hours and 24 hours. Blotter-only; not approved for skin use.'
+  ]
+  when 'Petals in Paris' then array[
+    'Standard batch: 10.00 g. Work at 20–25°C with good ventilation, away from flames, sparks and hot surfaces. Wear nitrile gloves and eye protection. Use a 0.01 g scale, clean dry 30–50 mL glass beaker, glass rod, four weighing cups, disposable pipettes, blotter strips and a clean 10–15 mL amber glass vial. Do not heat.',
+    'Tare separate cups and weigh: Rose accord 4.00 g; Jasmine accord 2.00 g; Musk accord 3.00 g; perfumer''s alcohol 1.00 g. Keep alcohol capped. The app''s live ingredient list recalculates weights for other batch sizes.',
+    'Add 3.00 g Musk accord and 4.00 g Rose accord to the beaker. Stir gently for 90 seconds until uniform.',
+    'Add 2.00 g Jasmine accord in 4 equal 0.50 g portions, 30 seconds apart. Stir 45 seconds after each portion, then stir 60 seconds more.',
+    'Add 1.00 g perfumer''s alcohol in 4 equal 0.25 g portions, 30 seconds apart. Stir 30 seconds after each addition, then stir continuously for 2 minutes. Keep the beaker loosely covered between additions; never seal while mixing.',
+    'Transfer to the labelled vial, cap tightly and gently invert 10 times. Record date and ingredient lot numbers. Rest upright in a cool, dark place for 48 hours; assess again after 7 days. Apply one small drop to a blotter and record at 5 minutes, 30 minutes, 2 hours and 24 hours. Blotter-only; not approved for skin use.'
+  ]
+  when 'Golden Hour' then array[
+    'Standard batch: 10.00 g. Work at 20–25°C with good ventilation, away from flames, sparks and hot surfaces. Wear nitrile gloves and eye protection. Use a 0.01 g scale, clean dry 30–50 mL glass beaker, glass rod, four weighing cups, disposable pipettes, blotter strips and a clean 10–15 mL amber glass vial. Do not heat.',
+    'Tare separate cups and weigh: Amber accord 4.00 g; Sandalwood accord 3.00 g; Vanilla accord 2.00 g; perfumer''s alcohol 1.00 g. Keep alcohol capped. The app''s live ingredient list recalculates weights for other batch sizes.',
+    'Add 3.00 g Sandalwood accord and 2.00 g Vanilla accord to the beaker. Stir slowly for 90 seconds until uniform.',
+    'Add 4.00 g Amber accord in 4 equal 1.00 g portions, 30 seconds apart. Stir 45 seconds after each portion, then stir 60 seconds more.',
+    'Add 1.00 g perfumer''s alcohol in 4 equal 0.25 g portions, 30 seconds apart. Stir 30 seconds after each addition, then stir continuously for 2 minutes. Keep the beaker loosely covered between additions; never seal while mixing.',
+    'Transfer to the labelled vial, cap tightly and gently invert 10 times. Record date and ingredient lot numbers. Rest upright in a cool, dark place for 48 hours; assess again after 7 days. Apply one small drop to a blotter and record at 5 minutes, 30 minutes, 2 hours and 24 hours. Blotter-only; not approved for skin use.'
+  ]
+  when 'Citrus Club' then array[
+    'Standard batch: 10.00 g. Work at 20–25°C with good ventilation, away from flames, sparks and hot surfaces. Wear nitrile gloves and eye protection. Use a 0.01 g scale, clean dry 30–50 mL glass beaker, glass rod, four weighing cups, disposable pipettes, blotter strips and a clean 10–15 mL amber glass vial. Do not heat.',
+    'Tare separate cups and weigh: Lemon accord 4.00 g; Sweet orange accord 3.00 g; Neroli accord 2.00 g; perfumer''s alcohol 1.00 g. Keep alcohol capped. The app''s live ingredient list recalculates weights for other batch sizes.',
+    'Add 2.00 g Neroli accord and 3.00 g Sweet orange accord to the beaker. Stir gently for 90 seconds until uniform.',
+    'Add 4.00 g Lemon accord in 4 equal 1.00 g portions, 30 seconds apart. Stir 45 seconds after each portion, then stir 60 seconds more.',
+    'Add 1.00 g perfumer''s alcohol in 4 equal 0.25 g portions, 30 seconds apart. Stir 30 seconds after each addition, then stir continuously for 2 minutes. Keep the beaker loosely covered between additions; never seal while mixing.',
+    'Transfer to the labelled vial, cap tightly and gently invert 10 times. Record date and ingredient lot numbers. Rest upright in a cool, dark place for 48 hours; assess again after 7 days. Apply one small drop to a blotter and record at 5 minutes, 30 minutes, 2 hours and 24 hours. Blotter-only; not approved for skin use.'
+  ]
+  when 'Velvet Library' then array[
+    'Standard batch: 10.00 g. Work at 20–25°C with good ventilation, away from flames, sparks and hot surfaces. Wear nitrile gloves and eye protection. Use a 0.01 g scale, clean dry 30–50 mL glass beaker, glass rod, four weighing cups, disposable pipettes, blotter strips and a clean 10–15 mL amber glass vial. Do not heat.',
+    'Tare separate cups and weigh: Cedarwood accord 4.00 g; Patchouli accord 3.00 g; Vanilla accord 2.00 g; perfumer''s alcohol 1.00 g. Keep alcohol capped. The app''s live ingredient list recalculates weights for other batch sizes.',
+    'Add 2.00 g Vanilla accord and 3.00 g Patchouli accord to the beaker. Stir slowly for 90 seconds until uniform.',
+    'Add 4.00 g Cedarwood accord in 4 equal 1.00 g portions, 30 seconds apart. Stir 45 seconds after each portion, then stir 60 seconds more.',
+    'Add 1.00 g perfumer''s alcohol in 4 equal 0.25 g portions, 30 seconds apart. Stir 30 seconds after each addition, then stir continuously for 2 minutes. Keep the beaker loosely covered between additions; never seal while mixing.',
+    'Transfer to the labelled vial, cap tightly and gently invert 10 times. Record date and ingredient lot numbers. Rest upright in a cool, dark place for 48 hours; assess again after 7 days. Apply one small drop to a blotter and record at 5 minutes, 30 minutes, 2 hours and 24 hours. Blotter-only; not approved for skin use.'
+  ]
+  else instructions
+end
+where user_id is null
+and name in ('Rosemary After Rain','Midnight Cacao','Petals in Paris','Golden Hour','Citrus Club','Velvet Library');
