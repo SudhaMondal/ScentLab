@@ -3985,3 +3985,161 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .gemstone { filter: none; }
 }
+
+
+/* VIBRANT BOTANICAL JEWEL PALETTE — vivid accents with readable contrast */
+:root {
+  --paper: #fff7e9;
+  --paper-light: #fffdf8;
+  --ink: #27213b;
+  --muted: #5e5870;
+  --green: #176b58;
+  --green-dark: #104b42;
+  --green-soft: #d9f2e7;
+  --line: #e5c9a8;
+  --pink: #c04470;
+  --gold: #c58a24;
+}
+body {
+  background:
+    radial-gradient(ellipse at 8% 4%, rgba(255, 190, 104, .22), transparent 30rem),
+    radial-gradient(ellipse at 94% 22%, rgba(190, 151, 232, .18), transparent 32rem),
+    radial-gradient(ellipse at 18% 88%, rgba(111, 202, 171, .14), transparent 30rem),
+    #fff7e9;
+  color: #27213b;
+}
+.nav {
+  background: rgba(255, 249, 238, .96);
+  border-bottom-color: #e8c9a8;
+}
+.logo { color: #174f43; }
+.logo > span { color: #c04470; }
+.logo small { color: #75647b; }
+.nav nav { color: #51415f; }
+.nav nav a:hover { color: #c04470; }
+.pixel-btn {
+  border-color: #145c4c;
+  background: linear-gradient(115deg, #176b58, #248a72);
+  color: #fffdf8;
+}
+.pixel-btn:hover { background: linear-gradient(115deg, #125542, #19745f); }
+.music-toggle {
+  border-color: #c6a0c7;
+  background: #fff9f0;
+  color: #56345f;
+}
+.music-toggle span {
+  background: #f6dce9;
+  color: #bd3d72;
+}
+.music-toggle:hover, .music-toggle.is-playing {
+  border-color: #9b5b9e;
+  background: #f2e2f6;
+}
+.hero {
+  background-color: #fff4e2;
+  background-image:
+    radial-gradient(ellipse at 78% 40%, rgba(111, 202, 171, .30), transparent 52%),
+    radial-gradient(ellipse at 10% 10%, rgba(255, 184, 120, .26), transparent 42%),
+    linear-gradient(115deg, rgba(255,253,247,.78), rgba(255,244,226,.40)),
+    repeating-linear-gradient(45deg, rgba(184, 111, 154, .06) 0 1px, transparent 1px 13px);
+}
+.hero h1 { color: #243e35; }
+.hero h1 em { color: #b33d70; }
+.eyebrow { color: #a05235; }
+.hero p { color: #514c60; }
+.hero-art {
+  border-color: #d6a95d;
+  background-color: #e2f0dc;
+  box-shadow: 12px 13px 0 #f2c9a0, 0 22px 50px rgba(75, 52, 75, .15);
+  background-image:
+    radial-gradient(circle at 50% 43%, rgba(255,255,255,.82), transparent 42%),
+    linear-gradient(90deg, #ffffff35 1px, transparent 1px),
+    linear-gradient(#ffffff35 1px, transparent 1px),
+    repeating-conic-gradient(from 45deg at 50% 50%, rgba(190,73,113,.09) 0 25%, transparent 0 50%);
+}
+.hero-art::before { border-color: #9cba9a; }
+.hero-label { color: #276653; }
+.hero-label small { color: #8c5c75; }
+.hero-tag {
+  border-color: #d9a65a;
+  background: #fff2c9;
+  color: #754329;
+  box-shadow: 3px 4px 0 #e7b4a0;
+}
+.hero-side-note { color: #8a4c71; }
+.section-heading h2,
+.discovery-heading h2,
+.community h2 { color: #243e35; }
+.section-heading h2 em,
+.discovery-heading h2 em { color: #bd4775; }
+.section-heading p, .discovery-heading p { color: #5e586b; }
+.recipe-card {
+  border-color: #e6c9ad;
+  background: #fffdf8;
+  box-shadow: 0 9px 26px rgba(108, 63, 89, .09);
+}
+.recipe-card:hover {
+  border-color: #cf9a57;
+  box-shadow: 0 18px 42px rgba(108, 63, 89, .16);
+}
+.recipe-card .recipe-name { color: #294c40; }
+.recipe-card .recipe-name:hover,
+.recipe-card .recipe-name:focus-visible { color: #b53d70; }
+.recipe-card .recipe-meta { color: #a13d68; }
+.recipe-card .recipe-meta span { color: #176b58; }
+.recipe-card > p { color: #50495d; }
+.recipe-card .note-tags span {
+  border-color: #d7b6e6;
+  background: #f3e8fa;
+  color: #57366e;
+}
+.ticker {
+  background-color: #176b58;
+  color: #fff6dc;
+  background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.08) 0 1px, transparent 1px 12px);
+}
+.community {
+  background:
+    radial-gradient(circle at 86% 10%, rgba(245, 190, 93, .24), transparent 23rem),
+    radial-gradient(circle at 12% 95%, rgba(194, 107, 161, .22), transparent 26rem),
+    #174f46;
+}
+footer { background: #273047; }
+.library-rule {
+  border-color: #d5ad72;
+  color: #74533d;
+  background: linear-gradient(90deg, rgba(255,220,170,.14), rgba(226,207,241,.24), rgba(196,231,211,.18));
+}
+.library-rule::after { color: #b67c2e; }
+.notebook-template-panel {
+  border-color: #d5a4d0;
+  background: linear-gradient(120deg, #f8e8f3 0%, #fff0d9 48%, #e4f4e9 100%);
+}
+.notebook-template-panel strong { color: #493057; }
+.notebook-template-panel small,
+.notebook-template-panel p { color: #5d5066; }
+.notebook-template-panel label { color: #493057; }
+.notebook-template-panel select {
+  border-color: #a56b9d;
+  background: #fffdf8;
+}
+.scent-family-card:nth-child(4n+1) { background-color: #f9e3ed; }
+.scent-family-card:nth-child(4n+2) { background-color: #e2f1e7; }
+.scent-family-card:nth-child(4n+3) { background-color: #fceccf; }
+.scent-family-card:nth-child(4n+4) { background-color: #eee3f8; }
+.scent-system-card:nth-child(4n+1) { background-color: #e4f1e8; }
+.scent-system-card:nth-child(4n+2) { background-color: #f8e5ed; }
+.scent-system-card:nth-child(4n+3) { background-color: #f9edcf; }
+.scent-system-card:nth-child(4n+4) { background-color: #eae3f7; }
+.gem-emerald { filter: drop-shadow(2px 4px 3px rgba(23,107,88,.3)); }
+.gem-amethyst { filter: drop-shadow(2px 4px 3px rgba(111,64,139,.28)); }
+.gem-ruby { filter: drop-shadow(2px 4px 3px rgba(173,51,83,.28)); }
+.gem-citrine { filter: drop-shadow(2px 4px 3px rgba(181,126,33,.28)); }
+button:focus-visible, a:focus-visible, input:focus-visible,
+textarea:focus-visible, select:focus-visible {
+  outline-color: #a62d69;
+}
+@media (prefers-reduced-motion: reduce) {
+  .recipe-card:hover, .pixel-btn:hover { transform: none; }
+}
