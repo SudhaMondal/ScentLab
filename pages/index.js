@@ -1209,9 +1209,9 @@ export default function Home() {
                       <span>Published formula</span>
                     </div>
                     <div className="formula-reference-grid">
-                      <div><small>FINISHED BATCH</small><strong>{Number(selected.finished_batch_grams).toFixed(2)} g</strong></div>
-                      <div><small>CONCENTRATE</small><strong>{Number(selected.finished_concentrate_grams).toFixed(2)} g</strong></div>
-                      <div><small>PERFUMER'S ETHANOL</small><strong>{Number(selected.finished_alcohol_grams).toFixed(2)} g</strong></div>
+                      <div><small>FINISHED BATCH</small><strong>{(Number(selected.finished_batch_grams) * batch / 10).toFixed(2)} g</strong></div>
+                      <div><small>CONCENTRATE</small><strong>{(Number(selected.finished_concentrate_grams) * batch / 10).toFixed(2)} g</strong></div>
+                      <div><small>PERFUMER'S ETHANOL</small><strong>{(Number(selected.finished_alcohol_grams) * batch / 10).toFixed(2)} g</strong></div>
                       <div><small>RESTING PERIOD</small><strong>{selected.maceration_days} days</strong></div>
                     </div>
                     <p className="formula-reference-status">
@@ -1229,7 +1229,7 @@ export default function Home() {
                   <h3>How to make it</h3>
                   <p className="preparation-intro">
                     {selected.formula_type === "published_reference"
-                      ? "The ingredient list and batch control scale the 10.00 g fragrance concentrate. The finished-bottle dilution and resting schedule are stated separately below."
+                      ? "The numbered method uses a 10.00 g concentrate reference. Scale every gram amount by the selected concentrate batch ÷ 10; the finished-batch quantities below update with the batch control."
                       : "Gram amounts in the numbered steps are for a 10.00 g reference batch. For another batch size, multiply every step amount by target batch ÷ 10; the live ingredient list above is the exact weight guide. Keep the same order and timings."}
                   </p>
                   {(selected.instructions || []).length ? (
