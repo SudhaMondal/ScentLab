@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import PerfumeDiscovery from "../components/PerfumeDiscovery";
 
@@ -760,6 +760,95 @@ export default function Home() {
   const [notice, setNotice] = useState("");
   const [onlySaved, setOnlySaved] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [musicOn, setMusicOn] = useState(false);
+  const musicContextRef = useRef(null);
+  const musicMasterRef = useRef(null);
+  const musicTimerRef = useRef(null);
+
+  function stopNotebookMusic() {
+    if (musicTimerRef.current) {
+      window.clearInterval(musicTimerRef.current);
+      musicTimerRef.current = null;
+    }
+    const context = musicContextRef.current;
+    const master = musicMasterRef.current;
+    if (context && master && context.state !== "closed") {
+      master.gain.setTargetAtTime(0, context.currentTime, 0.35);
+      window.setTimeout(() => {
+        if (context.state !== "closed") context.close();
+      }, 1400);
+    }
+    musicContextRef.current = null;
+    musicMasterRef.current = null;
+    setMusicOn(false);
+  }
+
+  async function toggleNotebookMusic() {
+    if (musicOn) {
+      stopNotebookMusic();
+      return;
+    }
+
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) {
+      setNotice("This browser does not support the ScentLab background music.");
+      return;
+    }
+
+    try {
+      const context = new AudioContextClass();
+      await context.resume();
+      const master = context.createGain();
+      master.gain.setValueAtTime(0, context.currentTime);
+      master.gain.setTargetAtTime(0.16, context.currentTime, 1.4);
+      master.connect(context.destination);
+
+      // Original, locally synthesised ambient music — no external track or autoplay.
+      [110, 164.81, 220].forEach((frequency, index) => {
+        const oscillator = context.createOscillator();
+        const voice = context.createGain();
+        oscillator.type = index === 1 ? "triangle" : "sine";
+        oscillator.frequency.value = frequency;
+        voice.gain.value = index === 0 ? 0.19 : 0.105;
+        oscillator.connect(voice);
+        voice.connect(master);
+        oscillator.start();
+      });
+
+      const notes = [440, 523.25, 659.25, 523.25, 392, 493.88, 587.33, 493.88];
+      let noteIndex = 0;
+      const playNote = () => {
+        if (context.state !== "running") return;
+        const oscillator = context.createOscillator();
+        const envelope = context.createGain();
+        const now = context.currentTime;
+        oscillator.type = "sine";
+        oscillator.frequency.value = notes[noteIndex % notes.length];
+        envelope.gain.setValueAtTime(0.0001, now);
+        envelope.gain.exponentialRampToValueAtTime(0.12, now + 0.12);
+        envelope.gain.exponentialRampToValueAtTime(0.0001, now + 2.1);
+        oscillator.connect(envelope);
+        envelope.connect(master);
+        oscillator.start(now);
+        oscillator.stop(now + 2.2);
+        noteIndex += 1;
+      };
+      playNote();
+      musicTimerRef.current = window.setInterval(playNote, 1750);
+      musicContextRef.current = context;
+      musicMasterRef.current = master;
+      setMusicOn(true);
+    } catch {
+      setNotice("The background music could not start. Please try again.");
+    }
+  }
+
+  useEffect(() => () => {
+    if (musicTimerRef.current) window.clearInterval(musicTimerRef.current);
+    if (musicContextRef.current && musicContextRef.current.state !== "closed") {
+      musicContextRef.current.close();
+    }
+  }, []);
 
   const [form, setForm] = useState({
     template: "blank",
@@ -1125,6 +1214,15 @@ export default function Home() {
               </button>
             )}
 
+            <button
+              className={`music-toggle ${musicOn ? "is-playing" : ""}`}
+              onClick={toggleNotebookMusic}
+              aria-pressed={musicOn}
+              title={musicOn ? "Turn background music off" : "Play original ScentLab background music"}
+            >
+              <span aria-hidden="true">{musicOn ? "♫" : "♪"}</span>
+              {musicOn ? "BGM on" : "Play BGM"}
+            </button>
             <button
               className="pixel-btn"
               onClick={() => setCreateOpen(true)}
