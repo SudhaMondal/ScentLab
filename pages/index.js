@@ -310,6 +310,90 @@ const families = ["All", "Fresh", "Floral", "Gourmand", "Woody"];
 // fragrance categories and the French Society of Perfumers' classic families.
 // Facets/accords are kept separate because they describe character, not always
 // a standalone fragrance family.
+const notebookTemplates = [
+  {
+    id: "blank",
+    name: "Start with a blank page",
+    category: "Fresh",
+    mood: "",
+    notes: "",
+    ingredients: "",
+    instructions: ""
+  },
+  {
+    id: "citrus",
+    name: "Citrus cologne study",
+    category: "Citrus",
+    mood: "Bright, sparkling and breezy; an opening like freshly peeled citrus.",
+    notes: "Bergamot, lemon, sweet orange, petitgrain",
+    ingredients: "Bergamot accord | 3\nLemon accord | 2\nSweet orange accord | 2\nPetitgrain accord | 1\nPerfumer's alcohol | 2",
+    instructions: "Prepare clean, dry glass equipment and label the sample.\nWeigh each accord separately.\nCombine the citrus and petitgrain accords and stir gently.\nAdd the perfumer's alcohol gradually while mixing.\nClose, label and allow the sample to rest before blotter evaluation."
+  },
+  {
+    id: "floral",
+    name: "Classic floral bouquet",
+    category: "Floral Bouquet",
+    mood: "A graceful bouquet with a soft, petal-like heart.",
+    notes: "Rose, jasmine, orange blossom, soft musk",
+    ingredients: "Rose accord | 3\nJasmine accord | 2\nOrange blossom accord | 2\nSoft musk accord | 1\nPerfumer's alcohol | 2",
+    instructions: "Prepare and label clean glass equipment.\nWeigh the accords separately.\nBlend the rose and jasmine accords until uniform.\nFold in orange blossom and soft musk accords.\nAdd perfumer's alcohol gradually, close and rest before blotter evaluation."
+  },
+  {
+    id: "amber",
+    name: "Soft amber evening",
+    category: "Soft Amber",
+    mood: "Warm, enveloping and gently sweet, with a resinous finish.",
+    notes: "Vanilla, benzoin, labdanum, sandalwood",
+    ingredients: "Vanilla accord | 2\nBenzoin accord | 2\nLabdanum accord | 2\nSandalwood accord | 2\nPerfumer's alcohol | 2",
+    instructions: "Prepare and label clean glass equipment.\nWeigh each accord separately.\nCombine the resinous accords and stir until uniform.\nAdd vanilla and sandalwood accords and mix gently.\nAdd perfumer's alcohol gradually, close and rest before blotter evaluation."
+  },
+  {
+    id: "woody",
+    name: "Woods and moss study",
+    category: "Mossy Woods",
+    mood: "Dry, grounded and quietly atmospheric.",
+    notes: "Cedarwood, vetiver, patchouli, oakmoss",
+    ingredients: "Cedarwood accord | 3\nVetiver accord | 2\nPatchouli accord | 2\nOakmoss-style accord | 1\nPerfumer's alcohol | 2",
+    instructions: "Prepare and label clean glass equipment.\nWeigh each accord separately.\nBlend cedarwood and vetiver accords first.\nAdd patchouli and oakmoss-style accords and stir gently.\nAdd perfumer's alcohol gradually, close and rest before blotter evaluation."
+  },
+  {
+    id: "fougere",
+    name: "Aromatic fougère sketch",
+    category: "Aromatic Fougère",
+    mood: "Herbal, fresh and softly woody; inspired by a classic fougère structure.",
+    notes: "Lavender, aromatic herbs, coumarin-style accord, woods",
+    ingredients: "Lavender accord | 3\nHerbal aromatic accord | 2\nCoumarin-style accord | 2\nWoody accord | 1\nPerfumer's alcohol | 2",
+    instructions: "Prepare and label clean glass equipment.\nWeigh each accord separately.\nCombine lavender and herbal accords.\nAdd the coumarin-style and woody accords and mix until uniform.\nAdd perfumer's alcohol gradually, close and rest before blotter evaluation."
+  },
+  {
+    id: "chypre",
+    name: "Green chypre impression",
+    category: "Green Chypre",
+    mood: "Crisp green facets over a dry, mossy-woody impression.",
+    notes: "Bergamot, green leaf, patchouli, moss accord",
+    ingredients: "Bergamot accord | 2\nGreen leaf accord | 2\nPatchouli accord | 2\nMoss-style accord | 2\nPerfumer's alcohol | 2",
+    instructions: "Prepare and label clean glass equipment.\nWeigh each accord separately.\nBlend bergamot and green leaf accords.\nAdd patchouli and moss-style accords and stir gently.\nAdd perfumer's alcohol gradually, close and rest before blotter evaluation."
+  },
+  {
+    id: "aquatic",
+    name: "Air and water sketch",
+    category: "Water",
+    mood: "Transparent, airy and cool, with a clean ozonic character.",
+    notes: "Marine accord, citrus, watery floral, musk",
+    ingredients: "Marine accord | 2\nCitrus accord | 2\nWatery floral accord | 2\nClean musk accord | 2\nPerfumer's alcohol | 2",
+    instructions: "Prepare and label clean glass equipment.\nWeigh each accord separately.\nCombine the marine and watery floral accords.\nAdd citrus and clean musk accords and mix gently.\nAdd perfumer's alcohol gradually, close and rest before blotter evaluation."
+  },
+  {
+    id: "gourmand",
+    name: "Gourmand dessert accord",
+    category: "Gourmand",
+    mood: "Comforting, creamy and dessert-like without being a literal food recipe.",
+    notes: "Cacao, vanilla, tonka-style accord, woods",
+    ingredients: "Cacao accord | 2\nVanilla accord | 3\nTonka-style accord | 2\nSoft woody accord | 1\nPerfumer's alcohol | 2",
+    instructions: "Prepare and label clean glass equipment.\nWeigh each accord separately.\nBlend vanilla and tonka-style accords.\nFold in cacao and soft woody accords.\nAdd perfumer's alcohol gradually, close and rest before blotter evaluation."
+  }
+];
+
 const familyLogGroups = [
   {
     label: "Fragrance wheel · Michael Edwards",
@@ -678,6 +762,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   const [form, setForm] = useState({
+    template: "blank",
     name: "",
     category: "Fresh",
     mood: "",
@@ -685,6 +770,16 @@ export default function Home() {
     ingredients: "",
     instructions: ""
   });
+
+  function loadNotebookTemplate(templateId) {
+    const template = notebookTemplates.find(item => item.id === templateId);
+    if (!template) return;
+    setForm(current => ({
+      ...current,
+      ...template,
+      name: template.id === "blank" ? current.name : template.name
+    }));
+  }
 
   useEffect(() => {
     if (!supabase) {
@@ -943,6 +1038,7 @@ export default function Home() {
     setCreateOpen(false);
 
     setForm({
+      template: "blank",
       name: "",
       category: "Fresh",
       mood: "",
@@ -1719,6 +1815,25 @@ export default function Home() {
               </p>
 
               <form onSubmit={publishRecipe}>
+                <div className="notebook-template-panel">
+                  <div>
+                    <strong>Choose your starting point</strong>
+                    <small>Load a guided formula sketch, then edit every field to make it your own.</small>
+                  </div>
+                  <label>
+                    Formula template
+                    <select
+                      value={form.template}
+                      onChange={e => loadNotebookTemplate(e.target.value)}
+                    >
+                      {notebookTemplates.map(template => (
+                        <option key={template.id} value={template.id}>{template.name}</option>
+                      ))}
+                    </select>
+                  </label>
+                  <p>Templates are editable learning drafts, not safety-assessed or skin-approved perfume formulas.</p>
+                </div>
+
                 <label>
                   Recipe name
                   <input
