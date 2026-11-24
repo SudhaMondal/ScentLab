@@ -23,7 +23,8 @@ const starterRecipes = [
       { name: "Bergamot accord", grams: 3 },
       { name: "Cedarwood accord", grams: 2 },
       { name: "Perfumer's alcohol", grams: 1 }
-    ]
+    ],
+    instructions: ["Prepare clean, dry glass equipment, a precision scale, a glass stirrer and a labelled sample vial. Work with ventilation and suitable protective equipment.", "Weigh each accord separately using the quantities shown for your chosen batch size.", "Combine the cedarwood and rosemary accords in a glass beaker and stir slowly until uniform.", "Add the bergamot accord gradually, stirring gently after each addition.", "Add the listed perfumer's alcohol slowly while stirring. Keep the beaker covered between additions.", "Transfer to the labelled vial and leave closed for 48 hours. Evaluate on a blotter strip only; this starter formula is not validated for skin use."]
   },
   {
     id: "seed-2",
@@ -37,7 +38,8 @@ const starterRecipes = [
       { name: "Vanilla accord", grams: 3 },
       { name: "Tonka accord", grams: 2 },
       { name: "Perfumer's alcohol", grams: 1 }
-    ]
+    ],
+    instructions: ["Prepare clean, dry glass equipment, a precision scale, a glass stirrer and a labelled sample vial. Work with ventilation and suitable protective equipment.", "Weigh each accord separately using the quantities shown for your chosen batch size.", "Combine the tonka and vanilla accords in a glass beaker and stir slowly.", "Add the cacao accord in small portions, stirring until the blend is uniform.", "Add the listed perfumer's alcohol gradually while stirring gently.", "Transfer to the labelled vial and leave closed for 48 hours. Evaluate on a blotter strip only; this starter formula is not validated for skin use."]
   },
   {
     id: "seed-3",
@@ -51,7 +53,8 @@ const starterRecipes = [
       { name: "Jasmine accord", grams: 2 },
       { name: "Musk accord", grams: 3 },
       { name: "Perfumer's alcohol", grams: 1 }
-    ]
+    ],
+    instructions: ["Prepare clean, dry glass equipment, a precision scale, a glass stirrer and a labelled sample vial. Work with ventilation and suitable protective equipment.", "Weigh each accord separately using the quantities shown for your chosen batch size.", "Combine the musk and rose accords in a glass beaker and stir gently until uniform.", "Add the jasmine accord gradually, mixing slowly.", "Add the listed perfumer's alcohol in small portions while stirring gently.", "Transfer to the labelled vial and leave closed for 48 hours. Evaluate on a blotter strip only; this starter formula is not validated for skin use."]
   },
   {
     id: "seed-4",
@@ -65,7 +68,8 @@ const starterRecipes = [
       { name: "Sandalwood accord", grams: 3 },
       { name: "Vanilla accord", grams: 2 },
       { name: "Perfumer's alcohol", grams: 1 }
-    ]
+    ],
+    instructions: ["Prepare clean, dry glass equipment, a precision scale, a glass stirrer and a labelled sample vial. Work with ventilation and suitable protective equipment.", "Weigh each accord separately using the quantities shown for your chosen batch size.", "Combine the sandalwood and vanilla accords in a glass beaker and stir until uniform.", "Add the amber accord gradually, stirring slowly.", "Add the listed perfumer's alcohol a little at a time while stirring gently.", "Transfer to the labelled vial and leave closed for 48 hours. Evaluate on a blotter strip only; this starter formula is not validated for skin use."]
   },
   {
     id: "seed-5",
@@ -79,7 +83,8 @@ const starterRecipes = [
       { name: "Sweet orange accord", grams: 3 },
       { name: "Neroli accord", grams: 2 },
       { name: "Perfumer's alcohol", grams: 1 }
-    ]
+    ],
+    instructions: ["Prepare clean, dry glass equipment, a precision scale, a glass stirrer and a labelled sample vial. Work with ventilation and suitable protective equipment.", "Weigh each accord separately using the quantities shown for your chosen batch size.", "Combine the neroli and sweet orange accords in a glass beaker and stir gently.", "Add the lemon accord gradually, mixing until uniform.", "Add the listed perfumer's alcohol slowly while stirring.", "Transfer to the labelled vial and leave closed for 48 hours. Evaluate on a blotter strip only; this starter formula is not validated for skin use."]
   },
   {
     id: "seed-6",
@@ -93,7 +98,8 @@ const starterRecipes = [
       { name: "Patchouli accord", grams: 3 },
       { name: "Vanilla accord", grams: 2 },
       { name: "Perfumer's alcohol", grams: 1 }
-    ]
+    ],
+    instructions: ["Prepare clean, dry glass equipment, a precision scale, a glass stirrer and a labelled sample vial. Work with ventilation and suitable protective equipment.", "Weigh each accord separately using the quantities shown for your chosen batch size.", "Combine the vanilla and patchouli accords in a glass beaker and stir slowly.", "Add the cedarwood accord gradually, stirring until uniform.", "Add the listed perfumer's alcohol in small portions while stirring gently.", "Transfer to the labelled vial and leave closed for 48 hours. Evaluate on a blotter strip only; this starter formula is not validated for skin use."]
   }
 ];
 
@@ -137,7 +143,8 @@ export default function Home() {
     category: "Fresh",
     mood: "",
     notes: "",
-    ingredients: ""
+    ingredients: "",
+    instructions: ""
   });
 
   useEffect(() => {
@@ -220,7 +227,8 @@ export default function Home() {
         recipe.category,
         recipe.mood,
         ...(recipe.notes || []),
-        ...(recipe.ingredients || []).map(x => x.name)
+        ...(recipe.ingredients || []).map(x => x.name),
+        ...(recipe.instructions || [])
       ].join(" ").toLowerCase();
 
       return (
@@ -358,6 +366,16 @@ export default function Home() {
       return;
     }
 
+    const instructions = form.instructions
+      .split("\n")
+      .map(step => step.trim())
+      .filter(Boolean);
+
+    if (!instructions.length) {
+      setNotice("Add at least one preparation step.");
+      return;
+    }
+
     const payload = {
       user_id: user.id,
       name: form.name.trim(),
@@ -367,6 +385,7 @@ export default function Home() {
         .map(x => x.trim())
         .filter(Boolean),
       ingredients,
+      instructions,
       is_published: true
     };
 
@@ -389,7 +408,8 @@ export default function Home() {
       category: "Fresh",
       mood: "",
       notes: "",
-      ingredients: ""
+      ingredients: "",
+      instructions: ""
     });
 
     setNotice("Your recipe has been published!");
@@ -801,6 +821,19 @@ export default function Home() {
                   <b>{batch} g</b>
                 </div>
 
+                <section className="preparation">
+                  <h3>How to make it</h3>
+                  {(selected.instructions || []).length ? (
+                    <ol>
+                      {selected.instructions.map((step, index) => (
+                        <li key={index}>{step}</li>
+                      ))}
+                    </ol>
+                  ) : (
+                    <p className="muted">The maker has not added preparation steps for this recipe yet.</p>
+                  )}
+                </section>
+
                 <div className="safety">
                   <b>LAB SAFETY NOTE</b>
                   <p>
@@ -1024,6 +1057,20 @@ export default function Home() {
                       setForm({ ...form, ingredients: e.target.value })
                     }
                     placeholder={"Rose accord | 4\nVanilla accord | 3\nCedarwood accord | 2\nPerfumer's alcohol | 1"}
+                  />
+                </label>
+
+                <label>
+                  Preparation method
+                  <small>Write each making step on a separate line, in the order it should be performed.</small>
+                  <textarea
+                    rows="7"
+                    required
+                    value={form.instructions}
+                    onChange={e =>
+                      setForm({ ...form, instructions: e.target.value })
+                    }
+                    placeholder={"1. Prepare clean, dry equipment.\n2. Weigh each ingredient.\n3. Combine the aromatic materials.\n4. Add the diluent gradually and mix.\n5. Bottle, label and allow to rest before evaluation."}
                   />
                 </label>
 
