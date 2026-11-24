@@ -2024,3 +2024,45 @@ footer::after {
   color: #a87587;
   font: 11px var(--mono);
 }
+
+
+/* INGREDIENT VISUAL REFERENCES */
+.ingredient-visual-note {
+  margin: 8px 0 10px;
+  color: #858171;
+  font-size: 9px;
+  line-height: 1.7;
+}
+.ingredient-with-image {
+  align-items: center;
+  min-height: 66px;
+}
+.ingredient-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.ingredient-thumb {
+  display: block;
+  flex: 0 0 58px;
+  width: 58px;
+  height: 48px;
+  object-fit: cover;
+  border: 1px solid #ded6c5;
+  border-radius: 7px;
+  background: #f4efe3;
+}
+.ingredient-placeholder {
+  display: grid;
+  place-items: center;
+  color: #9a8a72;
+  font-size: 19px;
+}
+.ingredient-main > span:last-child {
+  line-height: 1.5;
+}
+.ingredient-with-image > b {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
