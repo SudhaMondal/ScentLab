@@ -3053,3 +3053,139 @@ footer > small { font-size: 9px; }
   .scent-system-grid,
   .french-family-list { grid-template-columns: 1fr; }
 }
+
+
+/* HIGH-CONTRAST TEXT PASS — keep the colourful surfaces, strengthen the ink */
+:root {
+  --ink: #171426;
+  --muted: #393448;
+  --contrast-plum: #642044;
+  --contrast-teal: #075c50;
+  --contrast-link: #7b1748;
+}
+
+/* Main light surfaces */
+body, .site, .section, .scent-family-guide,
+.detail-modal, .small-modal, .ingredient-lightbox,
+.discovery-result, .empty, .recipe-card,
+.french-family-list article, .classic-groups-grid article,
+.scent-system-card {
+  color: #171426;
+}
+.hero h1, .section-heading h2, .recipe-name,
+.discovery-heading h2, .detail-content h2,
+.small-modal h2, .ingredient-lightbox h2,
+.scent-guide-heading h3, .classic-groups-heading h4,
+.scent-family-card h4 {
+  color: #171426;
+}
+.hero p, .section-heading p, .recipe-card > p,
+.discovery-heading p, .discovery-result p,
+.detail-content p, .small-modal p,
+.ingredient-lightbox > p, .scent-guide-heading p,
+.scent-family-card p, .classic-groups-grid p,
+.french-family-list article > p, .scent-system-intro,
+.scent-taxonomy-note, .preparation-intro,
+.ingredient-visual-note, .ingredient-photo-credit,
+.formula-reference-status {
+  color: #393448;
+}
+small, .muted, .recipe-meta, .micro-stats,
+.discovery-note, .discovery-status, .formula-reference-top span,
+.formula-reference-grid small, .detail-content > small,
+.small-modal > small, .scent-family-card > small {
+  color: #494257;
+}
+a, .scent-taxonomy-source, .formula-reference-links a,
+.discovery-result h3 a {
+  color: #74153f;
+  font-weight: 800;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+a:hover, .scent-taxonomy-source:hover,
+.formula-reference-links a:hover { color: #075c50; }
+
+/* Saturated surfaces use light foregrounds */
+.ticker, .community, footer {
+  color: #ffffff;
+}
+.ticker, .community p, .community h2,
+.community > div > small, footer p, footer small {
+  color: #ffffff;
+}
+.community h2 em { color: #ffe1a8; }
+footer .logo { color: #ffffff; }
+footer .logo small { color: #f5eaf7; }
+
+/* Small labels and decorative text should remain readable on their own surfaces */
+.eyebrow, .section-heading > div > small,
+.community > div > small, .scent-guide-heading small,
+.classic-groups-heading small {
+  color: #74153f;
+  font-weight: 900;
+}
+.community > div > small { color: #ffe1a8; }
+.hero-label, .hero-side-note, .hero-tag,
+.recipe-art > small, .art-open > span {
+  color: #171426;
+  font-weight: 900;
+  text-shadow: none;
+}
+.hero-tag { background: #fff4c7; border-color: #9a5b00; }
+.recipe-art > small, .art-open > span {
+  background: rgba(255,255,255,.94);
+  border-radius: 5px;
+  padding: 4px 6px;
+}
+.scent-subfamily-list span,
+.note-tags span {
+  color: #30213f;
+  background: #fff;
+  border: 1px solid #a98bbd;
+  font-weight: 800;
+}
+.scent-family-number, .classic-groups-grid article > span,
+.scent-system-index, .french-family-title > span {
+  color: #74153f;
+  font-weight: 900;
+}
+.scent-family-card-0 { background: #ffe3ed; border-color: #a92f60; }
+.scent-family-card-1 { background: #ffedc7; border-color: #956000; }
+.scent-family-card-2 { background: #e0f0dc; border-color: #47733c; }
+.scent-family-card-3 { background: #d9f3ef; border-color: #176b60; }
+.scent-family-card > small { color: #30213f; }
+
+/* Controls: clear text, strong borders and visible placeholders */
+button, input, textarea, select {
+  color: #171426;
+}
+input::placeholder, textarea::placeholder {
+  color: #514b60 !important;
+  opacity: 1;
+}
+.search-row input, .discovery-form input,
+.small-modal input, .small-modal textarea,
+.small-modal select, .detail-modal input,
+.detail-modal textarea, .detail-modal select {
+  color: #171426;
+  background: #ffffff;
+  border-color: #806b91;
+}
+.filters button { color: #30213f; border-color: #8e789e; }
+.filters button.active {
+  color: #073f35;
+  background: #c5ebdc;
+  border-color: #176b59;
+}
+.pixel-btn, .search-row button.active-filter {
+  color: #ffffff;
+}
+.community .pixel-btn { color: #241a32; }
+
+/* Preserve visible keyboard focus */
+button:focus-visible, a:focus-visible, input:focus-visible,
+textarea:focus-visible, select:focus-visible {
+  outline: 3px solid #74153f;
+  outline-offset: 3px;
+}
