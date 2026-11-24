@@ -21,6 +21,7 @@ create table if not exists public.recipes (
   mood text not null default '',
   notes text[] not null default '{}',
   ingredients jsonb not null default '[]'::jsonb,
+  instructions text[] not null default '{}',
   color text not null default '#c9dcb8',
   is_published boolean not null default true,
   created_at timestamptz not null default now()
@@ -264,3 +265,61 @@ where not exists (
   from public.recipes r
   where r.name = v.name and r.user_id is null
 );
+
+
+-- Add preparation methods to the six public starter recipes.
+update public.recipes
+set instructions = case name
+  when 'Rosemary After Rain' then array[
+    'Prepare clean, dry glass equipment, a precision scale, a glass stirrer and a labelled sample vial. Work with ventilation and suitable protective equipment.',
+    'Weigh each accord separately using the quantities shown for your chosen batch size.',
+    'Combine the cedarwood and rosemary accords in a glass beaker and stir slowly until uniform.',
+    'Add the bergamot accord gradually, stirring gently after each addition.',
+    'Add the listed perfumer''s alcohol slowly while stirring. Keep the beaker covered between additions.',
+    'Transfer to the labelled vial and leave closed for 48 hours. Evaluate on a blotter strip only; this starter formula is not validated for skin use.'
+  ]
+  when 'Midnight Cacao' then array[
+    'Prepare clean, dry glass equipment, a precision scale, a glass stirrer and a labelled sample vial. Work with ventilation and suitable protective equipment.',
+    'Weigh each accord separately using the quantities shown for your chosen batch size.',
+    'Combine the tonka and vanilla accords in a glass beaker and stir slowly.',
+    'Add the cacao accord in small portions, stirring until the blend is uniform.',
+    'Add the listed perfumer''s alcohol gradually while stirring gently.',
+    'Transfer to the labelled vial and leave closed for 48 hours. Evaluate on a blotter strip only; this starter formula is not validated for skin use.'
+  ]
+  when 'Petals in Paris' then array[
+    'Prepare clean, dry glass equipment, a precision scale, a glass stirrer and a labelled sample vial. Work with ventilation and suitable protective equipment.',
+    'Weigh each accord separately using the quantities shown for your chosen batch size.',
+    'Combine the musk and rose accords in a glass beaker and stir gently until uniform.',
+    'Add the jasmine accord gradually, mixing slowly.',
+    'Add the listed perfumer''s alcohol in small portions while stirring gently.',
+    'Transfer to the labelled vial and leave closed for 48 hours. Evaluate on a blotter strip only; this starter formula is not validated for skin use.'
+  ]
+  when 'Golden Hour' then array[
+    'Prepare clean, dry glass equipment, a precision scale, a glass stirrer and a labelled sample vial. Work with ventilation and suitable protective equipment.',
+    'Weigh each accord separately using the quantities shown for your chosen batch size.',
+    'Combine the sandalwood and vanilla accords in a glass beaker and stir until uniform.',
+    'Add the amber accord gradually, stirring slowly.',
+    'Add the listed perfumer''s alcohol a little at a time while stirring gently.',
+    'Transfer to the labelled vial and leave closed for 48 hours. Evaluate on a blotter strip only; this starter formula is not validated for skin use.'
+  ]
+  when 'Citrus Club' then array[
+    'Prepare clean, dry glass equipment, a precision scale, a glass stirrer and a labelled sample vial. Work with ventilation and suitable protective equipment.',
+    'Weigh each accord separately using the quantities shown for your chosen batch size.',
+    'Combine the neroli and sweet orange accords in a glass beaker and stir gently.',
+    'Add the lemon accord gradually, mixing until uniform.',
+    'Add the listed perfumer''s alcohol slowly while stirring.',
+    'Transfer to the labelled vial and leave closed for 48 hours. Evaluate on a blotter strip only; this starter formula is not validated for skin use.'
+  ]
+  when 'Velvet Library' then array[
+    'Prepare clean, dry glass equipment, a precision scale, a glass stirrer and a labelled sample vial. Work with ventilation and suitable protective equipment.',
+    'Weigh each accord separately using the quantities shown for your chosen batch size.',
+    'Combine the vanilla and patchouli accords in a glass beaker and stir slowly.',
+    'Add the cedarwood accord gradually, stirring until uniform.',
+    'Add the listed perfumer''s alcohol in small portions while stirring gently.',
+    'Transfer to the labelled vial and leave closed for 48 hours. Evaluate on a blotter strip only; this starter formula is not validated for skin use.'
+  ]
+  else instructions
+end
+where user_id is null
+and name in ('Rosemary After Rain','Midnight Cacao','Petals in Paris','Golden Hour','Citrus Club','Velvet Library')
+and coalesce(cardinality(instructions), 0) = 0;
