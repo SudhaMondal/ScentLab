@@ -1764,6 +1764,7 @@ export default function Home() {
 
           <p>Made of notes, pixels & a little imagination.</p>
           <small>© SCENTLAB 2026</small>
+          <small>Moonlight Sonata score: <a href="https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=276" target="_blank" rel="noreferrer">Stewart Holmes / Mutopia Project</a> · CC BY-SA 2.5.</small>
         </footer>
 
         <nav className="hotbar">
