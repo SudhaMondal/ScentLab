@@ -105,6 +105,27 @@ const starterRecipes = [
 
 const families = ["All", "Fresh", "Floral", "Gourmand", "Woody"];
 
+function ingredientImage(name = "") {
+  const value = name.toLowerCase();
+  if (value.includes("rosemary")) return "/ingredients/rosemary.svg";
+  if (value.includes("bergamot")) return "/ingredients/bergamot.svg";
+  if (value.includes("cedar")) return "/ingredients/cedarwood.svg";
+  if (value.includes("alcohol")) return "/ingredients/alcohol.svg";
+  if (value.includes("cacao") || value.includes("cocoa")) return "/ingredients/cacao.svg";
+  if (value.includes("vanilla")) return "/ingredients/vanilla.svg";
+  if (value.includes("tonka")) return "/ingredients/tonka.svg";
+  if (value.includes("rose")) return "/ingredients/rose.svg";
+  if (value.includes("jasmine")) return "/ingredients/jasmine.svg";
+  if (value.includes("musk")) return "/ingredients/musk.svg";
+  if (value.includes("amber")) return "/ingredients/amber.svg";
+  if (value.includes("sandalwood")) return "/ingredients/sandalwood.svg";
+  if (value.includes("lemon")) return "/ingredients/lemon.svg";
+  if (value.includes("orange")) return "/ingredients/orange.svg";
+  if (value.includes("neroli")) return "/ingredients/neroli.svg";
+  if (value.includes("patchouli")) return "/ingredients/patchouli.svg";
+  return null;
+}
+
 function Bottle({ color = "#c9dcb8" }) {
   return (
     <div className="bottle">
@@ -803,18 +824,41 @@ export default function Home() {
                   </label>
                 </div>
 
-                {(selected.ingredients || []).map((item, i) => (
-                  <div className="ingredient" key={i}>
-                    <span>{item.name}</span>
-                    <b>
-                      {(
-                        Number(item.grams || 0) *
-                        batch /
-                        (ingredientTotal || 1)
-                      ).toFixed(2)} g
-                    </b>
-                  </div>
-                ))}
+                <p className="ingredient-visual-note">
+                  Visual references for the named scent materials. An accord
+                  may be a blended or synthetic fragrance material; the picture
+                  shows its ingredient inspiration, not necessarily its exact composition.
+                </p>
+
+                {(selected.ingredients || []).map((item, i) => {
+                  const image = ingredientImage(item.name);
+                  return (
+                    <div className="ingredient ingredient-with-image" key={i}>
+                      <div className="ingredient-main">
+                        {image ? (
+                          <img
+                            className="ingredient-thumb"
+                            src={image}
+                            alt={`${item.name} ingredient illustration`}
+                            loading="lazy"
+                            width="58"
+                            height="48"
+                          />
+                        ) : (
+                          <span className="ingredient-thumb ingredient-placeholder" aria-hidden="true">✧</span>
+                        )}
+                        <span>{item.name}</span>
+                      </div>
+                      <b>
+                        {(
+                          Number(item.grams || 0) *
+                          batch /
+                          (ingredientTotal || 1)
+                        ).toFixed(2)} g
+                      </b>
+                    </div>
+                  );
+                })}
 
                 <div className="ingredient total">
                   <span>FORMULA TOTAL</span>
