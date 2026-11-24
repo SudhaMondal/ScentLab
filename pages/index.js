@@ -317,7 +317,7 @@ function ingredientPhoto(name = "") {
     : value.includes("tonka") ? "tonka"
     : value.includes("rose") ? "rose"
     : value.includes("jasmine") ? "jasmine"
-    : value.includes("musk") ? "musk"
+    : value.includes("musk") ? null
     : value.includes("amber") ? "amber"
     : value.includes("sandalwood") ? "sandalwood"
     : value.includes("lemon") ? "lemon"
@@ -325,133 +325,119 @@ function ingredientPhoto(name = "") {
     : value.includes("neroli") ? "neroli"
     : value.includes("patchouli") ? "patchouli"
     : null;
-  const photos = {
-  "rosemary": [
-    "Dry_rosemary.jpg",
-    "Tiia Monto",
-    "CC BY-SA 3.0",
-    "Dry rosemary herb",
-    "https://commons.wikimedia.org/wiki/File:Dry_rosemary.jpg"
-  ],
-  "lavender": [
-    "Lavender Field.jpg",
-    "Miguel Virkkunen Carvalho",
-    "CC BY 2.0",
-    "Lavender field, Provence",
-    "https://commons.wikimedia.org/wiki/File:Lavender_Field.jpg"
-  ],
-  "bergamot": [
-    "Bergamotfruit.jpg",
-    "Xenocryst",
-    "CC BY-SA 2.0",
-    "Bergamot fruit",
-    "https://commons.wikimedia.org/wiki/File:Bergamotfruit.jpg"
-  ],
-  "cedar": [
-    "Bucket_full_of_Eastern_Red_Cedar_chips_-_Cupressaceae_Juniperus_virginiana.jpg",
-    "Spoingus101",
-    "CC0",
-    "Eastern red cedar wood chips (species reference)",
-    "https://commons.wikimedia.org/wiki/File:Bucket_full_of_Eastern_Red_Cedar_chips_-_Cupressaceae_Juniperus_virginiana.jpg"
-  ],
-  "alcohol": [
-    "Ethanol_Flasche.jpg",
-    "Leipnizkeks / Metoc",
-    "GFDL",
-    "Ethanol bottle reference; use perfumer's alcohol",
-    "https://commons.wikimedia.org/wiki/File:Ethanol_Flasche.jpg"
-  ],
-  "cacao": [
-    "Theobroma_cacao_01.JPG",
-    "Vinayaraj",
-    "CC BY-SA 3.0",
-    "Cacao plant and fruit",
-    "https://commons.wikimedia.org/wiki/File:Theobroma_cacao_01.JPG"
-  ],
-  "vanilla": [
-    "Vanilla_beans_curing.jpg",
-    "Sunil Elias",
-    "CC BY-SA 3.0",
-    "Cured vanilla beans",
-    "https://commons.wikimedia.org/wiki/File:Vanilla_beans_curing.jpg"
-  ],
-  "tonka": [
-    "Tonka_Beans.jpg",
-    "Mecredis / Fred Benenson",
-    "GFDL (see source)",
-    "Tonka beans",
-    "https://commons.wikimedia.org/wiki/File:Tonka_Beans.jpg"
-  ],
-  "rose": [
-    "Rose_Petals.jpg",
-    "Atoma",
-    "CC BY 2.5",
-    "Rose petals",
-    "https://commons.wikimedia.org/wiki/File:Rose_Petals.jpg"
-  ],
-  "jasmine": [
-    "Jasmine_plant_and_flowers.jpg",
-    "Maina Tudu",
-    "CC0",
-    "Jasmine plant and flowers",
-    "https://commons.wikimedia.org/wiki/File:Jasmine_plant_and_flowers.jpg"
-  ],
-  "musk": [
-    "Perfume_Bottle.jpg",
-    "ChickenFreak",
-    "Public domain",
-    "Perfumery bottle reference for musk accord (often synthetic)",
-    "https://commons.wikimedia.org/wiki/File:Perfume_Bottle.jpg"
-  ],
-  "amber": [
-    "Labdanum,_Cistus,_Rose_of_Sharon,_05,_2019.jpg",
-    "Curtis Ward",
-    "CC BY-SA 4.0",
-    "Labdanum resin, a perfumery material used for amber notes",
-    "https://commons.wikimedia.org/wiki/File:Labdanum,_Cistus,_Rose_of_Sharon,_05,_2019.jpg"
-  ],
-  "sandalwood": [
-    "Sandalwood_4.jpg",
-    "Nativeplants garden",
-    "CC BY-SA 4.0",
-    "Sandalwood",
-    "https://commons.wikimedia.org/wiki/File:Sandalwood_4.jpg"
-  ],
-  "lemon": [
-    "Lemon_picture.jpg",
-    "Mgmoscatello",
-    "CC BY-SA 3.0",
-    "Lemon",
-    "https://commons.wikimedia.org/wiki/File:Lemon_picture.jpg"
-  ],
-  "orange": [
-    "Orange_fruit.jpeg",
-    "Tshrinivasan",
-    "CC BY 3.0",
-    "Sweet orange fruit",
-    "https://commons.wikimedia.org/wiki/File:Orange_fruit.jpeg"
-  ],
-  "neroli": [
-    "Bitter_orange_-_Citrus_aurantium_01.JPG",
-    "Zeynel Cebeci",
-    "CC BY-SA 4.0",
-    "Bitter orange blossom, source of neroli",
-    "https://commons.wikimedia.org/wiki/File:Bitter_orange_-_Citrus_aurantium_01.JPG"
-  ],
-  "patchouli": [
-    "Patchouli.jpg",
-    "Joe Laurence",
-    "CC BY 4.0",
-    "Patchouli plant",
-    "https://commons.wikimedia.org/wiki/File:Patchouli.jpg"
-  ]
-};
-  if (!key || !photos[key]) return null;
-  const [filename, author, license, caption, page] = photos[key];
-  return {
-    src: `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(filename)}?width=480`,
-    author, license, caption, page
+
+  // Close-up raw-material photography. Each entry links back to its original
+  // source page; synthetic aroma chemicals intentionally have no botanical photo.
+  const closeups = {
+    rosemary: {
+      src: "https://www.lvnea.com/cdn/shop/files/Rosemary2.jpg?crop=center&height=1000&v=1742391430&width=1000",
+      author: "LVNEA",
+      license: "source page",
+      caption: "Macro close-up of fresh rosemary leaves",
+      page: "https://www.lvnea.com/products/rosemary-pure-essential-oil"
+    },
+    lavender: {
+      src: "https://shifomed.uz/storage/posts/1771396862_photo_2026-02-18_11-33-34.jpg",
+      author: "Shifomed",
+      license: "source page",
+      caption: "Close-up of lavender flower spikes",
+      page: "https://shifomed.uz/lavandaning-xususiyatlari"
+    },
+    bergamot: {
+      src: "https://www.cereriamolla.com/cdn/shop/files/u6152832898_macro_photography_of_a_bergamot_fruit_minimalisti_95ef1f99-2388-4e86-abbc-c1850f72bff5_3.png?v=1756983242&width=1024",
+      author: "Cereria Mollá 1899",
+      license: "source page",
+      caption: "Macro cross-section of bergamot fruit and peel",
+      page: "https://www.cereriamolla.com/pages/bergamotto-di-calabria-cereria-molla"
+    },
+    cacao: {
+      src: "https://cdn.shopify.com/s/files/1/0033/7838/0846/files/cacao_beans_cacao_pod_480x480.jpg?v=1733301272",
+      author: "Darkins Chocolates",
+      license: "source page",
+      caption: "Close-up of cacao pod and raw cacao beans",
+      page: "https://darkins.in/blogs/blog/cacao-diaries-journey-from-trees-to-nibs-and-how-to-use-cacao-nibs-in-food"
+    },
+    vanilla: {
+      src: "https://nocturnealchemy.com/cdn/shop/products/how-to-make-vanilla-extract-04.jpg?v=1716590170",
+      author: "Nocturne Alchemy",
+      license: "source page",
+      caption: "Macro close-up of split vanilla bean and seeds",
+      page: "https://nocturnealchemy.com/products/vanilla-haven"
+    },
+    tonka: {
+      src: "https://www.primaveralife.com/media/contentmanager/content/glossary/Tonka_shutterstock_76345003.jpg",
+      author: "PRIMAVERA",
+      license: "source page",
+      caption: "Macro close-up of wrinkled tonka beans",
+      page: "https://www.primaveralife.com/aromatherapie/pflanzenglossar/tonka"
+    },
+    neroli: {
+      src: "https://qanzari.com/cdn/shop/files/desire-99-neroli.webp?v=1782155770&width=1445",
+      author: "Qanzari",
+      license: "source page",
+      caption: "Close-up of neroli blossom beside citrus fruit",
+      page: "https://qanzari.com/products/desire99-luxury-perfume"
+    },
+    sandalwood: {
+      src: "https://www.soulspaceincense.com/cdn/shop/files/Sandalwood-all-natural-incense.jpg?v=1757026134",
+      author: "Soul Space Incense",
+      license: "source page",
+      caption: "Close-up of sandalwood chips and wood grain",
+      page: "https://www.soulspaceincense.com/products/dusk-incense-all-natural-sandalwood-copal-blend"
+    },
+    rose: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Rose_Petals.jpg?width=900",
+      author: "Atoma",
+      license: "CC BY 2.5",
+      caption: "Rose petals",
+      page: "https://commons.wikimedia.org/wiki/File:Rose_Petals.jpg"
+    },
+    jasmine: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Jasmine_plant_and_flowers.jpg?width=900",
+      author: "Maina Tudu",
+      license: "CC0",
+      caption: "Jasmine flowers",
+      page: "https://commons.wikimedia.org/wiki/File:Jasmine_plant_and_flowers.jpg"
+    },
+    cedar: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Bucket_full_of_Eastern_Red_Cedar_chips_-_Cupressaceae_Juniperus_virginiana.jpg?width=900",
+      author: "Spoingus101",
+      license: "CC0",
+      caption: "Cedarwood chips",
+      page: "https://commons.wikimedia.org/wiki/File:Bucket_full_of_Eastern_Red_Cedar_chips_-_Cupressaceae_Juniperus_virginiana.jpg"
+    },
+    amber: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Labdanum,_Cistus,_Rose_of_Sharon,_05,_2019.jpg?width=900",
+      author: "Curtis Ward",
+      license: "CC BY-SA 4.0",
+      caption: "Labdanum plant, a natural material used in amber accords",
+      page: "https://commons.wikimedia.org/wiki/File:Labdanum,_Cistus,_Rose_of_Sharon,_05,_2019.jpg"
+    },
+    lemon: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Lemon_picture.jpg?width=900",
+      author: "Mgmoscatello",
+      license: "CC BY-SA 3.0",
+      caption: "Lemon fruit",
+      page: "https://commons.wikimedia.org/wiki/File:Lemon_picture.jpg"
+    },
+    orange: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Orange_fruit.jpeg?width=900",
+      author: "Tshrinivasan",
+      license: "CC BY 3.0",
+      caption: "Sweet orange fruit",
+      page: "https://commons.wikimedia.org/wiki/File:Orange_fruit.jpeg"
+    },
+    patchouli: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Patchouli.jpg?width=900",
+      author: "Joe Laurence",
+      license: "CC BY 4.0",
+      caption: "Patchouli plant",
+      page: "https://commons.wikimedia.org/wiki/File:Patchouli.jpg"
+    }
   };
+
+  if (!key || !closeups[key]) return null;
+  return closeups[key];
 }
 
 function Bottle({ color = "#c9dcb8" }) {
