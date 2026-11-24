@@ -2305,3 +2305,437 @@ footer::after {
   .formula-reference { padding: 12px; }
   .formula-reference-grid { gap: 10px; }
 }
+
+
+/* =========================================================
+   SCENTLAB VIBRANT READABILITY REFRESH
+   Brighter colour, stronger contrast, clearer type hierarchy.
+   ========================================================= */
+:root {
+  --paper: #fff8ed;
+  --paper-light: #fffdf8;
+  --ink: #252238;
+  --muted: #5f5b6d;
+  --green: #176b59;
+  --green-dark: #124d43;
+  --green-soft: #d9f1e5;
+  --line: #e7d7c9;
+  --pink: #c43e70;
+  --gold: #c17b18;
+  --accent-coral: #f06458;
+  --accent-lilac: #a78bfa;
+  --accent-sun: #ffd166;
+  --accent-aqua: #53c7bd;
+}
+
+body {
+  background: #fff8ed;
+  color: #252238;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.site {
+  background:
+    radial-gradient(circle at 8% 12%, #ffd7c955 0, transparent 23rem),
+    radial-gradient(circle at 92% 34%, #d8d0ff55 0, transparent 26rem),
+    #fff8ed;
+}
+
+.nav {
+  background: rgba(255, 253, 248, .97);
+  border-bottom: 2px solid #f2c6b8;
+  box-shadow: 0 5px 22px #4b34500d;
+}
+.logo { color: #252238; font-weight: 800; }
+.logo > span { color: #0e8b78; }
+.logo small { color: #675b75; font-size: 7px; font-weight: 700; }
+.nav nav { color: #39334e; font-size: 14px; font-weight: 700; }
+.nav nav a:hover, .plain:hover { color: #c43e70; }
+.user-label { color: #176b59; font-size: 12px; font-weight: 700; }
+.plain { color: #176b59; font-size: 13px; font-weight: 800; }
+
+.pixel-btn {
+  background: linear-gradient(135deg, #176b59, #118c83);
+  border: 2px solid #104d43;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .25px;
+  box-shadow: 4px 4px #f06458;
+}
+.pixel-btn:hover {
+  background: linear-gradient(135deg, #c43e70, #e45a69);
+  border-color: #9e2f5a;
+  box-shadow: 2px 2px #ffd166;
+}
+
+.hero {
+  background:
+    radial-gradient(ellipse at 5% 0%, #ffd16645, transparent 38%),
+    radial-gradient(ellipse at 90% 85%, #a78bfa35, transparent 35%);
+}
+.eyebrow,
+.section-heading > div > small,
+.community > div > small {
+  color: #8b365d;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.7px;
+}
+.hero h1 {
+  color: #252238;
+  font-weight: 700;
+  letter-spacing: -2.8px;
+}
+.hero h1 em,
+.section-heading h2 em,
+.community h2 em,
+.small-modal h2 em { color: #c43e70; font-weight: 700; }
+.hero p {
+  color: #4f4a5d;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+.micro-stats {
+  color: #514b63;
+  font-size: 9px;
+  font-weight: 700;
+}
+.hero-art {
+  background-color: #c8f0e6;
+  border: 3px solid #68bdb0;
+  box-shadow: 9px 9px #f06458;
+  background-image:
+    linear-gradient(90deg, #ffffff55 1px, transparent 1px),
+    linear-gradient(#ffffff55 1px, transparent 1px);
+}
+.hero-art::before { border-color: #3c9d8b; }
+.hero-label { color: #164f48; font-weight: 800; }
+.hero-tag {
+  color: #4c275b;
+  background: #fff0b8;
+  border: 2px solid #e4a93d;
+  box-shadow: 3px 3px #f06458;
+  font-weight: 700;
+}
+.hero-side-note { color: #245d55; font-weight: 700; }
+.flower { color: #c43e70; text-shadow: 3px 3px #ffd166; }
+
+.ticker {
+  background: linear-gradient(90deg, #164f48, #176b59 48%, #593b78);
+  color: #fffdf7;
+  border-color: #ffd166;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.section {
+  background-color: #fffaf2;
+  background-image: radial-gradient(#d8a6c755 .8px, transparent .8px);
+}
+.section-heading h2 {
+  color: #252238;
+  font-weight: 700;
+}
+.section-heading p {
+  color: #555064;
+  font-size: 15px;
+  font-weight: 600;
+}
+.section-heading > strong { color: #0e8b78; }
+.section-heading > strong small { color: #635b70; font-size: 9px; font-weight: 700; }
+.library-rule {
+  border-color: #e5b5a9;
+  color: #74405f;
+  font-size: 10px;
+  font-weight: 700;
+}
+.search-row input,
+.discovery-form input {
+  background: #fff;
+  border: 2px solid #d8c6e8;
+  color: #252238;
+  font-size: 15px;
+  font-weight: 600;
+}
+.search-row input::placeholder,
+.discovery-form input::placeholder { color: #777184; opacity: 1; }
+.search-row input:focus,
+.discovery-form input:focus {
+  border-color: #0e8b78;
+  box-shadow: 0 0 0 4px #53c7bd44;
+}
+.search-row button {
+  background: #ffe4d9;
+  border: 2px solid #e9a18e;
+  color: #542c49;
+  font-size: 13px;
+  font-weight: 800;
+}
+.search-row button:hover { background: #ffd166; }
+.search-row button.active-filter {
+  background: #176b59;
+  border-color: #124d43;
+  color: #fff;
+}
+.filters button {
+  background: #fff;
+  border: 2px solid #e2d4e8;
+  color: #4e465f;
+  font-size: 11px;
+  font-weight: 800;
+}
+.filters button:hover {
+  background: #f4e9ff;
+  border-color: #a78bfa;
+  color: #4b3274;
+}
+.filters button.active {
+  background: #d9f1e5;
+  border-color: #53b9a4;
+  color: #124d43;
+  font-weight: 900;
+}
+
+.recipe-card {
+  padding: 0 0 22px;
+  border-bottom: 2px solid #edc5b8;
+}
+.recipe-art {
+  border: 3px solid #fff;
+  outline: 2px solid #d8a6c7;
+  box-shadow: 5px 5px #f5c45e;
+}
+.recipe-art > small {
+  color: #2d4c48;
+  font-size: 9px;
+  font-weight: 800;
+}
+.heart {
+  background: #fff4f6;
+  border: 2px solid #efb4c5;
+  color: #c43e70;
+  font-weight: 900;
+}
+.art-open > span {
+  color: #273f3a;
+  font-size: 9px;
+  font-weight: 800;
+}
+.recipe-meta {
+  color: #9b315e;
+  font-size: 10px;
+  font-weight: 800;
+}
+.recipe-meta span { color: #426c5e; font-weight: 800; }
+.recipe-name {
+  color: #252238;
+  font-size: 27px;
+  font-weight: 700;
+}
+.recipe-name:hover { color: #c43e70; }
+.recipe-card > p {
+  color: #514c60;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.75;
+}
+.note-tags span {
+  background: #f2e9ff;
+  border: 1px solid #d3b9f0;
+  color: #563b78;
+  font-size: 10px;
+  font-weight: 800;
+}
+.empty {
+  background: #fff;
+  border: 2px dashed #d49ab7;
+}
+.empty h3 { color: #252238; font-weight: 700; }
+.empty p, .muted { color: #5f5b6d; font-size: 13px; font-weight: 600; }
+
+.discovery {
+  background:
+    linear-gradient(135deg, #e7fbf5 0%, #f6edff 52%, #fff0e6 100%);
+}
+.discovery-heading small,
+.discovery-result > small {
+  color: #65447c;
+  font-size: 10px;
+  font-weight: 800;
+}
+.discovery-heading h2 { color: #252238; font-weight: 700; }
+.discovery-heading h2 em { color: #c43e70; font-weight: 700; }
+.discovery-heading p {
+  color: #514c60;
+  font-size: 14px;
+  font-weight: 600;
+}
+.discovery-stamp {
+  color: #4e3972;
+  background: #fff9e8;
+  border: 2px dashed #e1a44c;
+  outline-color: #efc7df;
+  font-weight: 800;
+}
+.discovery-note,
+.discovery-status,
+.discovery-error {
+  color: #514c60;
+  font-size: 12px;
+  font-weight: 600;
+}
+.discovery-error { color: #a51f4e; font-weight: 800; }
+.discovery-result {
+  background: #fff;
+  border: 2px solid #d8c6e8;
+  box-shadow: 4px 4px 0 #f4c7b9;
+}
+.discovery-result h3 { font-size: 23px; font-weight: 700; }
+.discovery-result h3 a { color: #176b59; }
+.discovery-result p {
+  color: #514c60;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.community {
+  background:
+    radial-gradient(circle at 85% 15%, #a78bfa33, transparent 25rem),
+    linear-gradient(115deg, #174f49, #245b60 58%, #49396f);
+  border-color: #ffd166;
+}
+.community > div > small { color: #ffe3a0; font-weight: 800; }
+.community h2 { color: #fffdf7; font-weight: 700; }
+.community h2 em { color: #ffd0df; font-weight: 700; }
+.community p {
+  color: #fff5e9;
+  font-size: 15px;
+  font-weight: 600;
+}
+.community .pixel-btn {
+  background: #ffd166;
+  border: 2px solid #d89c2d;
+  color: #30243f;
+  box-shadow: 4px 4px #f06458;
+  font-weight: 900;
+}
+.community .pixel-btn:hover { background: #fff0b8; }
+.community-art {
+  background: linear-gradient(135deg, #2c8f82, #68518e);
+  border: 2px solid #a9eadb;
+  box-shadow: 8px 8px #f06458;
+}
+
+footer {
+  background: #211e35;
+  color: #fff8ed;
+}
+footer p, footer small { color: #e9dff1; font-weight: 600; }
+
+.detail-modal,
+.small-modal {
+  background-color: #fffaf2;
+  color: #252238;
+  border-color: #e7b6c4;
+  box-shadow: 10px 10px #f06458;
+}
+.detail-content > small,
+.small-modal > small {
+  color: #65447c;
+  font-size: 10px;
+  font-weight: 800;
+}
+.detail-content h2,
+.small-modal h2 {
+  color: #252238;
+  font-weight: 700;
+}
+.detail-content p,
+.small-modal p {
+  color: #514c60;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.75;
+}
+.preparation {
+  background: #e8f7ef;
+  border: 2px solid #a8d9c4;
+  border-left: 5px solid #0e8b78;
+}
+.preparation h3 { color: #14594d; font-weight: 800; }
+.preparation ol { color: #34394a; }
+.preparation li { font-size: 13px; font-weight: 600; line-height: 1.8; }
+.preparation li::marker { color: #c43e70; font-weight: 900; }
+.formula-reference {
+  background: #fff4dc;
+  border: 2px solid #eacb83;
+}
+.formula-reference-top { color: #45364c; font-size: 11px; font-weight: 800; }
+.formula-reference-top span,
+.formula-reference-grid small { color: #685d70; font-weight: 700; }
+.formula-reference-grid strong { color: #252238; font-size: 15px; font-weight: 800; }
+.formula-reference-status { color: #484254; font-size: 12px; font-weight: 600; }
+.formula-reference-status b { color: #176b59; font-weight: 900; }
+.formula-reference-links a { color: #8c315e; font-weight: 700; }
+
+.ingredient-visual-note,
+.preparation-intro {
+  color: #514c60;
+  font-size: 12px;
+  font-weight: 600;
+}
+.ingredient-photo-credit {
+  color: #5f5668;
+  font-size: 10px;
+  font-weight: 600;
+}
+.ingredient-lightbox {
+  background: #fffaf2;
+  border: 3px solid #e6b4c8;
+  box-shadow: 10px 10px #f06458;
+}
+.ingredient-lightbox > small {
+  color: #65447c;
+  font-size: 10px;
+  font-weight: 800;
+}
+.ingredient-lightbox h2 {
+  color: #252238;
+  font-weight: 800;
+}
+.ingredient-lightbox > p {
+  color: #514c60;
+  font-size: 13px;
+  font-weight: 600;
+}
+.ingredient-lightbox > a { color: #8c315e; font-weight: 800; }
+
+input, textarea, select {
+  color: #252238;
+  font-weight: 600;
+}
+label { color: #353047; font-weight: 700; }
+label small { color: #625b70; font-weight: 600; }
+button:focus-visible, a:focus-visible, input:focus-visible,
+textarea:focus-visible, select:focus-visible {
+  outline: 3px solid #c43e70;
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  body { font-size: 15px; }
+  .hero p { font-size: 15px; }
+  .section-heading p, .community p { font-size: 14px; }
+  .recipe-card > p { font-size: 13px; }
+  .nav nav { gap: 14px; font-size: 12px; }
+}
+@media (max-width: 520px) {
+  .hero h1 { letter-spacing: -1.5px; }
+  .nav { padding-left: 5%; padding-right: 5%; }
+  .nav nav { gap: 10px; }
+  .pixel-btn { font-size: 12px; }
+}
