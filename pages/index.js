@@ -921,7 +921,7 @@ export default function Home() {
           const key = event.channel + ":" + event.note;
           if (event.kind === "on") {
             const queue = active.get(key) || [];
-            queue.push({ start: currentSeconds, velocity: event.velocity });
+            queue.push({ start: currentSeconds, velocity: event.velocity, note: event.note });
             active.set(key, queue);
           } else {
             const queue = active.get(key);
@@ -943,7 +943,7 @@ export default function Home() {
           notes.push({
             time: started.start,
             duration: 0.25,
-            frequency: 440 * Math.pow(2, (Number(queue.note) - 69) / 12),
+            frequency: 440 * Math.pow(2, (started.note - 69) / 12),
             velocity: started.velocity / 127
           });
         }));
