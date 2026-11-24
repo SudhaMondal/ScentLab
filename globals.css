@@ -3605,3 +3605,169 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+
+/* EDITORIAL FINISH — quiet luxury, tactile paper and a clearer soundtrack control */
+:root {
+  --paper: #f6f2e9;
+  --paper-light: #fffdf7;
+  --ink: #292b24;
+  --muted: #696b60;
+  --green: #344c3e;
+  --green-dark: #263a30;
+  --green-soft: #e7eadf;
+  --line: #dcd5c7;
+  --gold: #b29461;
+}
+html { scroll-behavior: smooth; }
+body {
+  background:
+    radial-gradient(ellipse at 12% 4%, rgba(204, 190, 157, .18), transparent 34rem),
+    radial-gradient(ellipse at 92% 38%, rgba(199, 211, 190, .17), transparent 36rem),
+    #f6f2e9;
+}
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.nav nav { gap: clamp(14px, 2.5vw, 34px); }
+.nav nav a {
+  position: relative;
+  padding: 9px 0;
+  transition: color .2s ease;
+}
+.nav nav a::after {
+  position: absolute;
+  right: 0;
+  bottom: 2px;
+  left: 0;
+  height: 1px;
+  background: #9b8056;
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s ease;
+}
+.nav nav a:hover::after { transform: scaleX(1); }
+.pixel-btn {
+  border-radius: 2px;
+  box-shadow: none;
+  transition: transform .22s ease, background .22s ease, box-shadow .22s ease;
+}
+.pixel-btn:hover {
+  box-shadow: 0 5px 16px rgba(38, 58, 48, .15);
+  transform: translateY(-2px);
+}
+.hero {
+  min-height: 610px;
+  align-items: center;
+  overflow: hidden;
+}
+.hero-copy { position: relative; z-index: 1; }
+.hero h1 { letter-spacing: -2.8px; }
+.hero-art {
+  position: relative;
+  isolation: isolate;
+  box-shadow: 14px 14px 0 #d9ddce, 0 28px 70px rgba(54, 65, 48, .14);
+}
+.hero-art::after {
+  position: absolute;
+  inset: 18px;
+  z-index: -1;
+  border: 1px solid rgba(124, 133, 105, .34);
+  border-radius: 200px 200px 2px 2px;
+  content: "";
+}
+.section { padding-top: clamp(66px, 8vw, 112px); padding-bottom: clamp(66px, 8vw, 112px); }
+.section-heading { margin-bottom: 28px; }
+.section-heading h2 em, .discovery-heading h2 em { color: #947064; }
+.recipe-card {
+  border-radius: 2px;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.recipe-card:hover {
+  border-color: #b8ad96;
+  box-shadow: 0 18px 42px rgba(45, 54, 42, .11);
+  transform: translateY(-5px);
+}
+.recipe-card .recipe-name { letter-spacing: -.4px; }
+.recipe-card .note-tags span { border-radius: 2px; }
+.library-rule {
+  border-top: 1px solid #cfc7b6;
+  border-bottom: 1px solid #cfc7b6;
+  color: #77705f;
+  letter-spacing: .12em;
+}
+.ticker {
+  background: #344a3c;
+  color: #f6f0e3;
+  letter-spacing: .13em;
+}
+.community {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(205, 190, 147, .18), transparent 22rem),
+    #344a3c;
+}
+.community::after {
+  position: absolute;
+  top: -55px;
+  right: 4%;
+  color: rgba(245, 238, 219, .09);
+  content: "✿";
+  font: 240px/1 Georgia, serif;
+  pointer-events: none;
+}
+.music-toggle {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 120;
+  min-height: 48px;
+  padding: 0 17px;
+  border: 1px solid #b6a783;
+  border-radius: 999px;
+  background: rgba(255, 253, 247, .96);
+  box-shadow: 0 10px 30px rgba(39, 48, 38, .16);
+  color: #344b3d;
+  font-size: 11px;
+  letter-spacing: .06em;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.music-toggle span {
+  display: inline-grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e8eadf;
+  color: #8b6b46;
+  font-size: 17px;
+}
+.music-toggle:hover, .music-toggle.is-playing {
+  border-color: #6b806b;
+  background: #e9eee4;
+  box-shadow: 0 12px 34px rgba(39, 48, 38, .2);
+  transform: translateY(-2px);
+}
+.music-toggle.is-playing span { animation: scent-note-pulse 2.2s ease-in-out infinite; }
+@keyframes scent-note-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(94, 126, 93, 0); }
+  50% { box-shadow: 0 0 0 6px rgba(94, 126, 93, .12); }
+}
+@media (max-width: 760px) {
+  .nav { position: relative; }
+  .music-toggle { right: 14px; bottom: 82px; min-height: 44px; }
+  .hero { min-height: auto; }
+  .hero-art { margin-top: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .music-toggle.is-playing span { animation: none; }
+  .recipe-card, .pixel-btn { transition: none; }
+}
