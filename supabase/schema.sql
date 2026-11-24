@@ -381,3 +381,74 @@ set instructions = case name
 end
 where user_id is null
 and name in ('Rosemary After Rain','Midnight Cacao','Petals in Paris','Golden Hour','Citrus Club','Velvet Library');
+
+
+-- SOURCE METADATA FOR PUBLISHED REFERENCE PERFUMES
+alter table public.recipes
+  add column if not exists formula_type text,
+  add column if not exists target_strength numeric,
+  add column if not exists finished_batch_grams numeric,
+  add column if not exists finished_concentrate_grams numeric,
+  add column if not exists finished_alcohol_grams numeric,
+  add column if not exists maceration_days integer,
+  add column if not exists compliance_status text,
+  add column if not exists compliance_basis text,
+  add column if not exists source_title text,
+  add column if not exists source_url text,
+  add column if not exists method_source_title text,
+  add column if not exists method_source_url text,
+  add column if not exists formula_strength_label text;
+
+-- Published reference formula 1: Citrus Linen.
+insert into public.recipes
+(name,category,mood,notes,ingredients,color,is_published,instructions,
+ formula_type,target_strength,finished_batch_grams,finished_concentrate_grams,
+ finished_alcohol_grams,maceration_days,compliance_status,compliance_basis,
+ source_title,source_url,method_source_title,method_source_url,formula_strength_label)
+select
+ 'Citrus Linen','Fresh','Bright orange and lavender over a clean, airy woody-musky base.',
+ array['Sweet Orange','Lavender','Hedione','Soft Woods','Clean Musk'],
+ '[{"name":"Sweet Orange Essential Oil","grams":2},{"name":"Lavender Essential Oil","grams":0.5},{"name":"Hedione","grams":3.5},{"name":"Ethylene Brassylate","grams":1},{"name":"Iso E Super","grams":1.5},{"name":"Ambroxan 10% in DPG","grams":0.9},{"name":"Vanillin 10% in DPG","grams":0.6}]'::jsonb,
+ '#e8c47e',true,
+ array[
+ 'Reference concentrate: 10.00 g. Equipment: 0.01 g-resolution scale, clean dry glass beaker with a loose cover, separate labelled weighing cups, glass rod, one clean pipette per liquid material, blotter strips, 25–30 mL glass mixing bottle with a tight cap, and an ethanol-compatible fine filter. Wear nitrile gloves and eye protection; work with ventilation. Perfumer''s ethanol is flammable: keep it away from flames, sparks and heat. Do not heat the mixture.',
+ 'Weigh the 10.00 g concentrate separately, taring the scale before every material: Ethylene Brassylate 1.00 g; Iso E Super 1.50 g; Ambroxan solution (10% Ambroxan in DPG) 0.90 g; Vanillin solution (10% Vanillin in DPG) 0.60 g; Hedione 3.50 g; Lavender Essential Oil 0.50 g; Sweet Orange Essential Oil 2.00 g. The Ambroxan and Vanillin lines are already 10% solutions: do not add another 10% dilution to them.',
+ 'Add the heavier base materials first: Ethylene Brassylate, Iso E Super, Ambroxan 10% in DPG and Vanillin 10% in DPG. Add Hedione and Lavender next. Add Sweet Orange Essential Oil last to reduce its exposure to air while weighing. After the final addition, stir slowly for 2 minutes, scraping the bottom and sides until the concentrate is uniform. Keep the beaker loosely covered between additions.',
+ 'For one 25.00 g finished EDP reference batch, weigh 5.20 g of the 10.00 g concentrate into a clean, dry 25–30 mL glass bottle. Add 19.80 g perfumer''s ethanol (approximately 95–96% ethanol) by weight. This is the source''s worked calculation: the concentrate includes DPG from its two 10% solutions, so 5.20 g concentrate supplies approximately 4.50 g aromatic material. Do not substitute beverage alcohol or measure by drops or volume.',
+ 'Cap immediately and gently invert 20 times over about 30 seconds. Do not leave the bottle open. Label it with formula name, batch date, 18% aromatic strength, and raw-material lot numbers. Store upright, tightly closed, cool and dark for 90 days.',
+ 'Maturation checks: Day 2 — with the cap closed, gently invert 10 times. Day 7 — place one drop on a blotter; assess at 30 seconds, 10 minutes and 1 hour. Day 45 — repeat the blotter assessment and record any change. Keep the bottle sealed between checks.',
+ 'At Day 90, chill the closed bottle at approximately 4°C for 24 hours. While still cold, filter through clean ethanol-compatible fine filter paper or a suitable approximately 1 µm PTFE/cellulose filter into a clean glass vessel. Avoid incompatible plastics. Let the filtered sample stand at room temperature for 24 hours; if haze or sediment returns, re-check stability and filter again before filling. This is a clarity step, not a substitute for a safety assessment.'
+ ],
+ 'published_reference',18,25,5.2,19.8,90,'source_reference_pass',
+ 'The source reports an IFRA Category 4 reference-calculator pass at 18% aromatic strength using the listed material grades. This is a source-reported calculation, not an IFRA-issued certificate or an independent safety assessment.',
+ 'PerfuMate — How to make perfume at home','https://perfumate.app/learn/how-to-make-perfume-at-home',
+ 'PerfuMate — How long to macerate perfume','https://perfumate.app/learn/how-long-to-macerate-perfume',
+ 'Eau de Parfum · 18% aromatic strength'
+where not exists (select 1 from public.recipes where user_id is null and name='Citrus Linen');
+
+-- Published reference formula 2: Citrus Grove Cologne.
+insert into public.recipes
+(name,category,mood,notes,ingredients,color,is_published,instructions,
+ formula_type,target_strength,finished_batch_grams,finished_concentrate_grams,
+ finished_alcohol_grams,maceration_days,compliance_status,compliance_basis,
+ source_title,source_url,method_source_title,method_source_url,formula_strength_label)
+select
+ 'Citrus Grove Cologne','Fresh','A crisp citrus cologne with aromatic herbs and a light musky-woody backbone.',
+ array['Bergamot FCF','Lemon','Petitgrain','Neroli','Rosemary','Lavender'],
+ '[{"name":"Ethylene Brassylate","grams":1},{"name":"Iso E Super","grams":0.5},{"name":"Hedione","grams":1.5},{"name":"Lavender Essential Oil","grams":1},{"name":"Rosemary Essential Oil","grams":0.5},{"name":"Neroli Essential Oil","grams":0.5},{"name":"Petitgrain Bigarade Essential Oil","grams":1},{"name":"Lemon Essential Oil (cold-pressed)","grams":1.5},{"name":"Bergamot FCF Essential Oil","grams":2.5}]'::jsonb,
+ '#d9d78b',true,
+ array[
+ 'Reference concentrate: 10.00 g. Equipment: 0.01 g-resolution scale, clean dry glass beaker with a loose cover, separate labelled weighing cups, glass rod, one clean pipette per liquid material, blotter strips, 25–30 mL glass mixing bottle with a tight cap, and an ethanol-compatible fine filter. Wear nitrile gloves and eye protection; work with ventilation. Perfumer''s ethanol is flammable: keep it away from flames, sparks and heat. Do not heat the mixture.',
+ 'Weigh the normalized 10.00 g concentrate, taring the scale before each line: Ethylene Brassylate 1.00 g; Iso E Super 0.50 g; Hedione 1.50 g; Lavender Essential Oil 1.00 g; Rosemary Essential Oil 0.50 g; Neroli Essential Oil 0.50 g; Petitgrain Bigarade Essential Oil 1.00 g; Lemon Essential Oil (cold-pressed) 1.50 g; Bergamot FCF Essential Oil 2.50 g. These are exactly half the 20.00 g concentrate quantities in the source formula; the proportions are unchanged.',
+ 'Add Ethylene Brassylate, Iso E Super and Hedione first. Add Lavender, Rosemary, Neroli and Petitgrain next. Add cold-pressed Lemon Essential Oil and Bergamot FCF Essential Oil last. Stir slowly for 2 minutes after the final addition until uniform, keeping the beaker loosely covered between additions.',
+ 'For one 25.00 g finished cologne reference batch at 5% concentrate, weigh 1.25 g of the 10.00 g concentrate into a clean, dry 25–30 mL glass bottle. Add 23.75 g perfumer''s ethanol (approximately 95–96% ethanol) by weight. Cap immediately and gently invert 20 times over about 30 seconds. Do not measure by drops or volume.',
+ 'Label with formula name, batch date, 5% strength and raw-material lot numbers. Store upright, tightly closed, cool and dark for 60 days. The source''s Category 4 reference check is specific to this formula and its stated grades, including cold-pressed lemon and bergamot FCF; do not replace them with expressed bergamot or a different citrus grade without recalculating.',
+ 'Maturation checks: Day 2 — with the cap closed, gently invert 10 times. Day 7 — place one drop on a blotter; assess at 30 seconds, 10 minutes and 1 hour. Day 30 — repeat the blotter assessment and record any change. Keep the bottle sealed between checks.',
+ 'At Day 60, chill the closed bottle at approximately 4°C for 24 hours. While still cold, filter through clean ethanol-compatible fine filter paper or a suitable approximately 1 µm PTFE/cellulose filter into a clean glass vessel. Avoid incompatible plastics. Let the filtered sample stand at room temperature for 24 hours; if haze or sediment returns, re-check stability and filter again before filling.'
+ ],
+ 'published_reference',5,25,1.25,23.75,60,'source_reference_pass',
+ 'The source reports an IFRA Category 4 reference-calculator pass at 5% strength under the 51st Amendment. Its cold-pressed lemon line sets the stated maximum strength; the check is grade-specific and is not an IFRA-issued certificate or an independent safety assessment.',
+ 'PerfuMate — Perfume recipes for beginners','https://perfumate.app/learn/perfume-recipes-for-beginners',
+ 'PerfuMate — How to make an eau de cologne at home','https://perfumate.app/learn/how-to-make-eau-de-cologne',
+ 'Eau de Cologne · 5% concentrate'
+where not exists (select 1 from public.recipes where user_id is null and name='Citrus Grove Cologne');
