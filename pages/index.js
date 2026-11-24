@@ -462,14 +462,26 @@ function ingredientPhoto(name = "") {
   return key && closeups[key] ? closeups[key] : fallback;
 }
 
-function Bottle({ color = "#c9dcb8" }) {
+function Bottle({ color = "#c9dcb8", name = "Rose + Moss", category = "Botanical" }) {
+  const title = String(name || "Signature").trim();
+  const variants = ["round", "square", "apothecary", "tall", "faceted", "oval"];
+  const variantIndex = [...title].reduce((sum, char) => sum + char.charCodeAt(0), 0) % variants.length;
+  const variant = variants[variantIndex];
+  const accents = ["#9b6b52", "#667d91", "#b28b45", "#7b8060", "#8b6e91", "#a65d64"];
+  const accent = accents[variantIndex];
   return (
-    <div className="bottle">
-      <div className="bottle-cap" />
+    <div className={`bottle bottle--${variant}`} style={{ "--bottle-color": color, "--bottle-accent": accent }} aria-label={`${title} perfume bottle design`}>
+      <div className="bottle-cap"><i /></div>
       <div className="bottle-neck" />
-      <div className="bottle-glass" style={{ background: color }}>
-        <span>SCENT<br />LAB</span>
+      <div className="bottle-glass">
+        <span className="bottle-label">
+          <small>SCENTLAB</small>
+          <b>{title.length > 19 ? title.slice(0, 18) + "…" : title}</b>
+          <em>{category}</em>
+        </span>
+        <i className="bottle-glint" />
       </div>
+      <small className="bottle-edition">EAU DE PARFUM · 2026</small>
     </div>
   );
 }
@@ -900,7 +912,7 @@ export default function Home() {
               </span>
 
               <span className="sun">✦</span>
-              <Bottle />
+              <Bottle name="Rose + Moss" category="Botanical" />
               <span className="flower flower-one">✿</span>
               <span className="flower flower-two">✿</span>
               <span className="hero-tag">ROSE + MOSS</span>
@@ -999,7 +1011,7 @@ export default function Home() {
                         setBatch(10);
                       }}
                     >
-                      <Bottle color={recipe.color || "#c9dcb8"} />
+                      <Bottle color={recipe.color || "#c9dcb8"} name={recipe.name} category={recipe.category} />
                       <span>✧ OPEN SCENT STUDY ✧</span>
                     </button>
                   </div>
@@ -1128,7 +1140,7 @@ export default function Home() {
                 className="detail-art"
                 style={{ background: selected.color || "#c9dcb8" }}
               >
-                <Bottle color={selected.color || "#c9dcb8"} />
+                <Bottle color={selected.color || "#c9dcb8"} name={selected.name} category={selected.category} />
               </div>
 
               <div className="detail-content">
