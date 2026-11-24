@@ -303,7 +303,46 @@ starterRecipes.forEach(recipe => {
   }
 });
 
+
 const families = ["All", "Fresh", "Floral", "Gourmand", "Woody"];
+
+const scentFamilyGuide = [
+  {
+    name: "Floral",
+    tone: "Blooming · soft · expressive",
+    subfamilies: ["Floral", "Soft Floral", "Floral Amber"],
+    examples: "Rose, jasmine, violet, peony, orange blossom"
+  },
+  {
+    name: "Amber",
+    tone: "Warm · resinous · enveloping",
+    subfamilies: ["Soft Amber", "Amber", "Woody Amber"],
+    examples: "Vanilla, labdanum, benzoin, incense, warm spices"
+  },
+  {
+    name: "Woody",
+    tone: "Earthy · dry · grounding",
+    subfamilies: ["Woods", "Mossy Woods", "Dry Woods"],
+    examples: "Cedarwood, sandalwood, vetiver, patchouli, oakmoss"
+  },
+  {
+    name: "Fresh",
+    tone: "Bright · green · airy",
+    subfamilies: ["Aromatic", "Citrus", "Water", "Green", "Fruity"],
+    examples: "Lavender, bergamot, marine notes, galbanum, berries"
+  }
+];
+
+const classicScentGroups = [
+  ["Citrus", "Bright citrus-led compositions, often called hesperidic."],
+  ["Floral", "Scents built around one flower or a floral bouquet."],
+  ["Fougère", "An aromatic structure traditionally built around lavender, coumarin and mossy notes."],
+  ["Chypre", "A structured contrast of citrus, mossy woods and a warm base."],
+  ["Woody", "Dry, creamy, earthy or smoky woods such as cedar, sandalwood and vetiver."],
+  ["Amber / Oriental", "Warm resins, balsams, spices and vanilla; “Amber” is the more current family name."],
+  ["Leather", "Dry, smoky, suede-like or tarry accords."]
+];
+
 
 function ingredientPhoto(name = "") {
   const value = String(name || "").toLowerCase();
@@ -990,6 +1029,50 @@ export default function Home() {
                 </button>
               ))}
             </div>
+
+            <section className="scent-family-guide" aria-labelledby="scent-family-title">
+              <div className="scent-guide-heading">
+                <div>
+                  <small>THE PERFUMER'S MAP</small>
+                  <h3 id="scent-family-title">Core scent families <em>& subfamilies</em></h3>
+                  <p>Explore the four broad families and the scent styles that sit within or between them.</p>
+                </div>
+                <span className="scent-guide-stamp">SCENT<br/>ATLAS</span>
+              </div>
+
+              <div className="scent-family-grid">
+                {scentFamilyGuide.map((group, index) => (
+                  <article className={`scent-family-card scent-family-card-${index}`} key={group.name}>
+                    <span className="scent-family-number">0{index + 1}</span>
+                    <h4>{group.name}</h4>
+                    <small>{group.tone}</small>
+                    <div className="scent-subfamily-list">
+                      {group.subfamilies.map(subfamily => <span key={subfamily}>{subfamily}</span>)}
+                    </div>
+                    <p>{group.examples}</p>
+                  </article>
+                ))}
+              </div>
+
+              <div className="classic-groups">
+                <div className="classic-groups-heading">
+                  <small>THE CLASSICAL PERFUMERY VOCABULARY</small>
+                  <h4>Classic fragrance groups</h4>
+                </div>
+                <div className="classic-groups-grid">
+                  {classicScentGroups.map(([name, description], index) => (
+                    <article key={name}>
+                      <span>0{index + 1}</span>
+                      <div><strong>{name}</strong><p>{description}</p></div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+              <p className="scent-taxonomy-note">
+                Classification systems overlap: a perfume may sit between families, and its dominant character can change as it develops. Gourmand, aquatic, musky and aldehydic are also widely used style descriptors, rather than extra branches in this four-family wheel.
+              </p>
+              <a className="scent-taxonomy-source" href="https://www.fragrancesoftheworld.com/Docs/Fragrance-Wheels-2024.pdf" target="_blank" rel="noreferrer">Reference: Michael Edwards' Fragrance Wheel (2024) ↗</a>
+            </section>
 
             {loading && (
               <p className="muted">Opening the archive…</p>
