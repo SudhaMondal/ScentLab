@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import PerfumeDiscovery from "../components/PerfumeDiscovery";
+import { moonlightMidi } from "../lib/moonlight-midi";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -773,10 +774,10 @@ export default function Home() {
     const context = musicContextRef.current;
     const master = musicMasterRef.current;
     if (context && master && context.state !== "closed") {
-      master.gain.setTargetAtTime(0, context.currentTime, 0.45);
+      master.gain.setTargetAtTime(0, context.currentTime, 0.35);
       window.setTimeout(() => {
         if (context.state !== "closed") context.close();
-      }, 1800);
+      }, 1500);
     }
     musicContextRef.current = null;
     musicMasterRef.current = null;
@@ -800,66 +801,237 @@ export default function Home() {
       context = new AudioContextClass();
       await context.resume();
 
+      // A compressor keeps the louder, full-score performance controlled.
       const master = context.createGain();
-      master.gain.setValueAtTime(0, context.currentTime);
-      master.gain.setTargetAtTime(0.56, context.currentTime, 1.8);
-      master.connect(context.destination);
+      const compressor = context.createDynamicsCompressor();
+      master.gain.setValueAtTime(0.0001, context.currentTime);
+      master.gain.setTargetAtTime(1.05, context.currentTime, 0.65);
+      compressor.threshold.setValueAtTime(-19, context.currentTime);
+      compressor.knee.setValueAtTime(12, context.currentTime);
+      compressor.ratio.setValueAtTime(4, context.currentTime);
+      compressor.attack.setValueAtTime(0.004, context.currentTime);
+      compressor.release.setValueAtTime(0.24, context.currentTime);
+      master.connect(compressor);
+      compressor.connect(context.destination);
 
-      // A gentle, locally synthesized interpretation of the public-domain
-      // opening texture of Beethoven's Moonlight Sonata (Piano Sonata No. 14).
-      // This is not a recording; the browser synthesizes the notes after a click.
-      const bars = [
-        { bass: 69.30, arp: [138.59, 207.65, 277.18, 329.63, 277.18, 207.65], melody: [415.30, 554.37, 659.25, 554.37] }, // C-sharp minor
-        { bass: 55.00, arp: [110.00, 164.81, 220.00, 261.63, 220.00, 164.81], melody: [392.00, 523.25, 659.25, 523.25] }, // A
-        { bass: 46.25, arp: [92.50, 138.59, 185.00, 220.00, 185.00, 138.59], melody: [369.99, 493.88, 587.33, 493.88] }, // F-sharp minor
-        { bass: 51.91, arp: [103.83, 155.56, 207.65, 246.94, 207.65, 155.56], melody: [415.30, 493.88, 622.25, 493.88] } // G-sharp dominant colour
+      // Parse the complete Mutopia MIDI score for all three movements.
+      // The browser synthesizes a piano-like tone locally; this is not a recording.
+      const decodeMovement = (base64, tempoScale) => {
+        const binary = window.atob(base64);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i += 1) bytes[i] = binary.charCodeAt(i);
+
+        const readU32 = (i) => (
+          (bytes[i] * 0x1000000) +
+          (bytes[i + 1] << 16) +
+          (bytes[i + 2] << 8) +
+          bytes[i + 3]
+        );
+        const readVar = (state) => {
+          let value = 0;
+          let byte;
+          do {
+            byte = bytes[state.i++];
+            value = (value << 7) | (byte & 0x7f);
+          } while (byte & 0x80);
+          return value;
+        };
+
+        if (String.fromCharCode(...bytes.slice(0, 4)) !== "MThd") {
+          throw new Error("Invalid Moonlight Sonata MIDI header.");
+        }
+        const headerLength = readU32(4);
+        const ticksPerQuarter = ((bytes[12] & 0x7f) << 8) | bytes[13];
+        if (!ticksPerQuarter) throw new Error("Invalid MIDI timing.");
+
+        const rawEvents = [];
+        let offset = 8 + headerLength;
+        let order = 0;
+        while (offset + 8 <= bytes.length) {
+          const chunkName = String.fromCharCode(...bytes.slice(offset, offset + 4));
+          const chunkLength = readU32(offset + 4);
+          const chunkEnd = Math.min(bytes.length, offset + 8 + chunkLength);
+          if (chunkName !== "MTrk") {
+            offset = chunkEnd;
+            continue;
+          }
+
+          const state = { i: offset + 8 };
+          let tick = 0;
+          let runningStatus = 0;
+          while (state.i < chunkEnd) {
+            tick += readVar(state);
+            if (state.i >= chunkEnd) break;
+            let status = bytes[state.i];
+            if (status & 0x80) {
+              status = bytes[state.i++];
+              if (status < 0xf0) runningStatus = status;
+            } else {
+              status = runningStatus;
+            }
+
+            if (status === 0xff) {
+              const metaType = bytes[state.i++];
+              const length = readVar(state);
+              if (metaType === 0x51 && length === 3) {
+                const tempo = (bytes[state.i] << 16) | (bytes[state.i + 1] << 8) | bytes[state.i + 2];
+                rawEvents.push({ tick, kind: "tempo", tempo, order: order++ });
+              }
+              state.i += length;
+              continue;
+            }
+            if (status === 0xf0 || status === 0xf7) {
+              state.i += readVar(state);
+              continue;
+            }
+
+            const command = status & 0xf0;
+            const channel = status & 0x0f;
+            const note = bytes[state.i++];
+            const velocity = (command === 0xc0 || command === 0xd0) ? 0 : bytes[state.i++];
+            if (command === 0x90 && velocity > 0) {
+              rawEvents.push({ tick, kind: "on", channel, note, velocity, order: order++ });
+            } else if (command === 0x80 || (command === 0x90 && velocity === 0)) {
+              rawEvents.push({ tick, kind: "off", channel, note, order: order++ });
+            }
+          }
+          offset = chunkEnd;
+        }
+
+        rawEvents.sort((a, b) => a.tick - b.tick ||
+          (a.kind === "tempo" ? -1 : b.kind === "tempo" ? 1 : a.order - b.order));
+
+        let currentTick = 0;
+        let currentSeconds = 0;
+        let microsPerQuarter = 1000000;
+        const active = new Map();
+        const notes = [];
+        const secondsAt = (tick) => {
+          currentSeconds += ((tick - currentTick) * microsPerQuarter) /
+            (ticksPerQuarter * 1000000 * tempoScale);
+          currentTick = tick;
+        };
+
+        rawEvents.forEach(event => {
+          secondsAt(event.tick);
+          if (event.kind === "tempo") {
+            microsPerQuarter = event.tempo;
+            return;
+          }
+          const key = event.channel + ":" + event.note;
+          if (event.kind === "on") {
+            const queue = active.get(key) || [];
+            queue.push({ start: currentSeconds, velocity: event.velocity });
+            active.set(key, queue);
+          } else {
+            const queue = active.get(key);
+            if (queue && queue.length) {
+              const started = queue.shift();
+              notes.push({
+                time: started.start,
+                duration: Math.max(0.045, currentSeconds - started.start),
+                frequency: 440 * Math.pow(2, (event.note - 69) / 12),
+                velocity: started.velocity / 127
+              });
+              if (!queue.length) active.delete(key);
+            }
+          }
+        });
+
+        // Close any note that lacks an explicit note-off at the end of its track.
+        active.forEach(queue => queue.forEach(started => {
+          notes.push({
+            time: started.start,
+            duration: 0.25,
+            frequency: 440 * Math.pow(2, (Number(queue.note) - 69) / 12),
+            velocity: started.velocity / 127
+          });
+        }));
+
+        notes.sort((a, b) => a.time - b.time);
+        const duration = notes.reduce((latest, note) =>
+          Math.max(latest, note.time + note.duration), 0);
+        return { notes, duration };
+      };
+
+      const movements = [
+        { data: moonlightMidi.movement1, tempo: 0.9, label: "I. Adagio sostenuto" },
+        { data: moonlightMidi.movement2, tempo: 1.5, label: "II. Allegretto" },
+        { data: moonlightMidi.movement3, tempo: 2.0, label: "III. Presto agitato" }
       ];
 
-      const playTone = (frequency, when, duration, volume, type = "triangle") => {
-        const oscillator = context.createOscillator();
-        const envelope = context.createGain();
-        const filter = context.createBiquadFilter();
-        filter.type = "lowpass";
-        filter.frequency.setValueAtTime(1450, when);
-        oscillator.type = type;
-        oscillator.frequency.setValueAtTime(frequency, when);
-        envelope.gain.setValueAtTime(0.0001, when);
-        envelope.gain.exponentialRampToValueAtTime(volume, when + 0.035);
-        envelope.gain.exponentialRampToValueAtTime(0.0001, when + duration);
-        oscillator.connect(filter);
-        filter.connect(envelope);
-        envelope.connect(master);
-        oscillator.start(when);
-        oscillator.stop(when + duration + 0.03);
+      const playlist = [];
+      let movementOffset = 0;
+      movements.forEach(movement => {
+        const score = decodeMovement(movement.data, movement.tempo);
+        score.notes.forEach(note => playlist.push({ ...note, time: note.time + movementOffset }));
+        movementOffset += score.duration + 1.8;
+      });
+      playlist.sort((a, b) => a.time - b.time);
+      if (!playlist.length) throw new Error("The Moonlight Sonata score could not be read.");
+
+      const playPianoNote = (frequency, when, duration, velocity) => {
+        const voice = context.createGain();
+        const fundamental = context.createOscillator();
+        const overtone = context.createOscillator();
+        const overtoneGain = context.createGain();
+        const peak = 0.19 * velocity;
+        const releaseAt = when + Math.max(0.075, duration);
+
+        fundamental.type = "sine";
+        fundamental.frequency.setValueAtTime(frequency, when);
+        overtone.type = "triangle";
+        overtone.frequency.setValueAtTime(frequency * 2, when);
+        overtoneGain.gain.setValueAtTime(0.13, when);
+
+        voice.gain.setValueAtTime(0.0001, when);
+        voice.gain.exponentialRampToValueAtTime(Math.max(0.0002, peak), when + 0.009);
+        voice.gain.setTargetAtTime(Math.max(0.0002, peak * 0.23), when + 0.02, 0.28);
+        voice.gain.setTargetAtTime(0.0001, releaseAt, 0.16);
+
+        fundamental.connect(voice);
+        overtone.connect(overtoneGain);
+        overtoneGain.connect(voice);
+        voice.connect(master);
+        fundamental.start(when);
+        overtone.start(when);
+        fundamental.stop(releaseAt + 1.05);
+        overtone.stop(releaseAt + 0.75);
       };
 
-      let step = 0;
-      const playNote = () => {
+      let eventIndex = 0;
+      let cycleStart = context.currentTime + 0.08;
+      const cycleDuration = movementOffset;
+      const scheduleAhead = () => {
         if (context.state !== "running") return;
         const now = context.currentTime;
-        const bar = bars[Math.floor(step / 12) % bars.length];
-        const position = step % 12;
-
-        // Quiet rolling triplets, with a low bass note at the start of each bar.
-        playTone(bar.arp[position % 6], now, 0.72, 0.052, "triangle");
-        if (position === 0) playTone(bar.bass, now, 2.55, 0.075, "sine");
-
-        // A sparse upper line gives the arrangement its moonlit, piano-like feel.
-        if (position === 3 || position === 9) {
-          const melodyIndex = position === 3 ? 0 : 2;
-          playTone(bar.melody[melodyIndex], now, 1.25, 0.035, "sine");
+        const horizon = now + 0.22;
+        while (eventIndex < playlist.length) {
+          const event = playlist[eventIndex];
+          const when = cycleStart + event.time;
+          if (when > horizon) break;
+          playPianoNote(
+            event.frequency,
+            Math.max(now + 0.006, when),
+            event.duration,
+            event.velocity
+          );
+          eventIndex += 1;
+          if (eventIndex >= playlist.length) {
+            eventIndex = 0;
+            cycleStart += cycleDuration;
+          }
         }
-        step += 1;
       };
 
-      playNote();
-      musicTimerRef.current = window.setInterval(playNote, 250);
+      scheduleAhead();
+      musicTimerRef.current = window.setInterval(scheduleAhead, 45);
       musicContextRef.current = context;
       musicMasterRef.current = master;
       setMusicOn(true);
-    } catch {
+    } catch (error) {
       if (context && context.state !== "closed") context.close();
-      setNotice("The ScentLab soundtrack could not start. Please try again.");
+      setNotice("The full Moonlight Sonata could not start. Please try again.");
     }
   }
 
@@ -1238,7 +1410,7 @@ export default function Home() {
               className={`music-toggle ${musicOn ? "is-playing" : ""}`}
               onClick={toggleNotebookMusic}
               aria-pressed={musicOn}
-              title={musicOn ? "Pause Moonlight Sonata" : "Play a soft Moonlight Sonata rendition"}
+              title={musicOn ? "Pause the complete Moonlight Sonata" : "Play all three movements of Beethoven’s Moonlight Sonata"}
             >
               <span aria-hidden="true">{musicOn ? "♫" : "♪"}</span>
               {musicOn ? "Pause music" : "Moonlight Sonata"}
