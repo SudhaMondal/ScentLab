@@ -314,7 +314,8 @@ function ingredientPhoto(name = "") {
     value.includes("cedar") ? "cedar" :
     value.includes("alcohol") || value.includes("ethanol") ? "alcohol" :
     value.includes("cacao") || value.includes("cocoa") ? "cacao" :
-    value.includes("vanilla") || value.includes("vanillin") ? "vanilla" :
+    value.includes("vanillin") ? "aroma-chemical" :
+    value.includes("vanilla") ? "vanilla" :
     value.includes("tonka") ? "tonka" :
     value.includes("rose") ? "rose" :
     value.includes("jasmine") ? "jasmine" :
@@ -324,7 +325,7 @@ function ingredientPhoto(name = "") {
     value.includes("sandalwood") ? "sandalwood" :
     value.includes("lemon") ? "lemon" :
     value.includes("petitgrain") ? "petitgrain" :
-    value.includes("neroli") ? "neroli" :
+    value.includes("neroli") || value.includes("orange blossom") ? "neroli" :
     value.includes("orange") ? "sweet-orange" :
     value.includes("patchouli") ? "patchouli" :
     value.includes("hedione") || value.includes("iso e super") || value.includes("dpg") || value.includes("aroma") ? "aroma-chemical" :
@@ -1215,6 +1216,10 @@ export default function Home() {
                               const fallbackSrc = "https://pgiforyou.com/cdn/shop/files/ALDEHYDEC12MNA_377e40da-799a-4252-96bc-3b98d49fe316.jpg?v=1723391423";
                               image.src = fallbackSrc;
                               image.alt = "Single labelled aroma-chemical bottle, illustrative reference";
+                              setEnlargedIngredient(current => current
+                                ? { ...current, src: fallbackSrc, caption: image.alt }
+                                : current
+                              );
                             }}
                           />
                           <span className="ingredient-zoom-hint">VIEW</span>
