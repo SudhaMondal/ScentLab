@@ -103,27 +103,204 @@ const starterRecipes = [
   }
 ];
 
+const detailedStarterInstructions = {
+  "Rosemary After Rain": [
+    "Standard batch: 10.00 g. Work at 20–25°C in good ventilation, away from flames, sparks and hot surfaces. Wear nitrile gloves and eye protection. Equipment: 0.01 g-resolution scale, 30–50 mL clean dry glass beaker, glass rod, four weighing cups, disposable pipettes, blotter strips and a clean 10–15 mL amber glass vial. Do not heat any material.",
+    "Tare separate cups and weigh: Rosemary accord 4.00 g; Bergamot accord 3.00 g; Cedarwood accord 2.00 g; perfumer's alcohol 1.00 g. Keep the alcohol capped. The ingredient list above recalculates the weights if you change the batch size.",
+    "Put 2.00 g Cedarwood accord and 4.00 g Rosemary accord into the beaker. Stir slowly for 90 seconds, scraping the base and sides until uniform.",
+    "Add 3.00 g Bergamot accord in 3 equal 1.00 g portions, 30 seconds apart. Stir for 45 seconds after each portion, then stir for a further 60 seconds.",
+    "Add 1.00 g perfumer's alcohol in 4 equal 0.25 g portions, 30 seconds apart. Stir 30 seconds after each addition, then stir continuously for 2 minutes. Keep the beaker loosely covered between additions; never seal it while mixing.",
+    "Transfer to the labelled vial, cap tightly and gently invert 10 times. Record date and ingredient lot numbers. Rest upright, cool and dark for 48 hours; assess again after 7 days. Put one small drop on a blotter and record at 5 minutes, 30 minutes, 2 hours and 24 hours. Blotter-only: not approved for skin use."
+  ],
+  "Midnight Cacao": [
+    "Standard batch: 10.00 g. Work at 20–25°C in good ventilation, away from flames, sparks and hot surfaces. Wear nitrile gloves and eye protection. Equipment: 0.01 g-resolution scale, 30–50 mL clean dry glass beaker, glass rod, four weighing cups, disposable pipettes, blotter strips and a clean 10–15 mL amber glass vial. Do not heat any material.",
+    "Tare separate cups and weigh: Cacao accord 4.00 g; Vanilla accord 3.00 g; Tonka accord 2.00 g; perfumer's alcohol 1.00 g. Keep the alcohol capped. The ingredient list above recalculates the weights if you change the batch size.",
+    "Put 2.00 g Tonka accord and 3.00 g Vanilla accord into the beaker. Stir slowly for 90 seconds until uniform.",
+    "Add 4.00 g Cacao accord in 4 equal 1.00 g portions, 30 seconds apart. Stir for 45 seconds after each portion, then stir for a further 60 seconds.",
+    "Add 1.00 g perfumer's alcohol in 4 equal 0.25 g portions, 30 seconds apart. Stir 30 seconds after each addition, then stir continuously for 2 minutes. Keep the beaker loosely covered between additions; never seal it while mixing.",
+    "Transfer to the labelled vial, cap tightly and gently invert 10 times. Record date and ingredient lot numbers. Rest upright, cool and dark for 48 hours; assess again after 7 days. Put one small drop on a blotter and record at 5 minutes, 30 minutes, 2 hours and 24 hours. Blotter-only: not approved for skin use."
+  ],
+  "Petals in Paris": [
+    "Standard batch: 10.00 g. Work at 20–25°C in good ventilation, away from flames, sparks and hot surfaces. Wear nitrile gloves and eye protection. Equipment: 0.01 g-resolution scale, 30–50 mL clean dry glass beaker, glass rod, four weighing cups, disposable pipettes, blotter strips and a clean 10–15 mL amber glass vial. Do not heat any material.",
+    "Tare separate cups and weigh: Rose accord 4.00 g; Jasmine accord 2.00 g; Musk accord 3.00 g; perfumer's alcohol 1.00 g. Keep the alcohol capped. The ingredient list above recalculates the weights if you change the batch size.",
+    "Put 3.00 g Musk accord and 4.00 g Rose accord into the beaker. Stir gently for 90 seconds until uniform.",
+    "Add 2.00 g Jasmine accord in 4 equal 0.50 g portions, 30 seconds apart. Stir for 45 seconds after each portion, then stir for a further 60 seconds.",
+    "Add 1.00 g perfumer's alcohol in 4 equal 0.25 g portions, 30 seconds apart. Stir 30 seconds after each addition, then stir continuously for 2 minutes. Keep the beaker loosely covered between additions; never seal it while mixing.",
+    "Transfer to the labelled vial, cap tightly and gently invert 10 times. Record date and ingredient lot numbers. Rest upright, cool and dark for 48 hours; assess again after 7 days. Put one small drop on a blotter and record at 5 minutes, 30 minutes, 2 hours and 24 hours. Blotter-only: not approved for skin use."
+  ],
+  "Golden Hour": [
+    "Standard batch: 10.00 g. Work at 20–25°C in good ventilation, away from flames, sparks and hot surfaces. Wear nitrile gloves and eye protection. Equipment: 0.01 g-resolution scale, 30–50 mL clean dry glass beaker, glass rod, four weighing cups, disposable pipettes, blotter strips and a clean 10–15 mL amber glass vial. Do not heat any material.",
+    "Tare separate cups and weigh: Amber accord 4.00 g; Sandalwood accord 3.00 g; Vanilla accord 2.00 g; perfumer's alcohol 1.00 g. Keep the alcohol capped. The ingredient list above recalculates the weights if you change the batch size.",
+    "Put 3.00 g Sandalwood accord and 2.00 g Vanilla accord into the beaker. Stir slowly for 90 seconds until uniform.",
+    "Add 4.00 g Amber accord in 4 equal 1.00 g portions, 30 seconds apart. Stir for 45 seconds after each portion, then stir for a further 60 seconds.",
+    "Add 1.00 g perfumer's alcohol in 4 equal 0.25 g portions, 30 seconds apart. Stir 30 seconds after each addition, then stir continuously for 2 minutes. Keep the beaker loosely covered between additions; never seal it while mixing.",
+    "Transfer to the labelled vial, cap tightly and gently invert 10 times. Record date and ingredient lot numbers. Rest upright, cool and dark for 48 hours; assess again after 7 days. Put one small drop on a blotter and record at 5 minutes, 30 minutes, 2 hours and 24 hours. Blotter-only: not approved for skin use."
+  ],
+  "Citrus Club": [
+    "Standard batch: 10.00 g. Work at 20–25°C in good ventilation, away from flames, sparks and hot surfaces. Wear nitrile gloves and eye protection. Equipment: 0.01 g-resolution scale, 30–50 mL clean dry glass beaker, glass rod, four weighing cups, disposable pipettes, blotter strips and a clean 10–15 mL amber glass vial. Do not heat any material.",
+    "Tare separate cups and weigh: Lemon accord 4.00 g; Sweet orange accord 3.00 g; Neroli accord 2.00 g; perfumer's alcohol 1.00 g. Keep the alcohol capped. The ingredient list above recalculates the weights if you change the batch size.",
+    "Put 2.00 g Neroli accord and 3.00 g Sweet orange accord into the beaker. Stir gently for 90 seconds until uniform.",
+    "Add 4.00 g Lemon accord in 4 equal 1.00 g portions, 30 seconds apart. Stir for 45 seconds after each portion, then stir for a further 60 seconds.",
+    "Add 1.00 g perfumer's alcohol in 4 equal 0.25 g portions, 30 seconds apart. Stir 30 seconds after each addition, then stir continuously for 2 minutes. Keep the beaker loosely covered between additions; never seal it while mixing.",
+    "Transfer to the labelled vial, cap tightly and gently invert 10 times. Record date and ingredient lot numbers. Rest upright, cool and dark for 48 hours; assess again after 7 days. Put one small drop on a blotter and record at 5 minutes, 30 minutes, 2 hours and 24 hours. Blotter-only: not approved for skin use."
+  ],
+  "Velvet Library": [
+    "Standard batch: 10.00 g. Work at 20–25°C in good ventilation, away from flames, sparks and hot surfaces. Wear nitrile gloves and eye protection. Equipment: 0.01 g-resolution scale, 30–50 mL clean dry glass beaker, glass rod, four weighing cups, disposable pipettes, blotter strips and a clean 10–15 mL amber glass vial. Do not heat any material.",
+    "Tare separate cups and weigh: Cedarwood accord 4.00 g; Patchouli accord 3.00 g; Vanilla accord 2.00 g; perfumer's alcohol 1.00 g. Keep the alcohol capped. The ingredient list above recalculates the weights if you change the batch size.",
+    "Put 2.00 g Vanilla accord and 3.00 g Patchouli accord into the beaker. Stir slowly for 90 seconds until uniform.",
+    "Add 4.00 g Cedarwood accord in 4 equal 1.00 g portions, 30 seconds apart. Stir for 45 seconds after each portion, then stir for a further 60 seconds.",
+    "Add 1.00 g perfumer's alcohol in 4 equal 0.25 g portions, 30 seconds apart. Stir 30 seconds after each addition, then stir continuously for 2 minutes. Keep the beaker loosely covered between additions; never seal it while mixing.",
+    "Transfer to the labelled vial, cap tightly and gently invert 10 times. Record date and ingredient lot numbers. Rest upright, cool and dark for 48 hours; assess again after 7 days. Put one small drop on a blotter and record at 5 minutes, 30 minutes, 2 hours and 24 hours. Blotter-only: not approved for skin use."
+  ]
+};
+
+starterRecipes.forEach(recipe => {
+  if (detailedStarterInstructions[recipe.name]) {
+    recipe.instructions = detailedStarterInstructions[recipe.name];
+  }
+});
+
 const families = ["All", "Fresh", "Floral", "Gourmand", "Woody"];
 
-function ingredientImage(name = "") {
+function ingredientPhoto(name = "") {
   const value = name.toLowerCase();
-  if (value.includes("rosemary")) return "/ingredients/rosemary.svg";
-  if (value.includes("bergamot")) return "/ingredients/bergamot.svg";
-  if (value.includes("cedar")) return "/ingredients/cedarwood.svg";
-  if (value.includes("alcohol")) return "/ingredients/alcohol.svg";
-  if (value.includes("cacao") || value.includes("cocoa")) return "/ingredients/cacao.svg";
-  if (value.includes("vanilla")) return "/ingredients/vanilla.svg";
-  if (value.includes("tonka")) return "/ingredients/tonka.svg";
-  if (value.includes("rose")) return "/ingredients/rose.svg";
-  if (value.includes("jasmine")) return "/ingredients/jasmine.svg";
-  if (value.includes("musk")) return "/ingredients/musk.svg";
-  if (value.includes("amber")) return "/ingredients/amber.svg";
-  if (value.includes("sandalwood")) return "/ingredients/sandalwood.svg";
-  if (value.includes("lemon")) return "/ingredients/lemon.svg";
-  if (value.includes("orange")) return "/ingredients/orange.svg";
-  if (value.includes("neroli")) return "/ingredients/neroli.svg";
-  if (value.includes("patchouli")) return "/ingredients/patchouli.svg";
-  return null;
+  const key = value.includes("rosemary") ? "rosemary"
+    : value.includes("bergamot") ? "bergamot"
+    : value.includes("cedar") ? "cedar"
+    : value.includes("alcohol") ? "alcohol"
+    : value.includes("cacao") || value.includes("cocoa") ? "cacao"
+    : value.includes("vanilla") ? "vanilla"
+    : value.includes("tonka") ? "tonka"
+    : value.includes("rose") ? "rose"
+    : value.includes("jasmine") ? "jasmine"
+    : value.includes("musk") ? "musk"
+    : value.includes("amber") ? "amber"
+    : value.includes("sandalwood") ? "sandalwood"
+    : value.includes("lemon") ? "lemon"
+    : value.includes("orange") ? "orange"
+    : value.includes("neroli") ? "neroli"
+    : value.includes("patchouli") ? "patchouli"
+    : null;
+  const photos = {
+  "rosemary": [
+    "Dry_rosemary.jpg",
+    "Tiia Monto",
+    "CC BY-SA 3.0",
+    "Dry rosemary herb",
+    "https://commons.wikimedia.org/wiki/File:Dry_rosemary.jpg"
+  ],
+  "bergamot": [
+    "Bergamotfruit.jpg",
+    "Xenocryst",
+    "CC BY-SA 2.0",
+    "Bergamot fruit",
+    "https://commons.wikimedia.org/wiki/File:Bergamotfruit.jpg"
+  ],
+  "cedar": [
+    "Bucket_full_of_Eastern_Red_Cedar_chips_-_Cupressaceae_Juniperus_virginiana.jpg",
+    "Spoingus101",
+    "CC0",
+    "Eastern red cedar wood chips (species reference)",
+    "https://commons.wikimedia.org/wiki/File:Bucket_full_of_Eastern_Red_Cedar_chips_-_Cupressaceae_Juniperus_virginiana.jpg"
+  ],
+  "alcohol": [
+    "Ethanol_Flasche.jpg",
+    "Leipnizkeks / Metoc",
+    "GFDL",
+    "Ethanol bottle reference; use perfumer's alcohol",
+    "https://commons.wikimedia.org/wiki/File:Ethanol_Flasche.jpg"
+  ],
+  "cacao": [
+    "Theobroma_cacao_01.JPG",
+    "Vinayaraj",
+    "CC BY-SA 3.0",
+    "Cacao plant and fruit",
+    "https://commons.wikimedia.org/wiki/File:Theobroma_cacao_01.JPG"
+  ],
+  "vanilla": [
+    "Vanilla_beans_curing.jpg",
+    "Sunil Elias",
+    "CC BY-SA 3.0",
+    "Cured vanilla beans",
+    "https://commons.wikimedia.org/wiki/File:Vanilla_beans_curing.jpg"
+  ],
+  "tonka": [
+    "Tonka_Beans.jpg",
+    "Mecredis / Fred Benenson",
+    "GFDL (see source)",
+    "Tonka beans",
+    "https://commons.wikimedia.org/wiki/File:Tonka_Beans.jpg"
+  ],
+  "rose": [
+    "Rose_Petals.jpg",
+    "Atoma",
+    "CC BY 2.5",
+    "Rose petals",
+    "https://commons.wikimedia.org/wiki/File:Rose_Petals.jpg"
+  ],
+  "jasmine": [
+    "Jasmine_plant_and_flowers.jpg",
+    "Maina Tudu",
+    "CC0",
+    "Jasmine plant and flowers",
+    "https://commons.wikimedia.org/wiki/File:Jasmine_plant_and_flowers.jpg"
+  ],
+  "musk": [
+    "Perfume_Bottle.jpg",
+    "ChickenFreak",
+    "Public domain",
+    "Perfumery bottle reference for musk accord (often synthetic)",
+    "https://commons.wikimedia.org/wiki/File:Perfume_Bottle.jpg"
+  ],
+  "amber": [
+    "Labdanum,_Cistus,_Rose_of_Sharon,_05,_2019.jpg",
+    "Curtis Ward",
+    "CC BY-SA 4.0",
+    "Labdanum resin, a perfumery material used for amber notes",
+    "https://commons.wikimedia.org/wiki/File:Labdanum,_Cistus,_Rose_of_Sharon,_05,_2019.jpg"
+  ],
+  "sandalwood": [
+    "Sandalwood_4.jpg",
+    "Nativeplants garden",
+    "CC BY-SA 4.0",
+    "Sandalwood",
+    "https://commons.wikimedia.org/wiki/File:Sandalwood_4.jpg"
+  ],
+  "lemon": [
+    "Lemon_picture.jpg",
+    "Mgmoscatello",
+    "CC BY-SA 3.0",
+    "Lemon",
+    "https://commons.wikimedia.org/wiki/File:Lemon_picture.jpg"
+  ],
+  "orange": [
+    "Orange_fruit.jpeg",
+    "Tshrinivasan",
+    "CC BY 3.0",
+    "Sweet orange fruit",
+    "https://commons.wikimedia.org/wiki/File:Orange_fruit.jpeg"
+  ],
+  "neroli": [
+    "Bitter_orange_-_Citrus_aurantium_01.JPG",
+    "Zeynel Cebeci",
+    "CC BY-SA 4.0",
+    "Bitter orange blossom, source of neroli",
+    "https://commons.wikimedia.org/wiki/File:Bitter_orange_-_Citrus_aurantium_01.JPG"
+  ],
+  "patchouli": [
+    "Patchouli.jpg",
+    "Joe Laurence",
+    "CC BY 4.0",
+    "Patchouli plant",
+    "https://commons.wikimedia.org/wiki/File:Patchouli.jpg"
+  ]
+};
+  if (!key || !photos[key]) return null;
+  const [filename, author, license, caption, page] = photos[key];
+  return {
+    src: `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(filename)}?width=480`,
+    author, license, caption, page
+  };
 }
 
 function Bottle({ color = "#c9dcb8" }) {
@@ -825,21 +1002,21 @@ export default function Home() {
                 </div>
 
                 <p className="ingredient-visual-note">
-                  Visual references for the named scent materials. An accord
-                  may be a blended or synthetic fragrance material; the picture
-                  shows its ingredient inspiration, not necessarily its exact composition.
+                  Real photographs of raw materials and perfumery references.
+                  Accords may be blended or synthetic; a photograph shows the
+                  scent inspiration, not the exact composition of the accord.
                 </p>
 
                 {(selected.ingredients || []).map((item, i) => {
-                  const image = ingredientImage(item.name);
+                  const photo = ingredientPhoto(item.name);
                   return (
                     <div className="ingredient ingredient-with-image" key={i}>
                       <div className="ingredient-main">
-                        {image ? (
+                        {photo ? (
                           <img
                             className="ingredient-thumb"
-                            src={image}
-                            alt={`${item.name} ingredient illustration`}
+                            src={photo.src}
+                            alt={photo.caption}
                             loading="lazy"
                             width="58"
                             height="48"
@@ -847,7 +1024,16 @@ export default function Home() {
                         ) : (
                           <span className="ingredient-thumb ingredient-placeholder" aria-hidden="true">✧</span>
                         )}
-                        <span>{item.name}</span>
+                        <span>
+                          {item.name}
+                          {photo && (
+                            <small className="ingredient-photo-credit">
+                              <a href={photo.page} target="_blank" rel="noreferrer">
+                                Photo: {photo.author} · {photo.license}
+                              </a>
+                            </small>
+                          )}
+                        </span>
                       </div>
                       <b>
                         {(
@@ -867,6 +1053,11 @@ export default function Home() {
 
                 <section className="preparation">
                   <h3>How to make it</h3>
+                  <p className="preparation-intro">
+                    The numbered method is written for a 10.00 g standard batch.
+                    If you change the target batch, follow the recalculated weights
+                    above; keep the same addition sequence and mixing times.
+                  </p>
                   {(selected.instructions || []).length ? (
                     <ol>
                       {selected.instructions.map((step, index) => (
