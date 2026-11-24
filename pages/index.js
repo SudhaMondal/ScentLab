@@ -306,6 +306,58 @@ starterRecipes.forEach(recipe => {
 
 const families = ["All", "Fresh", "Floral", "Gourmand", "Woody"];
 
+// Detailed logging choices combine established fragrance wheels, traditional
+// fragrance categories and the French Society of Perfumers' classic families.
+// Facets/accords are kept separate because they describe character, not always
+// a standalone fragrance family.
+const familyLogGroups = [
+  {
+    label: "Fragrance wheel · Michael Edwards",
+    options: [
+      "Soft Floral", "Floral", "Floral Amber",
+      "Soft Amber", "Amber", "Woody Amber",
+      "Woods", "Mossy Woods", "Dry Woods",
+      "Aromatic", "Citrus", "Water", "Green", "Fruity"
+    ]
+  },
+  {
+    label: "Traditional fragrance categories",
+    options: [
+      "Aldehydic", "Chypre", "Gourmand", "Leather",
+      "Musky", "Oriental (traditional term)", "Spicy"
+    ]
+  },
+  {
+    label: "French classical families · family / subfamily",
+    options: [
+      "Citrus", "General Citrus", "Floral Chypre Citrus",
+      "Spiced Citrus", "Woody Citrus",
+      "Floral", "Single Flower / Soliflore", "Lavender-Single Flower",
+      "Floral Bouquet", "Floral Green", "Floral Aldehydic",
+      "Floral Woody", "Floral Fruity Woody",
+      "Fougère", "General Fougère", "Soft Amber Fougère",
+      "Floral Amber Fougère", "Spiced Fougère", "Aromatic Fougère",
+      "Chypre", "General Chypre", "Floral Chypre",
+      "Floral Aldehydic Chypre", "Fruity Chypre", "Green Chypre",
+      "Aromatic Chypre", "Leather Chypre",
+      "Woody", "General Woody", "Woody Citrusy Coniferous",
+      "Woody Aromatic", "Woody Spicy", "Woody Spicy Leather",
+      "Amber", "Floral Woody Amber", "Floral Spicy Amber",
+      "Soft Amber", "Citrus Amber", "Floral Semi-Amber",
+      "Leather", "Floral Leather", "Tobacco Leather"
+    ]
+  },
+  {
+    label: "Olfactive facets & accords · descriptive",
+    options: [
+      "Animalic", "Balsamic / Resinous", "Powdery", "Smoky",
+      "Tobacco", "Marine / Ozonic", "Herbal / Herbaceous",
+      "Earthy", "Camphoraceous", "Salty / Mineral",
+      "Creamy", "Waxy"
+    ]
+  }
+];
+
 const scentFamilyGuide = [
   {
     name: "Floral",
@@ -1680,17 +1732,26 @@ export default function Home() {
                 </label>
 
                 <label>
-                  Fragrance family
+                  Fragrance family log
                   <select
                     value={form.category}
                     onChange={e =>
                       setForm({ ...form, category: e.target.value })
                     }
                   >
-                    {families.filter(x => x !== "All").map(x => (
-                      <option key={x}>{x}</option>
+                    {familyLogGroups.map(group => (
+                      <optgroup key={group.label} label={group.label}>
+                        {group.options.map(option => (
+                          <option key={option} value={option}>{option}</option>
+                        ))}
+                      </optgroup>
                     ))}
                   </select>
+                  <small>
+                    Choose the closest family or subfamily. Use the facets section
+                    when you are recording a scent character or accord rather than
+                    a formal family.
+                  </small>
                 </label>
 
                 <label>
