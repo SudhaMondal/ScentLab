@@ -2739,3 +2739,176 @@ textarea:focus-visible, select:focus-visible {
   .nav nav { gap: 10px; }
   .pixel-btn { font-size: 12px; }
 }
+
+
+/* SCENT FAMILY ATLAS */
+.scent-family-guide {
+  margin: 30px 0 38px;
+  padding: clamp(18px, 3vw, 30px);
+  border: 2px solid #e9c2cf;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 95% 0%, #d9d0ff88, transparent 19rem),
+    radial-gradient(circle at 0% 100%, #bfeee288, transparent 20rem),
+    #fffdf8;
+  box-shadow: 7px 7px 0 #f4c7b9;
+}
+.scent-guide-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+.scent-guide-heading small,
+.classic-groups-heading small {
+  color: #8c315e;
+  font: 800 10px/1.5 var(--mono);
+  letter-spacing: .13em;
+}
+.scent-guide-heading h3 {
+  margin: 7px 0 5px;
+  color: #252238;
+  font: 800 clamp(25px, 3.2vw, 36px)/1.15 var(--serif);
+}
+.scent-guide-heading h3 em { color: #c43e70; }
+.scent-guide-heading p {
+  margin: 0;
+  color: #514c60;
+  font-size: 13px;
+  font-weight: 600;
+}
+.scent-guide-stamp {
+  flex: 0 0 70px;
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-items: center;
+  border: 2px dashed #a78bfa;
+  border-radius: 50%;
+  background: #f3edff;
+  color: #563b78;
+  text-align: center;
+  font: 800 9px/1.5 var(--mono);
+  transform: rotate(8deg);
+}
+.scent-family-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.scent-family-card {
+  position: relative;
+  min-width: 0;
+  padding: 19px 15px 16px;
+  border: 2px solid transparent;
+  border-radius: 13px;
+}
+.scent-family-card-0 { background: #fff0f5; border-color: #efb5cb; }
+.scent-family-card-1 { background: #fff2d9; border-color: #e9c47a; }
+.scent-family-card-2 { background: #e9f3e6; border-color: #b4d0a8; }
+.scent-family-card-3 { background: #e5f7f4; border-color: #a5ddd3; }
+.scent-family-number {
+  color: #574d65;
+  font: 800 9px var(--mono);
+  letter-spacing: .12em;
+}
+.scent-family-card h4 {
+  margin: 8px 0 2px;
+  color: #252238;
+  font: 800 23px/1.15 var(--serif);
+}
+.scent-family-card > small {
+  color: #514c60;
+  font-size: 10px;
+  font-weight: 800;
+}
+.scent-subfamily-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0 11px;
+}
+.scent-subfamily-list span {
+  padding: 5px 8px;
+  border: 1px solid #ffffff;
+  border-radius: 999px;
+  background: #ffffffc9;
+  color: #383148;
+  font-size: 10px;
+  font-weight: 800;
+}
+.scent-family-card p {
+  margin: 0;
+  color: #4d485a;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.65;
+}
+.classic-groups {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 2px dashed #e7c9d2;
+}
+.classic-groups-heading h4 {
+  margin: 5px 0 14px;
+  color: #252238;
+  font: 800 23px/1.2 var(--serif);
+}
+.classic-groups-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+.classic-groups-grid article {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  padding: 11px 12px;
+  border: 1px solid #e7d7e8;
+  border-radius: 9px;
+  background: #fff;
+}
+.classic-groups-grid article > span {
+  flex: 0 0 auto;
+  color: #b33c70;
+  font: 800 10px var(--mono);
+}
+.classic-groups-grid strong {
+  color: #302940;
+  font-size: 13px;
+  font-weight: 900;
+}
+.classic-groups-grid p {
+  margin: 3px 0 0;
+  color: #565064;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+.scent-taxonomy-note {
+  margin: 18px 0 8px;
+  padding: 12px 14px;
+  border-left: 4px solid #a78bfa;
+  background: #f3efff;
+  color: #4e465f;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.7;
+}
+.scent-taxonomy-source {
+  color: #8c315e;
+  font: 800 10px/1.5 var(--mono);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.scent-taxonomy-source:hover { color: #176b59; }
+@media (max-width: 900px) {
+  .scent-family-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .scent-family-guide { padding: 16px 13px; }
+  .scent-guide-stamp { flex-basis: 55px; width: 55px; height: 55px; font-size: 8px; }
+  .scent-family-grid, .classic-groups-grid { grid-template-columns: 1fr; }
+  .scent-family-card { padding: 16px; }
+}
