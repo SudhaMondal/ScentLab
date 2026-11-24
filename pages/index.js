@@ -101,6 +101,149 @@ const starterRecipes = [
     ],
     instructions: ["Prepare clean, dry glass equipment, a precision scale, a glass stirrer and a labelled sample vial. Work with ventilation and suitable protective equipment.", "Weigh each accord separately using the quantities shown for your chosen batch size.", "Combine the vanilla and patchouli accords in a glass beaker and stir slowly.", "Add the cedarwood accord gradually, stirring until uniform.", "Add the listed perfumer's alcohol in small portions while stirring gently.", "Transfer to the labelled vial and leave closed for 48 hours. Evaluate on a blotter strip only; this starter formula is not validated for skin use."]
   }
+  ,
+  {
+    "id": "seed-7",
+    "name": "Citrus Linen",
+    "category": "Fresh",
+    "mood": "Bright orange and lavender over a clean, airy woody-musky base.",
+    "notes": [
+      "Sweet Orange",
+      "Lavender",
+      "Hedione",
+      "Soft Woods",
+      "Clean Musk"
+    ],
+    "color": "#e8c47e",
+    "ingredients": [
+      {
+        "name": "Sweet Orange Essential Oil",
+        "grams": 2
+      },
+      {
+        "name": "Lavender Essential Oil",
+        "grams": 0.5
+      },
+      {
+        "name": "Hedione",
+        "grams": 3.5
+      },
+      {
+        "name": "Ethylene Brassylate",
+        "grams": 1
+      },
+      {
+        "name": "Iso E Super",
+        "grams": 1.5
+      },
+      {
+        "name": "Ambroxan 10% in DPG",
+        "grams": 0.9
+      },
+      {
+        "name": "Vanillin 10% in DPG",
+        "grams": 0.6
+      }
+    ],
+    "instructions": [
+      "Reference concentrate: 10.00 g. Equipment: 0.01 g-resolution scale, clean dry glass beaker with a loose cover, separate labelled weighing cups, glass rod, one clean pipette per liquid material, blotter strips, 25–30 mL glass mixing bottle with a tight cap, and an ethanol-compatible fine filter. Wear nitrile gloves and eye protection; work with ventilation. Perfumer's ethanol is flammable: keep it away from flames, sparks and heat. Do not heat the mixture.",
+      "Weigh the 10.00 g concentrate separately, taring the scale before every material: Ethylene Brassylate 1.00 g; Iso E Super 1.50 g; Ambroxan solution (10% Ambroxan in DPG) 0.90 g; Vanillin solution (10% Vanillin in DPG) 0.60 g; Hedione 3.50 g; Lavender Essential Oil 0.50 g; Sweet Orange Essential Oil 2.00 g. The Ambroxan and Vanillin lines are already 10% solutions: do not add another 10% dilution to them.",
+      "Add the heavier base materials first: Ethylene Brassylate, Iso E Super, Ambroxan 10% in DPG and Vanillin 10% in DPG. Add Hedione and Lavender next. Add Sweet Orange Essential Oil last to reduce its exposure to air while weighing. After the final addition, stir slowly for 2 minutes, scraping the bottom and sides until the concentrate is uniform. Keep the beaker loosely covered between additions.",
+      "For one 25.00 g finished EDP reference batch, weigh 5.20 g of the 10.00 g concentrate into a clean, dry 25–30 mL glass bottle. Add 19.80 g perfumer's ethanol (approximately 95–96% ethanol) by weight. This is the source's worked calculation: the concentrate includes DPG from its two 10% solutions, so 5.20 g concentrate supplies approximately 4.50 g aromatic material. Do not substitute beverage alcohol or measure by drops or volume.",
+      "Cap immediately and gently invert 20 times over about 30 seconds. Do not leave the bottle open. Label it with formula name, batch date, 18% aromatic strength, and raw-material lot numbers. Store upright, tightly closed, cool and dark for 90 days.",
+      "Maturation checks: Day 2 — with the cap closed, gently invert 10 times. Day 7 — place one drop on a blotter; assess at 30 seconds, 10 minutes and 1 hour. Day 45 — repeat the blotter assessment and record any change. Keep the bottle sealed between checks.",
+      "At Day 90, chill the closed bottle at approximately 4°C for 24 hours. While still cold, filter through clean ethanol-compatible fine filter paper or a suitable approximately 1 µm PTFE/cellulose filter into a clean glass vessel. Avoid incompatible plastics. Let the filtered sample stand at room temperature for 24 hours; if haze or sediment returns, re-check stability and filter again before filling. This is a clarity step, not a substitute for a safety assessment."
+    ],
+    "formula_type": "published_reference",
+    "target_strength": 18,
+    "finished_batch_grams": 25,
+    "finished_concentrate_grams": 5.2,
+    "finished_alcohol_grams": 19.8,
+    "maceration_days": 90,
+    "compliance_status": "source_reference_pass",
+    "compliance_basis": "The source reports an IFRA Category 4 reference-calculator pass at 18% aromatic strength using the listed material grades. This is a source-reported calculation, not an IFRA-issued certificate or an independent safety assessment.",
+    "source_title": "PerfuMate — How to make perfume at home",
+    "source_url": "https://perfumate.app/learn/how-to-make-perfume-at-home",
+    "method_source_title": "PerfuMate — Perfume making basics and maceration schedule",
+    "method_source_url": "https://perfumate.app/learn/how-long-to-macerate-perfume",
+    "formula_strength_label": "Eau de Parfum · 18% aromatic strength"
+  },
+  {
+    "id": "seed-8",
+    "name": "Citrus Grove Cologne",
+    "category": "Fresh",
+    "mood": "A crisp citrus cologne with aromatic herbs and a light musky-woody backbone.",
+    "notes": [
+      "Bergamot FCF",
+      "Lemon",
+      "Petitgrain",
+      "Neroli",
+      "Rosemary",
+      "Lavender"
+    ],
+    "color": "#d9d78b",
+    "ingredients": [
+      {
+        "name": "Ethylene Brassylate",
+        "grams": 1
+      },
+      {
+        "name": "Iso E Super",
+        "grams": 0.5
+      },
+      {
+        "name": "Hedione",
+        "grams": 1.5
+      },
+      {
+        "name": "Lavender Essential Oil",
+        "grams": 1
+      },
+      {
+        "name": "Rosemary Essential Oil",
+        "grams": 0.5
+      },
+      {
+        "name": "Neroli Essential Oil",
+        "grams": 0.5
+      },
+      {
+        "name": "Petitgrain Bigarade Essential Oil",
+        "grams": 1
+      },
+      {
+        "name": "Lemon Essential Oil (cold-pressed)",
+        "grams": 1.5
+      },
+      {
+        "name": "Bergamot FCF Essential Oil",
+        "grams": 2.5
+      }
+    ],
+    "instructions": [
+      "Reference concentrate: 10.00 g. Equipment: 0.01 g-resolution scale, clean dry glass beaker with a loose cover, separate labelled weighing cups, glass rod, one clean pipette per liquid material, blotter strips, 25–30 mL glass mixing bottle with a tight cap, and an ethanol-compatible fine filter. Wear nitrile gloves and eye protection; work with ventilation. Perfumer's ethanol is flammable: keep it away from flames, sparks and heat. Do not heat the mixture.",
+      "Weigh the normalized 10.00 g concentrate, taring the scale before each line: Ethylene Brassylate 1.00 g; Iso E Super 0.50 g; Hedione 1.50 g; Lavender Essential Oil 1.00 g; Rosemary Essential Oil 0.50 g; Neroli Essential Oil 0.50 g; Petitgrain Bigarade Essential Oil 1.00 g; Lemon Essential Oil (cold-pressed) 1.50 g; Bergamot FCF Essential Oil 2.50 g. These are exactly half the 20.00 g concentrate quantities in the source formula; the proportions are unchanged.",
+      "Add Ethylene Brassylate, Iso E Super and Hedione first. Add Lavender, Rosemary, Neroli and Petitgrain next. Add cold-pressed Lemon Essential Oil and Bergamot FCF Essential Oil last. Stir slowly for 2 minutes after the final addition until uniform, keeping the beaker loosely covered between additions.",
+      "For one 25.00 g finished cologne reference batch at 5% concentrate, weigh 1.25 g of the 10.00 g concentrate into a clean, dry 25–30 mL glass bottle. Add 23.75 g perfumer's ethanol (approximately 95–96% ethanol) by weight. Cap immediately and gently invert 20 times over about 30 seconds. Do not measure by drops or volume.",
+      "Label with formula name, batch date, 5% strength and raw-material lot numbers. Store upright, tightly closed, cool and dark for 60 days. The source's Category 4 reference check is specific to this formula and its stated grades, including cold-pressed lemon and bergamot FCF; do not replace them with expressed bergamot or a different citrus grade without recalculating.",
+      "Maturation checks: Day 2 — with the cap closed, gently invert 10 times. Day 7 — place one drop on a blotter; assess at 30 seconds, 10 minutes and 1 hour. Day 30 — repeat the blotter assessment and record any change. Keep the bottle sealed between checks.",
+      "At Day 60, chill the closed bottle at approximately 4°C for 24 hours. While still cold, filter through clean ethanol-compatible fine filter paper or a suitable approximately 1 µm PTFE/cellulose filter into a clean glass vessel. Avoid incompatible plastics. Let the filtered sample stand at room temperature for 24 hours; if haze or sediment returns, re-check stability and filter again before filling."
+    ],
+    "formula_type": "published_reference",
+    "target_strength": 5,
+    "finished_batch_grams": 25,
+    "finished_concentrate_grams": 1.25,
+    "finished_alcohol_grams": 23.75,
+    "maceration_days": 60,
+    "compliance_status": "source_reference_pass",
+    "compliance_basis": "The source reports an IFRA Category 4 reference-calculator pass at 5% strength under the 51st Amendment. Its cold-pressed lemon line sets the stated maximum strength; the check is grade-specific and is not an IFRA-issued certificate or an independent safety assessment.",
+    "source_title": "PerfuMate — Perfume recipes for beginners (citrus cologne formula)",
+    "source_url": "https://perfumate.app/learn/perfume-recipes-for-beginners",
+    "method_source_title": "PerfuMate — How to make an eau de cologne at home",
+    "method_source_url": "https://perfumate.app/learn/how-to-make-eau-de-cologne",
+    "formula_strength_label": "Eau de Cologne · 5% concentrate"
+  }
+
 ];
 
 const detailedStarterInstructions = {
@@ -1051,13 +1194,35 @@ export default function Home() {
                   <b>{batch} g</b>
                 </div>
 
+                {selected.formula_type === "published_reference" && (
+                  <div className="formula-reference">
+                    <div className="formula-reference-top">
+                      <b>{selected.formula_strength_label}</b>
+                      <span>Published formula</span>
+                    </div>
+                    <div className="formula-reference-grid">
+                      <div><small>FINISHED BATCH</small><strong>{Number(selected.finished_batch_grams).toFixed(2)} g</strong></div>
+                      <div><small>CONCENTRATE</small><strong>{Number(selected.finished_concentrate_grams).toFixed(2)} g</strong></div>
+                      <div><small>PERFUMER'S ETHANOL</small><strong>{Number(selected.finished_alcohol_grams).toFixed(2)} g</strong></div>
+                      <div><small>RESTING PERIOD</small><strong>{selected.maceration_days} days</strong></div>
+                    </div>
+                    <p className="formula-reference-status">
+                      <b>Source-reported IFRA Category 4 check: PASS.</b> {selected.compliance_basis}
+                    </p>
+                    <p className="formula-reference-links">
+                      <a href={selected.source_url} target="_blank" rel="noreferrer">{selected.source_title}</a>
+                      {" · "}
+                      <a href={selected.method_source_url} target="_blank" rel="noreferrer">{selected.method_source_title}</a>
+                    </p>
+                  </div>
+                )}
+
                 <section className="preparation">
                   <h3>How to make it</h3>
                   <p className="preparation-intro">
-                    Gram amounts in the numbered steps are for a 10.00 g
-                    reference batch. For another batch size, multiply every step
-                    amount by target batch ÷ 10; the live ingredient list above
-                    is the exact weight guide. Keep the same order and timings.
+                    {selected.formula_type === "published_reference"
+                      ? "The ingredient list and batch control scale the 10.00 g fragrance concentrate. The finished-bottle dilution and resting schedule are stated separately below."
+                      : "Gram amounts in the numbered steps are for a 10.00 g reference batch. For another batch size, multiply every step amount by target batch ÷ 10; the live ingredient list above is the exact weight guide. Keep the same order and timings."}
                   </p>
                   {(selected.instructions || []).length ? (
                     <ol>
@@ -1070,19 +1235,19 @@ export default function Home() {
                   )}
                 </section>
 
-                <div className="safety">
-                  <b>LAB SAFETY NOTE</b>
-                  <p>
-                    These are educational 10.00 g accord blends: 9.00 g
-                    fragrance accords plus 1.00 g perfumer's alcohol. They
-                    are concentrated study blends, not finished wearable
-                    perfumes and are not validated for skin use. Verify each
-                    supplier's identity, safety data, IFRA limits and local
-                    regulations before any further development. Evaluate
-                    these starter batches on blotter strips only; do not
-                    apply them to skin.
-                  </p>
-                </div>
+                {selected.formula_type !== "published_reference" && (
+                  <div className="safety">
+                    <b>FORMULA STATUS</b>
+                    <p>
+                      This community/study formula has not been independently
+                      verified for wearable use. Check the exact supplier
+                      materials, their documentation and the intended-use
+                      limits before skin application. Do not assume that a
+                      recipe is skin-safe solely because its ingredients are
+                      familiar or naturally derived.
+                    </p>
+                  </div>
+                )}
 
                 <div className="detail-actions">
                   <button
