@@ -308,6 +308,7 @@ const families = ["All", "Fresh", "Floral", "Gourmand", "Woody"];
 function ingredientPhoto(name = "") {
   const value = name.toLowerCase();
   const key = value.includes("rosemary") ? "rosemary"
+    : value.includes("lavender") ? "lavender"
     : value.includes("bergamot") ? "bergamot"
     : value.includes("cedar") ? "cedar"
     : value.includes("alcohol") ? "alcohol"
@@ -331,6 +332,13 @@ function ingredientPhoto(name = "") {
     "CC BY-SA 3.0",
     "Dry rosemary herb",
     "https://commons.wikimedia.org/wiki/File:Dry_rosemary.jpg"
+  ],
+  "lavender": [
+    "Lavender Field.jpg",
+    "Miguel Virkkunen Carvalho",
+    "CC BY 2.0",
+    "Lavender field, Provence",
+    "https://commons.wikimedia.org/wiki/File:Lavender_Field.jpg"
   ],
   "bergamot": [
     "Bergamotfruit.jpg",
@@ -1165,7 +1173,7 @@ export default function Home() {
                             height="48"
                           />
                         ) : (
-                          <span className="ingredient-thumb ingredient-placeholder" aria-hidden="true">✧</span>
+                          <span className="ingredient-thumb ingredient-placeholder" title="Synthetic aroma material; no botanical source photograph" aria-hidden="true">LAB</span>
                         )}
                         <span>
                           {item.name}
