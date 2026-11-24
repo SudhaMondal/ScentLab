@@ -2912,3 +2912,69 @@ textarea:focus-visible, select:focus-visible {
   .scent-family-grid, .classic-groups-grid { grid-template-columns: 1fr; }
   .scent-family-card { padding: 16px; }
 }
+
+
+/* SMALL-TEXT READABILITY PASS */
+.eyebrow,
+.section-heading > div > small,
+.community > div > small {
+  font-size: 12px;
+}
+.logo small { font-size: 8px; }
+.hero-label small { font-size: 9px; }
+.hero-tag { font-size: 9px; }
+.hero-side-note { font-size: 8px; }
+.micro-stats { font-size: 10px; }
+.bottle-label small { font-size: 7px; }
+.bottle-label b { font-size: 9px; }
+.bottle-label em { font-size: 8px; }
+.bottle-edition { font-size: 7px; }
+.ticker { font-size: 11px; }
+.section-heading > strong small { font-size: 10px; }
+.library-rule { font-size: 11px; }
+.recipe-art > small,
+.art-open > span { font-size: 10px; }
+.recipe-meta { font-size: 11px; }
+.note-tags span { font-size: 11px; }
+.discovery-heading small,
+.discovery-result > small { font-size: 11px; }
+.discovery-note,
+.discovery-status,
+.discovery-error { font-size: 13px; }
+footer p,
+footer > small { font-size: 9px; }
+.detail-content > small,
+.small-modal > small { font-size: 11px; }
+.formula-heading label { font-size: 10px; }
+.ingredient b { font-size: 11px; }
+.ingredient.total { font-size: 9px; }
+.safety b { font-size: 9px; }
+.safety p { font-size: 11px; }
+.small-modal label { font-size: 11px; }
+.small-modal label small { font-size: 10px; }
+.ingredient-visual-note,
+.preparation-intro { font-size: 13px; }
+.ingredient-zoom-hint { font-size: 8px; }
+.ingredient-photo-credit { font-size: 11px; }
+.ingredient-lightbox > small { font-size: 11px; }
+.ingredient-lightbox > a { font-size: 10px; }
+.formula-reference-top { font-size: 11px; }
+.formula-reference-top span,
+.formula-reference-grid small { font-size: 10px; }
+.formula-reference-status,
+.formula-reference-links { font-size: 11px; }
+.scent-guide-heading small,
+.classic-groups-heading small { font-size: 11px; }
+.scent-family-number { font-size: 10px; }
+.scent-family-card > small { font-size: 11px; }
+.scent-subfamily-list span { font-size: 11px; }
+.scent-family-card p,
+.classic-groups-grid p,
+.scent-taxonomy-note { font-size: 12px; }
+.classic-groups-grid article > span { font-size: 11px; }
+.scent-taxonomy-source { font-size: 11px; }
+
+@media (max-width: 760px) {
+  .micro-stats { font-size: 9px; }
+  .library-rule { font-size: 10px; }
+}
