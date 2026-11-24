@@ -1992,3 +1992,35 @@ footer::after {
     padding: 18px;
   }
 }
+
+
+/* RECIPE PREPARATION STEPS */
+.preparation {
+  margin-top: 24px;
+  padding: 18px 18px 16px;
+  background: #f0eee3;
+  border: 1px solid #d9d4c4;
+  border-left: 3px solid #9aaf91;
+}
+.preparation h3 {
+  margin: 0 0 14px;
+  color: #405b46;
+  font: 22px var(--serif);
+}
+.preparation ol {
+  margin: 0;
+  padding-left: 23px;
+  color: #6f7467;
+}
+.preparation li {
+  padding: 0 0 11px 5px;
+  font-size: 11px;
+  line-height: 1.85;
+}
+.preparation li:last-child {
+  padding-bottom: 0;
+}
+.preparation li::marker {
+  color: #a87587;
+  font: 11px var(--mono);
+}
