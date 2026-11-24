@@ -1,4 +1,3 @@
-
 import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
@@ -429,26 +428,24 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>ScentLab — Pixel Perfumery Club</title>
+        <title>ScentLab — The Pixel Perfumery Library</title>
         <meta
           name="description"
-          content="Discover fragrance recipes, craft your own scent and meet the ScentLab community."
+          content="A little pixel-art perfumery library. Discover fragrance recipes, explore scent notes and share your own formulas."
         />
-        <meta name="theme-color" content="#f7f4e9" />
+        <meta name="theme-color" content="#f4efe3" />
       </Head>
 
       <div className="site">
         <header className="nav">
           <a className="logo" href="#">
             ✿ SCENT<span>LAB</span>
-            <small>PIXEL PERFUMERY CLUB</small>
+            <small>THE PIXEL PERFUMERY LIBRARY</small>
           </a>
 
           <nav>
-            <a href="#explore">Explore</a>
-            <a href="#workbench">Workbench</a>
-            <a href="#grove">Scent Grove</a>
-            <a href="#community">Community</a>
+            <a href="#explore">The Library</a>
+            <a href="#community">Makers' Corner</a>
           </nav>
 
           <div className="nav-actions">
@@ -482,9 +479,9 @@ export default function Home() {
 
         <main>
           <section className="hero">
-            <div>
+            <div className="hero-copy">
               <div className="eyebrow">
-                ✧ YOUR LITTLE CORNER OF SCENT MAGIC
+                ✧ A LITTLE CABINET OF SCENTED CURIOSITIES
               </div>
 
               <h1>
@@ -493,30 +490,34 @@ export default function Home() {
               </h1>
 
               <p>
-                A tiny pixel universe for curious noses. Discover
-                fragrance recipes, mix your own little potion, and
-                trade ideas with fellow scent-makers.
+                Step into a tiny pixel universe inspired by old perfume
+                houses, botanical notebooks and curious makers. Discover
+                fragrance recipes, explore beautiful notes, and compose
+                a little something of your own.
               </p>
 
               <div className="hero-actions">
                 <a className="pixel-btn" href="#explore">
-                  Explore the library ↗
+                  Browse the library ↗
                 </a>
 
-                <a className="plain" href="#workbench">
-                  Enter the workbench ↓
-                </a>
+                <button
+                  className="plain"
+                  onClick={() => setCreateOpen(true)}
+                >
+                  ＋ Compose a formula
+                </button>
               </div>
 
               <div className="micro-stats">
-                ✿ COMMUNITY-MADE　 ▦ FORMULA NOTEBOOK　 ✧ PIXEL MAGIC
+                ✿ A CABINET OF SCENTS　 ▦ FORMULAS & FIELD NOTES　 ✧ MADE TO EXPLORE
               </div>
             </div>
 
             <div className="hero-art">
               <span className="hero-label">
                 SCENT LAB<br />
-                <small>NO. 001 / DREAM IN PIXELS</small>
+                <small>NO. 001 / THE BOTANICAL EDITION</small>
               </span>
 
               <span className="sun">✦</span>
@@ -524,27 +525,35 @@ export default function Home() {
               <span className="flower flower-one">✿</span>
               <span className="flower flower-two">✿</span>
               <span className="hero-tag">ROSE + MOSS</span>
+              <span className="hero-side-note">EAU DE PIXEL · EST. 2026</span>
             </div>
           </section>
 
           <div className="ticker">
-            ✦ FIND YOUR NOTES　 ✿　 MIX YOUR MAGIC　 ✿　 SHARE THE GOOD STUFF　 ✿　 FIND YOUR NOTES
+            ✦ TURN THE PAGE　 ✿　 FOLLOW THE NOTES　 ✿　 MIX YOUR MAGIC　 ✿　 A LIBRARY OF LITTLE SCENTS　 ✦
           </div>
 
           <section className="section" id="explore">
-            <div className="section-heading">
-              <div>
-                <small>01 / THE RECIPE LIBRARY</small>
-                <h2>
-                  Find your <em>next obsession.</em>
-                </h2>
-                <p>Little formulas, big imaginary worlds.</p>
+            <div className="library-intro">
+              <div className="section-heading">
+                <div>
+                  <small>01 / THE RECIPE ARCHIVE</small>
+                  <h2>
+                    Find your <em>next obsession.</em>
+                  </h2>
+                  <p>Collected notes, curious formulas and fragrant little stories.</p>
+                </div>
+
+                <strong>
+                  {recipes.length.toString().padStart(2, "0")}
+                  <small>ENTRIES IN THE ARCHIVE</small>
+                </strong>
               </div>
 
-              <strong>
-                {recipes.length.toString().padStart(2, "0")}
-                <small>RECIPES IN THE LAB</small>
-              </strong>
+              <div className="library-rule">
+                <span>THE SCENT INDEX</span>
+                <span>VOL. I · 2026</span>
+              </div>
             </div>
 
             <div className="search-row">
@@ -581,7 +590,7 @@ export default function Home() {
             </div>
 
             {loading && (
-              <p className="muted">Waking up the scent sprites…</p>
+              <p className="muted">Opening the archive…</p>
             )}
 
             <div className="cards">
@@ -592,11 +601,12 @@ export default function Home() {
                     style={{ background: recipe.color || "#c9dcb8" }}
                   >
                     <small>
-                      FORMULA / {String(index + 1).padStart(2, "0")}
+                      ARCHIVE / {String(index + 1).padStart(2, "0")}
                     </small>
 
                     <button
                       className="heart"
+                      aria-label="Save recipe"
                       onClick={() => toggleSaved(recipe.id)}
                     >
                       {saved.includes(recipe.id) ? "♥" : "♡"}
@@ -604,13 +614,14 @@ export default function Home() {
 
                     <button
                       className="art-open"
+                      aria-label={`Open ${recipe.name}`}
                       onClick={() => {
                         setSelected(recipe);
                         setBatch(10);
                       }}
                     >
                       <Bottle color={recipe.color || "#c9dcb8"} />
-                      <span>✧ SCENT STUDY ✧</span>
+                      <span>✧ OPEN SCENT STUDY ✧</span>
                     </button>
                   </div>
 
@@ -659,110 +670,32 @@ export default function Home() {
             )}
           </section>
 
-          <section className="workbench-section" id="workbench">
-            <div className="section-heading">
-              <div>
-                <small>02 / THE ENCHANTED WORKBENCH</small>
-                <h2>
-                  Mix a little <em>something.</em>
-                </h2>
-                <p>Your formula starts with curiosity.</p>
-              </div>
-
-              <span className="stamp">
-                CRAFT<br />YOUR<br />SCENT
-              </span>
-            </div>
-
-            <div className="workbench">
-              <div>
-                <small>CRAFTING TABLE / 3 × 3</small>
-
-                <h3>
-                  One idea.<br />
-                  <em>Nine little slots.</em>
-                </h3>
-
-                <p>
-                  Open a recipe to scale its batch, inspect ingredient
-                  ratios, and save it to your personal lab.
-                </p>
-
-                <button
-                  className="pixel-btn"
-                  onClick={() => setCreateOpen(true)}
-                >
-                  Start a new formula ↗
-                </button>
-              </div>
-
-              <div className="craft-grid">
-                {["🌹", "🍋", "🌿", "＋", "🧪", "＋", "🪵", "＋", "✨"].map(
-                  (item, i) => <span key={i}>{item}</span>
-                )}
-              </div>
-            </div>
-          </section>
-
-          <section className="section" id="grove">
-            <div className="section-heading">
-              <div>
-                <small>03 / THE SCENT GROVE</small>
-                <h2>
-                  Wander through <em>notes.</em>
-                </h2>
-                <p>Choose a biome to explore its fragrance family.</p>
-              </div>
-            </div>
-
-            <div className="biomes">
-              {[
-                ["🌸", "Petal Meadow", "Rose · Jasmine · Iris", "Floral", "rose"],
-                ["🍊", "Citrus Coast", "Bergamot · Lemon · Neroli", "Fresh", "citrus"],
-                ["🌲", "Woodland Hollow", "Cedar · Moss · Vetiver", "Woody", "forest"],
-                ["🍮", "Sugarcloud Peaks", "Vanilla · Cacao · Tonka", "Gourmand", "sugar"]
-              ].map(([emoji, name, notes, category, style]) => (
-                <button
-                  className={"biome " + style}
-                  key={name}
-                  onClick={() => {
-                    setFamily(category);
-                    document.getElementById("explore").scrollIntoView({
-                      behavior: "smooth"
-                    });
-                  }}
-                >
-                  <b>{emoji}</b>
-                  <small>BIOME / {category.toUpperCase()}</small>
-                  <strong>{name}</strong>
-                  <span>{notes}</span>
-                  <i>EXPLORE NOTES ↗</i>
-                </button>
-              ))}
-            </div>
-          </section>
-
           <section className="community" id="community">
-            <div className="community-art">✦　🧴　✿</div>
+            <div className="community-art" aria-hidden="true">
+              <span>✦</span>
+              <span>🧴</span>
+              <span>✿</span>
+            </div>
 
             <div>
-              <small>04 / THE COMMUNITY</small>
+              <small>FROM ONE SCENT MAKER TO ANOTHER</small>
 
               <h2>
-                Good scents<br />
-                are <em>better shared.</em>
+                A good formula<br />
+                deserves <em>a little story.</em>
               </h2>
 
               <p>
-                Publish your experiments, save other makers' formulas,
-                and leave a little encouragement on a blend you love.
+                Keep your favourite blends close, share the experiments
+                you are proud of, and leave a kind note for another maker.
+                The library is lovelier when we build it together.
               </p>
 
               <button
                 className="pixel-btn"
                 onClick={() => user ? setCreateOpen(true) : setAuthOpen(true)}
               >
-                Join the community ↗
+                Visit the makers' corner ↗
               </button>
             </div>
           </section>
@@ -771,7 +704,7 @@ export default function Home() {
         <footer>
           <a className="logo" href="#">
             ✿ SCENT<span>LAB</span>
-            <small>PIXEL PERFUMERY CLUB</small>
+            <small>THE PIXEL PERFUMERY LIBRARY</small>
           </a>
 
           <p>Made of notes, pixels & a little imagination.</p>
@@ -779,8 +712,7 @@ export default function Home() {
         </footer>
 
         <nav className="hotbar">
-          <a href="#explore">⌕<small>Explore</small></a>
-          <a href="#workbench">▦<small>Craft</small></a>
+          <a href="#explore">⌕<small>Library</small></a>
           <a href="#community">✿<small>Club</small></a>
 
           <button
@@ -1018,7 +950,7 @@ export default function Home() {
                 ×
               </button>
 
-              <small>THE ENCHANTED WORKBENCH</small>
+              <small>THE PERFUMER'S NOTEBOOK</small>
 
               <h2>
                 Make a little <em>magic.</em>
