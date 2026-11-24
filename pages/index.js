@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
+import PerfumeDiscovery from "../components/PerfumeDiscovery";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -445,6 +446,7 @@ export default function Home() {
 
           <nav>
             <a href="#explore">The Library</a>
+            <a href="#discover">Discover</a>
             <a href="#community">Makers' Corner</a>
           </nav>
 
@@ -669,6 +671,8 @@ export default function Home() {
               </div>
             )}
           </section>
+
+          <PerfumeDiscovery />
 
           <section className="community" id="community">
             <div className="community-art" aria-hidden="true">
