@@ -391,6 +391,62 @@ select:focus-visible {
   color: #52654e;
 }
 
+/* INDIVIDUAL PERFUME BOTTLE DESIGNS */
+.bottle {
+  width: 126px;
+  height: 190px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(8px 10px #405b3b30);
+  transition: transform .35s ease, filter .35s ease;
+}
+.bottle:hover { transform: translateY(-7px) rotate(-2deg); filter: drop-shadow(11px 15px #405b3b35); }
+.bottle-cap {
+  width: 39px; height: 23px; position: relative;
+  background: var(--bottle-accent, #92788d);
+  border: 3px solid color-mix(in srgb, var(--bottle-accent, #92788d), #342c2a 28%);
+  border-radius: 5px 5px 2px 2px;
+  box-shadow: 3px 0 color-mix(in srgb, var(--bottle-accent, #92788d), #342c2a 28%), -3px 0 color-mix(in srgb, var(--bottle-accent, #92788d), #342c2a 28%);
+}
+.bottle-cap i { display:block; width:9px; height:100%; margin:auto; background:#ffffff35; }
+.bottle-neck { width: 30px; height: 18px; background: color-mix(in srgb, var(--bottle-color, #dce7d1), white 35%); border-left: 3px solid #8a9b80; border-right: 3px solid #8a9b80; }
+.bottle-glass {
+  width: 98px; height: 118px; position:relative; overflow:hidden;
+  display:grid; place-items:center;
+  background: linear-gradient(105deg, #ffffff88 0 9%, transparent 19% 78%, #ffffff38 91%), var(--bottle-color, #c9dcb8);
+  border: 4px solid color-mix(in srgb, var(--bottle-accent, #7f9a7a), #ffffff 22%);
+  box-shadow: inset 7px 0 #ffffff55, inset -5px 0 #34412b16, inset 0 -12px #4d50301c;
+}
+.bottle-label {
+  width: 76%; min-height: 54px; padding: 7px 4px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
+  text-align:center; background:#f7f1dfed; border:1px solid var(--bottle-accent, #d4c8aa);
+  color:#52654e; box-shadow:0 2px 5px #3d342522; z-index:2;
+}
+.bottle-label small { font:6px var(--mono); letter-spacing:1.2px; }
+.bottle-label b { font: bold 8px var(--pixel); line-height:1.3; overflow-wrap:anywhere; }
+.bottle-label em { font: italic 7px var(--serif); text-transform:uppercase; letter-spacing:.5px; }
+.bottle-glint { position:absolute; top:10px; left:10px; width:5px; height:65%; border-radius:100%; background:#ffffff55; }
+.bottle-edition { margin-top:5px; font:5px var(--mono); letter-spacing:1px; color:#65715c; white-space:nowrap; }
+
+/* Each scent gets its own silhouette and cap profile. */
+.bottle--round .bottle-glass { width:106px; height:105px; border-radius:30px 30px 23px 23px; clip-path:none; }
+.bottle--round .bottle-cap { width:45px; height:20px; border-radius:50% 50% 3px 3px; }
+.bottle--square .bottle-glass { width:94px; height:116px; border-radius:3px; clip-path:none; }
+.bottle--square .bottle-cap { width:42px; height:25px; border-radius:2px; }
+.bottle--apothecary .bottle-glass { width:84px; height:122px; border-radius:7px 7px 14px 14px; clip-path:none; }
+.bottle--apothecary .bottle-cap { width:32px; height:27px; border-radius:3px; }
+.bottle--tall .bottle-glass { width:78px; height:132px; border-radius:18px 18px 8px 8px; clip-path:none; }
+.bottle--tall .bottle-neck { width:25px; height:23px; }
+.bottle--tall .bottle-cap { width:27px; height:29px; border-radius:2px; }
+.bottle--faceted .bottle-glass { width:100px; height:116px; clip-path:polygon(12% 0,88% 0,100% 14%,94% 88%,78% 100%,22% 100%,6% 88%,0 14%); border-radius:0; }
+.bottle--faceted .bottle-cap { width:36px; height:24px; border-radius:1px; transform:skew(-5deg); }
+.bottle--oval .bottle-glass { width:91px; height:119px; border-radius:45% 45% 24% 24% / 22% 22% 15% 15%; clip-path:none; }
+.bottle--oval .bottle-cap { width:34px; height:21px; border-radius:50% 50% 3px 3px; }
+
 /* TICKER */
 
 .ticker {
