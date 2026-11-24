@@ -333,14 +333,82 @@ const scentFamilyGuide = [
   }
 ];
 
-const classicScentGroups = [
-  ["Citrus", "Bright citrus-led compositions, often called hesperidic."],
-  ["Floral", "Scents built around one flower or a floral bouquet."],
-  ["Fougère", "An aromatic structure traditionally built around lavender, coumarin and mossy notes."],
-  ["Chypre", "A structured contrast of citrus, mossy woods and a warm base."],
-  ["Woody", "Dry, creamy, earthy or smoky woods such as cedar, sandalwood and vetiver."],
-  ["Amber / Oriental", "Warm resins, balsams, spices and vanilla; “Amber” is the more current family name."],
-  ["Leather", "Dry, smoky, suede-like or tarry accords."]
+// The classifications below are deliberately separated: they are different
+// professional/educational systems, not one universal master list.
+const frenchPerfumerFamilies = [
+  {
+    name: "Citrus (Hespéridée)",
+    description: "Bright citrus-led structures.",
+    subfamilies: ["General Citrus", "Floral Chypre Citrus", "Spiced Citrus", "Woody Citrus"]
+  },
+  {
+    name: "Floral",
+    description: "Single-flower studies through complex bouquets.",
+    subfamilies: ["Single Flower / Soliflore", "Lavender-Single Flower", "Floral Bouquet", "Floral Green", "Floral Aldehydic", "Floral Woody", "Floral Fruity Woody"]
+  },
+  {
+    name: "Fougère",
+    description: "A classic aromatic structure, often lavender-led with mossy and coumarin facets.",
+    subfamilies: ["General Fougère", "Soft Amber Fougère", "Floral Amber Fougère", "Spiced Fougère", "Aromatic Fougère"]
+  },
+  {
+    name: "Chypre",
+    description: "A structured citrus opening over mossy, woody and resinous facets.",
+    subfamilies: ["General Chypre", "Floral Chypre", "Floral Aldehydic Chypre", "Fruity Chypre", "Green Chypre", "Aromatic Chypre", "Leather Chypre"]
+  },
+  {
+    name: "Woody",
+    description: "Dry, creamy, earthy, coniferous or warm wood-led compositions.",
+    subfamilies: ["General Woody", "Woody Citrusy Coniferous", "Woody Aromatic", "Woody Spicy", "Woody Spicy Leather", "Woody Amber"]
+  },
+  {
+    name: "Amber (Ambrée)",
+    description: "Warm, resinous, balsamic and spicy compositions.",
+    subfamilies: ["Floral Woody Amber", "Floral Spicy Amber", "Soft Amber", "Citrus Amber", "Floral Semi-Amber"]
+  },
+  {
+    name: "Leather (Cuir)",
+    description: "Suede-like, smoky, tarry or tobacco-tinged leather accords.",
+    subfamilies: ["Leather", "Floral Leather", "Tobacco Leather"]
+  }
+];
+
+const michaelEdwardsGroups = [
+  ["Floral", ["Soft Floral", "Floral", "Floral Amber"]],
+  ["Amber", ["Soft Amber", "Amber", "Woody Amber"]],
+  ["Woody", ["Woods", "Mossy Woods", "Dry Woods"]],
+  ["Fresh", ["Aromatic", "Citrus", "Water", "Green", "Fruity"]]
+];
+
+const fragranceFoundationCategories = [
+  ["Citrus", "Bright, sparkling citrus-led scents."],
+  ["Aromatic", "Herbal and aromatic notes such as lavender, rosemary and sage."],
+  ["Floral", "Single flowers, floral bouquets and varied floral facets."],
+  ["Fruity", "Juicy fruit impressions, from crisp to lush."],
+  ["Woody", "Dry, creamy, earthy and resinous wood notes."],
+  ["Oriental / Amber", "Warm, rich, spicy and balsamic styles; Amber is now common terminology."],
+  ["Chypre", "Citrus, floral and mossy-woody contrasts."],
+  ["Aldehydic", "Sparkling, waxy, soapy or airy aldehydic effects."],
+  ["Green", "Leafy, grassy, stemmy and crisp green effects."],
+  ["Water / Aquatic", "Watery, marine, ozonic and fresh-air impressions."],
+  ["Musky", "Soft skin-like, clean, powdery or sensual musk effects."],
+  ["Spicy", "Fresh, warm or pungent spice-led effects."],
+  ["Gourmand", "Food-inspired sweetness such as vanilla, cocoa, coffee or caramel."]
+];
+
+const additionalScentDescriptors = [
+  ["Animalic", "Warm, musky, leathery or skin-like effects; historically may refer to animal-derived materials or modern recreations."],
+  ["Balsamic / Resinous", "Smooth, sweet-resin, incense and balsam impressions."],
+  ["Powdery", "Soft, dry, cosmetic or dusted impressions, often from iris, violet or musk facets."],
+  ["Smoky", "Smoke, charred wood, incense or burnt facets."],
+  ["Tobacco", "Dry leaf, honeyed, hay-like or smoky tobacco impressions."],
+  ["Marine / Ozonic", "Sea-air, mineral, breezy or ozone-like freshness; overlaps with aquatic."],
+  ["Herbal / Herbaceous", "Green aromatic herbs such as basil, thyme, mint and rosemary."],
+  ["Earthy", "Soil-like, rooty, damp or mineral impressions, often associated with vetiver and patchouli."],
+  ["Camphoraceous", "Cooling, medicinal, eucalyptus-like or mentholated freshness."],
+  ["Salty / Mineral", "Briny, stony, mineral or skin-salt impressions."],
+  ["Creamy", "Smooth, milky or soft-textured impressions, often sandalwood or lactonic."],
+  ["Waxy", "Wax, candle, honeycomb or smooth aldehydic effects."]
 ];
 
 
@@ -1056,22 +1124,80 @@ export default function Home() {
 
               <div className="classic-groups">
                 <div className="classic-groups-heading">
-                  <small>THE CLASSICAL PERFUMERY VOCABULARY</small>
-                  <h4>Classic fragrance groups</h4>
+                  <small>MICHAEL EDWARDS · 2024 WHEEL</small>
+                  <h4>Four groups & 14 fragrance families</h4>
+                </div>
+                <div className="scent-system-grid">
+                  {michaelEdwardsGroups.map(([name, subs], index) => (
+                    <article className="scent-system-card" key={name}>
+                      <span className="scent-system-index">0{index + 1}</span>
+                      <strong>{name}</strong>
+                      <div className="scent-subfamily-list">
+                        {subs.map(sub => <span key={sub}>{sub}</span>)}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
+              <div className="classic-groups scent-system-section">
+                <div className="classic-groups-heading">
+                  <small>FRENCH SOCIETY OF PERFUMERS · CLASSIFICATION DES PARFUMS</small>
+                  <h4>Seven classical families & their subfamilies</h4>
+                  <p className="scent-system-intro">A separate technical classification. The subfamily names below follow the published 1990 classification as reproduced in Perfumers & Flavorist.</p>
+                </div>
+                <div className="french-family-list">
+                  {frenchPerfumerFamilies.map((group, index) => (
+                    <article key={group.name}>
+                      <div className="french-family-title"><span>0{index + 1}</span><strong>{group.name}</strong></div>
+                      <p>{group.description}</p>
+                      <div className="scent-subfamily-list">
+                        {group.subfamilies.map(sub => <span key={sub}>{sub}</span>)}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
+              <div className="classic-groups scent-system-section">
+                <div className="classic-groups-heading">
+                  <small>THE FRAGRANCE FOUNDATION · TRADITIONAL SELECTION GUIDE</small>
+                  <h4>13 traditional fragrance categories</h4>
                 </div>
                 <div className="classic-groups-grid">
-                  {classicScentGroups.map(([name, description], index) => (
+                  {fragranceFoundationCategories.map(([name, description], index) => (
                     <article key={name}>
-                      <span>0{index + 1}</span>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
                       <div><strong>{name}</strong><p>{description}</p></div>
                     </article>
                   ))}
                 </div>
               </div>
+
+              <div className="classic-groups scent-system-section">
+                <div className="classic-groups-heading">
+                  <small>ADDITIONAL OLFACTIVE FACETS & ACCORD DESCRIPTORS</small>
+                  <h4>More ways perfumers describe a scent</h4>
+                  <p className="scent-system-intro">These are useful descriptors and accord styles. They are not all independent top-level families in every classification.</p>
+                </div>
+                <div className="classic-groups-grid">
+                  {additionalScentDescriptors.map(([name, description], index) => (
+                    <article key={name}>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <div><strong>{name}</strong><p>{description}</p></div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
               <p className="scent-taxonomy-note">
-                Classification systems overlap: a perfume may sit between families, and its dominant character can change as it develops. Gourmand, aquatic, musky and aldehydic are also widely used style descriptors, rather than extra branches in this four-family wheel.
+                There is no single universal master list. The same perfume can belong to one family in a wheel and receive a different label in another system. Notes (ingredients), accords (composed scent effects), families (overall structures), and descriptors (facets such as powdery or smoky) are related but not interchangeable.
               </p>
-              <a className="scent-taxonomy-source" href="https://www.fragrancesoftheworld.com/Docs/Fragrance-Wheels-2024.pdf" target="_blank" rel="noreferrer">Reference: Michael Edwards' Fragrance Wheel (2024) ↗</a>
+              <div className="scent-taxonomy-references">
+                <a className="scent-taxonomy-source" href="https://www.fragrancesoftheworld.com/Docs/Fragrance-Wheels-2024.pdf" target="_blank" rel="noreferrer">Michael Edwards' Fragrance Wheel (2024) ↗</a>
+                <a className="scent-taxonomy-source" href="https://fragrance.org/wp-content/uploads/2019/10/TFF-Fragrance-Academy-Overview-1.pdf" target="_blank" rel="noreferrer">The Fragrance Foundation: Fragrance Academy ↗</a>
+                <a className="scent-taxonomy-source" href="https://img.perfumerflavorist.com/files/base/allured/all/document/2016/02/pf.PF_26_06_028_10.pdf" target="_blank" rel="noreferrer">Boelens & Boelens: Classification of Perfumes and Fragrances ↗</a>
+              </div>
             </section>
 
             {loading && (
