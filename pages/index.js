@@ -805,59 +805,55 @@ export default function Home() {
       master.gain.setTargetAtTime(0.34, context.currentTime, 1.8);
       master.connect(context.destination);
 
-      // Original ScentLab ambient score: a slow botanical-jazz chord bed and a soft,
-      // repeating glassy melody. It is generated locally and never autoplays.
-      const chordProgression = [
-        [174.61, 220.00, 261.63, 329.63], // Fmaj7
-        [146.83, 196.00, 246.94, 293.66], // Dm7
-        [130.81, 196.00, 246.94, 329.63], // Cmaj7
-        [164.81, 196.00, 246.94, 293.66]  // Em7
+      // A gentle, locally synthesized interpretation of the public-domain
+      // opening texture of Beethoven's Moonlight Sonata (Piano Sonata No. 14).
+      // This is not a recording; the browser synthesizes the notes after a click.
+      const bars = [
+        { bass: 69.30, arp: [138.59, 207.65, 277.18, 329.63, 277.18, 207.65], melody: [415.30, 554.37, 659.25, 554.37] }, // C-sharp minor
+        { bass: 55.00, arp: [110.00, 164.81, 220.00, 261.63, 220.00, 164.81], melody: [392.00, 523.25, 659.25, 523.25] }, // A
+        { bass: 46.25, arp: [92.50, 138.59, 185.00, 220.00, 185.00, 138.59], melody: [369.99, 493.88, 587.33, 493.88] }, // F-sharp minor
+        { bass: 51.91, arp: [103.83, 155.56, 207.65, 246.94, 207.65, 155.56], melody: [415.30, 493.88, 622.25, 493.88] } // G-sharp dominant colour
       ];
-      const padVoices = chordProgression[0].map((frequency, index) => {
-        const oscillator = context.createOscillator();
-        const voice = context.createGain();
-        oscillator.type = index === 3 ? "sine" : "triangle";
-        oscillator.frequency.setValueAtTime(frequency, context.currentTime);
-        voice.gain.value = index === 0 ? 0.075 : 0.043;
-        oscillator.connect(voice);
-        voice.connect(master);
-        oscillator.start();
-        return oscillator;
-      });
 
-      const melody = [392.00, 493.88, 587.33, 493.88, 440.00, 523.25, 659.25, 523.25];
-      let noteIndex = 0;
-      let chordIndex = 0;
+      const playTone = (frequency, when, duration, volume, type = "triangle") => {
+        const oscillator = context.createOscillator();
+        const envelope = context.createGain();
+        const filter = context.createBiquadFilter();
+        filter.type = "lowpass";
+        filter.frequency.setValueAtTime(1450, when);
+        oscillator.type = type;
+        oscillator.frequency.setValueAtTime(frequency, when);
+        envelope.gain.setValueAtTime(0.0001, when);
+        envelope.gain.exponentialRampToValueAtTime(volume, when + 0.035);
+        envelope.gain.exponentialRampToValueAtTime(0.0001, when + duration);
+        oscillator.connect(filter);
+        filter.connect(envelope);
+        envelope.connect(master);
+        oscillator.start(when);
+        oscillator.stop(when + duration + 0.03);
+      };
+
+      let step = 0;
       const playNote = () => {
         if (context.state !== "running") return;
         const now = context.currentTime;
-        const oscillator = context.createOscillator();
-        const envelope = context.createGain();
-        const tone = context.createBiquadFilter();
-        tone.type = "lowpass";
-        tone.frequency.value = 1800;
-        oscillator.type = "sine";
-        oscillator.frequency.value = melody[noteIndex % melody.length];
-        envelope.gain.setValueAtTime(0.0001, now);
-        envelope.gain.exponentialRampToValueAtTime(0.19, now + 0.16);
-        envelope.gain.exponentialRampToValueAtTime(0.0001, now + 2.35);
-        oscillator.connect(tone);
-        tone.connect(envelope);
-        envelope.connect(master);
-        oscillator.start(now);
-        oscillator.stop(now + 2.45);
-        noteIndex += 1;
+        const bar = bars[Math.floor(step / 12) % bars.length];
+        const position = step % 12;
 
-        if (noteIndex % 4 === 0) {
-          chordIndex = (chordIndex + 1) % chordProgression.length;
-          chordProgression[chordIndex].forEach((frequency, index) => {
-            padVoices[index].frequency.setTargetAtTime(frequency, context.currentTime, 1.25);
-          });
+        // Quiet rolling triplets, with a low bass note at the start of each bar.
+        playTone(bar.arp[position % 6], now, 0.72, 0.052, "triangle");
+        if (position === 0) playTone(bar.bass, now, 2.55, 0.075, "sine");
+
+        // A sparse upper line gives the arrangement its moonlit, piano-like feel.
+        if (position === 3 || position === 9) {
+          const melodyIndex = position === 3 ? 0 : 2;
+          playTone(bar.melody[melodyIndex], now, 1.25, 0.035, "sine");
         }
+        step += 1;
       };
 
       playNote();
-      musicTimerRef.current = window.setInterval(playNote, 1650);
+      musicTimerRef.current = window.setInterval(playNote, 250);
       musicContextRef.current = context;
       musicMasterRef.current = master;
       setMusicOn(true);
@@ -1242,10 +1238,10 @@ export default function Home() {
               className={`music-toggle ${musicOn ? "is-playing" : ""}`}
               onClick={toggleNotebookMusic}
               aria-pressed={musicOn}
-              title={musicOn ? "Pause the ScentLab soundtrack" : "Play the original ScentLab soundtrack"}
+              title={musicOn ? "Pause Moonlight Sonata" : "Play a soft Moonlight Sonata rendition"}
             >
               <span aria-hidden="true">{musicOn ? "♫" : "♪"}</span>
-              {musicOn ? "Pause music" : "Listen to ScentLab"}
+              {musicOn ? "Pause music" : "Moonlight Sonata"}
             </button>
             <button
               className="pixel-btn"
