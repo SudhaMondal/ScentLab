@@ -2978,3 +2978,78 @@ footer > small { font-size: 9px; }
   .micro-stats { font-size: 9px; }
   .library-rule { font-size: 10px; }
 }
+
+
+/* EXPANDED FRAGRANCE TAXONOMY SYSTEMS */
+.scent-system-section { margin-top: 28px; }
+.scent-system-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.scent-system-card {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #d8c6e8;
+  border-radius: 11px;
+  background: linear-gradient(145deg, #fff, #f4efff);
+}
+.scent-system-index,
+.french-family-title > span {
+  color: #a43b70;
+  font: 800 11px var(--mono);
+}
+.scent-system-card > strong {
+  display: block;
+  margin-top: 5px;
+  color: #302940;
+  font: 800 19px var(--serif);
+}
+.scent-system-card .scent-subfamily-list { margin-bottom: 0; }
+.scent-system-intro {
+  margin: -6px 0 14px;
+  color: #514c60;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.french-family-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.french-family-list article {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #e7d7e8;
+  border-radius: 10px;
+  background: #fff;
+}
+.french-family-title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.french-family-title strong {
+  color: #302940;
+  font: 800 18px var(--serif);
+}
+.french-family-list article > p {
+  margin: 5px 0 0;
+  color: #565064;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.french-family-list .scent-subfamily-list { margin: 10px 0 0; }
+.scent-taxonomy-references {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 18px;
+  margin-top: 12px;
+}
+@media (max-width: 900px) {
+  .scent-system-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .scent-system-grid,
+  .french-family-list { grid-template-columns: 1fr; }
+}
