@@ -2099,15 +2099,40 @@ footer::after {
   gap: 12px;
   min-width: 0;
 }
+.ingredient-image-button {
+  position: relative;
+  flex: 0 0 76px;
+  width: 76px;
+  height: 64px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
 .ingredient-thumb {
   display: block;
-  flex: 0 0 58px;
-  width: 58px;
-  height: 48px;
+  width: 76px;
+  height: 64px;
   object-fit: cover;
   border: 1px solid #ded6c5;
   border-radius: 7px;
   background: #f4efe3;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.ingredient-image-button:hover .ingredient-thumb,
+.ingredient-image-button:focus-visible .ingredient-thumb {
+  transform: scale(1.04);
+  box-shadow: 0 4px 14px #273c2b2b;
+}
+.ingredient-zoom-hint {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  padding: 2px 4px;
+  background: #1f2d23d9;
+  color: #fffdf5;
+  font: 7px var(--mono);
+  letter-spacing: .08em;
 }
 .ingredient-placeholder {
   display: grid;
@@ -2123,6 +2148,63 @@ footer::after {
   white-space: nowrap;
 }
 
+
+
+.ingredient-lightbox-overlay {
+  z-index: 100;
+  padding: 22px;
+}
+.ingredient-lightbox {
+  position: relative;
+  width: min(100%, 760px);
+  max-height: 94vh;
+  overflow: auto;
+  padding: 28px;
+  background: #f8f5ea;
+  border: 2px solid #d6c9ad;
+  box-shadow: 10px 10px #273c2b;
+  text-align: center;
+}
+.ingredient-lightbox > small {
+  color: #788779;
+  font: 8px var(--mono);
+  letter-spacing: .14em;
+}
+.ingredient-lightbox h2 {
+  margin: 10px 38px 18px;
+  color: #263c2b;
+  font: 30px var(--serif);
+}
+.ingredient-lightbox > img {
+  display: block;
+  width: 100%;
+  max-height: min(65vh, 620px);
+  object-fit: contain;
+  background: #eee9dc;
+  border: 1px solid #ded6c5;
+}
+.ingredient-lightbox > p {
+  margin: 12px 0 8px;
+  color: #797568;
+  font-size: 11px;
+}
+.ingredient-lightbox > a {
+  color: #7b6650;
+  font: 9px var(--mono);
+  text-underline-offset: 3px;
+}
+.ingredient-lightbox-close {
+  right: 12px;
+  top: 12px;
+}
+@media (max-width: 600px) {
+  .ingredient-lightbox {
+    padding: 22px 14px;
+  }
+  .ingredient-lightbox h2 {
+    font-size: 23px;
+  }
+}
 
 /* REAL INGREDIENT PHOTOGRAPHS + IMAGE ATTRIBUTION */
 .ingredient-photo-credit {
