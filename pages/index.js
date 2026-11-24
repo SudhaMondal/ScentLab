@@ -418,18 +418,18 @@ function ingredientPhoto(name = "") {
       page: "https://commons.wikimedia.org/wiki/File:Picture_of_a_lemon_fruit.jpg"
     },
     "sweet-orange": {
-      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Orange.jpg",
-      author: "Wikimedia Commons contributor",
-      license: "See source page",
-      caption: "One sweet orange",
-      page: "https://commons.wikimedia.org/wiki/File:Orange.jpg"
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Orange%20fruit%20%28Citrus%20%C3%97%20sinensis%29.jpg",
+      author: "Kuttykrishnan Photos",
+      license: "CC0",
+      caption: "One sweet orange fruit",
+      page: "https://commons.wikimedia.org/wiki/File:Orange_fruit_(Citrus_%C3%97_sinensis).jpg"
     },
     neroli: {
-      src: "https://image.jimcdn.com/app/cms/image/transf/dimension%3D1820x1280%3Aformat%3Djpg/path/s211484bfad340c72/image/id84562832d1e2898/version/1500837982/image.jpg",
-      author: "Alchemia Essenze",
-      license: "Source page",
-      caption: "Neroli orange blossoms",
-      page: "https://www.alchemiaessenze.it/shop-on-line/sample-kits/neroli/"
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Orange%20blossom%20Flower.jpg",
+      author: "Diyarenoon",
+      license: "CC BY-SA 4.0",
+      caption: "Orange blossom flower only (neroli source plant)",
+      page: "https://commons.wikimedia.org/wiki/File:Orange_blossom_Flower.jpg"
     },
     petitgrain: {
       src: "https://commons.wikimedia.org/wiki/Special:FilePath/Citrus%20aurantium%20leaves.JPG",
