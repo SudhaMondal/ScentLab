@@ -327,8 +327,9 @@ function ingredientPhoto(name = "") {
     value.includes("hedione") || value.includes("iso e super") || value.includes("dpg") ? "aroma-chemical" :
     null;
 
-  // Close-up photographs of the raw material or a clearly labelled illustrative
-  // perfumery material. Source pages are linked; a source link is not a reuse licence.
+  // Only use a photo when it depicts this one ingredient by itself.
+  // Composite ingredient flat-lays are deliberately excluded to avoid misidentification.
+  // A source-page link is not a reuse licence.
   const closeups = {
     rosemary: {
       src: "https://www.buddhateas.com/cdn/shop/collections/rosemary-leaf-macro.jpg?v=1769038214",
@@ -351,75 +352,12 @@ function ingredientPhoto(name = "") {
       caption: "Close-up cross-section of bergamot fruit",
       page: "https://www.saje.ca/blogs/ingredient-garden/bergamot"
     },
-    cacao: {
-      src: "https://maxdaumin.com/1002-large_default/berlingot-cocoa-tonka-vanilla.jpg",
-      author: "Max Daumin",
-      license: "source page",
-      caption: "Close-up of cacao pod and raw cacao beans",
-      page: "https://maxdaumin.com/en/magasin/berlingot-spiced-cocoas/berlingot-cocoa-tonka-vanilla"
-    },
-    vanilla: {
-      src: "https://maxdaumin.com/1002-large_default/berlingot-cocoa-tonka-vanilla.jpg",
-      author: "Max Daumin",
-      license: "source page",
-      caption: "Vanilla pods shown with raw fragrance ingredients",
-      page: "https://maxdaumin.com/en/magasin/berlingot-spiced-cocoas/berlingot-cocoa-tonka-vanilla"
-    },
-    tonka: {
-      src: "https://maxdaumin.com/1002-large_default/berlingot-cocoa-tonka-vanilla.jpg",
-      author: "Max Daumin",
-      license: "source page",
-      caption: "Close-up of tonka beans",
-      page: "https://maxdaumin.com/en/magasin/berlingot-spiced-cocoas/berlingot-cocoa-tonka-vanilla"
-    },
-    rose: {
-      src: "https://ateliercandela.com/cdn/shop/files/Firefly_Render_a_pink_rose_petals_spread_with_sprigs_patchouli_and_large_pieces_of_sandalwood_on_a.jpg?crop=center&height=457&v=1737509695&width=800",
-      author: "Atelier Candela",
-      license: "source page",
-      caption: "Close-up of rose petals",
-      page: "https://ateliercandela.com/collections/moroccan-rose"
-    },
-    jasmine: {
-      src: "https://candlescience.ru/wp-content/uploads/2023/08/neroli-and-white-jasmine-fragrance-oil-web-680x680-optimized.jpg",
-      author: "CandleScience",
-      license: "source page",
-      caption: "Close-up of white jasmine blossoms",
-      page: "https://candlescience.ru/product/neroli-and-white-jasmine/"
-    },
-    musk: {
-      src: "https://www.videsanges.com/cdn/shop/articles/top-middle-base-notes-the-secret-architecture-behind-every-great-perfume-2775160.jpg?v=1767902775&width=1066",
-      author: "Les Vides Anges",
-      license: "source page",
-      caption: "Perfumery raw materials arranged for a close-up study; musk accord is synthetic or blended",
-      page: "https://www.videsanges.com/blogs/stories/the-reality-behind-the-macerating-niche-perfumes-enhancing-the-scent-experience"
-    },
     amber: {
       src: "https://procosmet.com/cdn/shop/articles/cdd1001cd9e02d64d996b23df9c9159e_a5ae73df-953e-4b16-ac04-3c15d4e6f9dd_720x.jpg?v=1752739029",
       author: "Procosmet",
       license: "source page",
       caption: "Close-up of amber-coloured natural resin granules used as an illustrative amber material",
       page: "https://procosmet.com/en/blogs/active-principles/glycolic-extract-of-myrrh"
-    },
-    sandalwood: {
-      src: "https://www.naseemperfume.in/cdn/shop/files/give-ingredient-image-based-on-this-story-as-it-settles-the-earth-speaks-in-deep-resonant-tones-patchouli-cedarwood-and-sandalwood-burnished-with-the-molten-warmth-of-amber_1.png?v=1763552957&width=1500",
-      author: "Naseem Perfume",
-      license: "source page",
-      caption: "Close-up of sandalwood chips and wood grain",
-      page: "https://www.naseemperfume.in/products/al-yaas-25ml"
-    },
-    cedar: {
-      src: "https://sg.hysses.com/cdn/shop/collections/Cedarwood_patchouli_scent.jpg?v=1752142467&width=1920",
-      author: "Hysses",
-      license: "source page",
-      caption: "Close-up of cedarwood cross-section and shavings",
-      page: "https://sg.hysses.com/pages/shop-by-scent"
-    },
-    lemon: {
-      src: "https://www.videsanges.com/cdn/shop/articles/top-middle-base-notes-the-secret-architecture-behind-every-great-perfume-2775160.jpg?v=1767902775&width=1066",
-      author: "Les Vides Anges",
-      license: "source page",
-      caption: "Citrus fruit and botanical perfumery materials",
-      page: "https://www.videsanges.com/blogs/stories/the-reality-behind-the-macerating-niche-perfumes-enhancing-the-scent-experience"
     },
     "orange-blossom": {
       src: "https://image.jimcdn.com/app/cms/image/transf/dimension%3D1820x1280%3Aformat%3Djpg/path/s211484bfad340c72/image/id84562832d1e2898/version/1500837982/image.jpg",
@@ -428,13 +366,6 @@ function ingredientPhoto(name = "") {
       caption: "Close-up of neroli orange blossoms and glossy leaves",
       page: "https://www.alchemiaessenze.it/shop-on-line/sample-kits/neroli/"
     },
-    patchouli: {
-      src: "https://www.naseemperfume.in/cdn/shop/files/give-ingredient-image-based-on-this-story-as-it-settles-the-earth-speaks-in-deep-resonant-tones-patchouli-cedarwood-and-sandalwood-burnished-with-the-molten-warmth-of-amber_1.png?v=1763552957&width=1500",
-      author: "Naseem Perfume",
-      license: "source page",
-      caption: "Close-up of patchouli leaves with woody perfumery materials",
-      page: "https://www.naseemperfume.in/products/al-yaas-25ml"
-    },
     alcohol: {
       src: "https://makesy.com/cdn/shop/files/2023_feb_perfumers_alcohol_base_pdp2_04e2426c-45bd-4bd6-9027-a00106a582a4.jpg?v=1738608593&width=1638",
       author: "Makesy",
@@ -442,24 +373,10 @@ function ingredientPhoto(name = "") {
       caption: "Close-up of clear perfumer's alcohol droplets",
       page: "https://makesy.com/products/perfumers-denatured-alcohol"
     },
-    "aroma-chemical": {
-      src: "https://www.videsanges.com/cdn/shop/articles/top-middle-base-notes-the-secret-architecture-behind-every-great-perfume-2775160.jpg?v=1767902775&width=1066",
-      author: "Les Vides Anges",
-      license: "source page",
-      caption: "Perfumery raw-material study; synthetic aroma chemicals are represented illustratively, not as a botanical source",
-      page: "https://www.videsanges.com/blogs/stories/the-reality-behind-the-macerating-niche-perfumes-enhancing-the-scent-experience"
-    }
   };
 
-  const fallback = {
-    src: "https://www.videsanges.com/cdn/shop/articles/top-middle-base-notes-the-secret-architecture-behind-every-great-perfume-2775160.jpg?v=1767902775&width=1066",
-    author: "Les Vides Anges",
-    license: "source page",
-    caption: "Close-up study of natural perfumery raw materials",
-    page: "https://www.videsanges.com/blogs/stories/the-reality-behind-the-macerating-niche-perfumes-enhancing-the-scent-experience"
-  };
-
-  return key && closeups[key] ? closeups[key] : fallback;
+  // No image is better than a misleading image containing several ingredients.
+  return key && closeups[key] ? closeups[key] : null;
 }
 
 function Bottle({ color = "#c9dcb8", name = "Rose + Moss", category = "Botanical" }) {
@@ -1192,11 +1109,8 @@ export default function Home() {
                             width="58"
                             height="48"
                             onError={event => {
-                              const image = event.currentTarget;
-                              if (image.dataset.fallbackApplied) return;
-                              image.dataset.fallbackApplied = "true";
-                              image.src = "https://www.videsanges.com/cdn/shop/articles/top-middle-base-notes-the-secret-architecture-behind-every-great-perfume-2775160.jpg?v=1767902775&width=1066";
-                              image.alt = "Close-up study of natural perfumery raw materials";
+                              // Never replace a failed ingredient photo with a multi-ingredient collage.
+                              event.currentTarget.hidden = true;
                             }}
                           />
                         ) : (
