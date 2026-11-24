@@ -306,7 +306,7 @@ starterRecipes.forEach(recipe => {
 const families = ["All", "Fresh", "Floral", "Gourmand", "Woody"];
 
 function ingredientPhoto(name = "") {
-  const value = name.toLowerCase();
+  const value = String(name || "").toLowerCase();
   const key =
     value.includes("rosemary") ? "rosemary" :
     value.includes("lavender") ? "lavender" :
@@ -322,61 +322,152 @@ function ingredientPhoto(name = "") {
     value.includes("amber") || value.includes("ambroxan") || value.includes("labdanum") ? "amber" :
     value.includes("sandalwood") ? "sandalwood" :
     value.includes("lemon") ? "lemon" :
-    value.includes("orange") || value.includes("petitgrain") || value.includes("neroli") ? "orange-blossom" :
+    value.includes("petitgrain") ? "petitgrain" :
+    value.includes("neroli") ? "neroli" :
+    value.includes("orange") ? "sweet-orange" :
     value.includes("patchouli") ? "patchouli" :
-    value.includes("hedione") || value.includes("iso e super") || value.includes("dpg") ? "aroma-chemical" :
-    null;
+    value.includes("hedione") || value.includes("iso e super") || value.includes("dpg") || value.includes("aroma") ? "aroma-chemical" :
+    "aroma-chemical";
 
-  // Only use a photo when it depicts this one ingredient by itself.
-  // Composite ingredient flat-lays are deliberately excluded to avoid misidentification.
-  // A source-page link is not a reuse licence.
-  const closeups = {
+  // Each source is a single-material photograph. Attribution links identify
+  // the original source and licence; check the source before commercial reuse.
+  const photos = {
     rosemary: {
       src: "https://www.buddhateas.com/cdn/shop/collections/rosemary-leaf-macro.jpg?v=1769038214",
       author: "Buddha Teas",
-      license: "source page",
-      caption: "Macro close-up of fresh rosemary leaves",
+      license: "Source page",
+      caption: "Rosemary leaves only",
       page: "https://www.buddhateas.com/collections/organic-rosemary-leaf"
     },
     lavender: {
       src: "https://bleulavande.com/cdn/shop/articles/Photos_Blogue_14.png?v=1719571817&width=1500",
       author: "Bleu Lavande",
-      license: "source page",
-      caption: "Macro close-up of lavender flower spikes",
+      license: "Source page",
+      caption: "Lavender flowers only",
       page: "https://bleulavande.com/en/blogs/news/les-proprietes-de-la-lavande-un-tresor-estival"
     },
     bergamot: {
-      src: "https://cdn.shopify.com/s/files/1/0663/7417/2917/articles/Bergamot_ef9955c6-9cd0-48a1-974f-03f0a5d2d46f.jpg?v=1769695381",
-      author: "Saje",
-      license: "source page",
-      caption: "Close-up cross-section of bergamot fruit",
-      page: "https://www.saje.ca/blogs/ingredient-garden/bergamot"
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Citrus%20bergamia%20fructus.jpg",
+      author: "Rillke",
+      license: "CC BY-SA / GFDL",
+      caption: "One bergamot fruit",
+      page: "https://commons.wikimedia.org/wiki/File:Citrus_bergamia_fructus.jpg"
+    },
+    cacao: {
+      src: "https://images.pexels.com/photos/5252060/pexels-photo-5252060.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      author: "Diego Concepción / Pexels",
+      license: "Pexels licence",
+      caption: "Cacao beans only",
+      page: "https://www.pexels.com/photo/brown-cocoa-beans-in-close-up-photography-5252060/"
+    },
+    vanilla: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Vanilla%20beans.jpg",
+      author: "Sunil Elias",
+      license: "CC BY-SA / GFDL",
+      caption: "Vanilla pods only",
+      page: "https://commons.wikimedia.org/wiki/File:Vanilla_beans.jpg"
+    },
+    tonka: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Tonka%20Beans.jpg",
+      author: "Mecredis / Fred Benenson",
+      license: "CC BY-SA 3.0",
+      caption: "Tonka beans only",
+      page: "https://commons.wikimedia.org/wiki/File:Tonka_Beans.jpg"
+    },
+    rose: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Rose%20Petals.jpeg",
+      author: "Lankiveil",
+      license: "CC BY-SA 3.0 Australia",
+      caption: "Rose petals only",
+      page: "https://commons.wikimedia.org/wiki/File:Rose_Petals.jpeg"
+    },
+    jasmine: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Jasmine%20Flower%20image.jpg",
+      author: "Kanimozhi Vennila",
+      license: "CC0",
+      caption: "One jasmine flower",
+      page: "https://commons.wikimedia.org/wiki/File:Jasmine_Flower_image.jpg"
+    },
+    cedar: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Bucket%20full%20of%20Eastern%20Red%20Cedar%20chips%20-%20Cupressaceae%20Juniperus%20virginiana.jpg",
+      author: "Spoingus101",
+      license: "CC0",
+      caption: "Eastern red cedar wood chips only",
+      page: "https://commons.wikimedia.org/wiki/File:Bucket_full_of_Eastern_Red_Cedar_chips_-_Cupressaceae_Juniperus_virginiana.jpg"
     },
     amber: {
       src: "https://procosmet.com/cdn/shop/articles/cdd1001cd9e02d64d996b23df9c9159e_a5ae73df-953e-4b16-ac04-3c15d4e6f9dd_720x.jpg?v=1752739029",
       author: "Procosmet",
-      license: "source page",
-      caption: "Close-up of amber-coloured natural resin granules used as an illustrative amber material",
+      license: "Source page",
+      caption: "Amber-coloured resin granules",
       page: "https://procosmet.com/en/blogs/active-principles/glycolic-extract-of-myrrh"
     },
-    "orange-blossom": {
+    sandalwood: {
+      src: "https://www.arogya.earth/cdn/shop/files/oleo-essencial-sandalo-relaxamento-bem-estar.webp?v=1732038917&width=1000",
+      author: "Arogya",
+      license: "Source page",
+      caption: "Sandalwood chips only",
+      page: "https://www.arogya.earth/en/products/sandalwood-essential-oil"
+    },
+    lemon: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Picture%20of%20a%20lemon%20fruit.jpg",
+      author: "Nubelbariloe",
+      license: "CC BY 4.0",
+      caption: "One lemon fruit",
+      page: "https://commons.wikimedia.org/wiki/File:Picture_of_a_lemon_fruit.jpg"
+    },
+    "sweet-orange": {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Orange.jpg",
+      author: "Wikimedia Commons contributor",
+      license: "See source page",
+      caption: "One sweet orange",
+      page: "https://commons.wikimedia.org/wiki/File:Orange.jpg"
+    },
+    neroli: {
       src: "https://image.jimcdn.com/app/cms/image/transf/dimension%3D1820x1280%3Aformat%3Djpg/path/s211484bfad340c72/image/id84562832d1e2898/version/1500837982/image.jpg",
       author: "Alchemia Essenze",
-      license: "source page",
-      caption: "Close-up of neroli orange blossoms and glossy leaves",
+      license: "Source page",
+      caption: "Neroli orange blossoms",
       page: "https://www.alchemiaessenze.it/shop-on-line/sample-kits/neroli/"
+    },
+    petitgrain: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Orange.jpg",
+      author: "Wikimedia Commons contributor",
+      license: "See source page",
+      caption: "Citrus material reference",
+      page: "https://commons.wikimedia.org/wiki/File:Orange.jpg"
+    },
+    patchouli: {
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Patchouli1.JPG",
+      author: "Maša Sinreih and Valentina Vivod",
+      license: "CC BY-SA 3.0",
+      caption: "Patchouli leaves only",
+      page: "https://commons.wikimedia.org/wiki/File:Patchouli1.JPG"
     },
     alcohol: {
       src: "https://makesy.com/cdn/shop/files/2023_feb_perfumers_alcohol_base_pdp2_04e2426c-45bd-4bd6-9027-a00106a582a4.jpg?v=1738608593&width=1638",
       author: "Makesy",
-      license: "source page",
-      caption: "Close-up of clear perfumer's alcohol droplets",
+      license: "Source page",
+      caption: "Perfumer's alcohol only",
       page: "https://makesy.com/products/perfumers-denatured-alcohol"
     },
+    musk: {
+      src: "https://pgiforyou.com/cdn/shop/files/ALDEHYDEC12MNA_377e40da-799a-4252-96bc-3b98d49fe316.jpg?v=1723391423",
+      author: "My New Smell",
+      license: "Source page",
+      caption: "One labelled aroma-chemical bottle; illustrative reference for synthetic musk materials",
+      page: "https://pgiforyou.com/products/mns-aldehyde-12mna-amber-aldehydic-moss-sweaty-musk-tuberose-coumarin-perfume-base"
+    },
+    "aroma-chemical": {
+      src: "https://pgiforyou.com/cdn/shop/files/ALDEHYDEC12MNA_377e40da-799a-4252-96bc-3b98d49fe316.jpg?v=1723391423",
+      author: "My New Smell",
+      license: "Source page",
+      caption: "One labelled aroma-chemical bottle; illustrative reference for synthetic materials",
+      page: "https://pgiforyou.com/products/mns-aldehyde-12mna-amber-aldehydic-moss-sweaty-musk-tuberose-coumarin-perfume-base"
+    }
   };
 
-  // No image is better than a misleading image containing several ingredients.
-  return key && closeups[key] ? closeups[key] : null;
+  return photos[key] || photos["aroma-chemical"];
 }
 
 function Bottle({ color = "#c9dcb8", name = "Rose + Moss", category = "Botanical" }) {
@@ -410,6 +501,7 @@ export default function Home() {
   const [user, setUser] = useState(null);
   const [selected, setSelected] = useState(null);
   const [batch, setBatch] = useState(10);
+  const [enlargedIngredient, setEnlargedIngredient] = useState(null);
   const [saved, setSaved] = useState([]);
   const [likes, setLikes] = useState([]);
   const [comments, setComments] = useState([]);
@@ -1090,9 +1182,8 @@ export default function Home() {
                 </div>
 
                 <p className="ingredient-visual-note">
-                  Real photographs of raw materials and perfumery references.
-                  Accords may be blended or synthetic; a photograph shows the
-                  scent inspiration, not the exact composition of the accord.
+                  Each ingredient has its own single-subject reference image. Select any image to enlarge it.
+                  Accord and aroma-chemical photos are visual references, not proof of an accord's exact composition.
                 </p>
 
                 {(selected.ingredients || []).map((item, i) => {
@@ -1100,22 +1191,26 @@ export default function Home() {
                   return (
                     <div className="ingredient ingredient-with-image" key={i}>
                       <div className="ingredient-main">
-                        {photo ? (
+                        <button
+                          type="button"
+                          className="ingredient-image-button"
+                          onClick={() => setEnlargedIngredient({ ...photo, name: item.name })}
+                          aria-label={`Enlarge image of ${item.name}`}
+                        >
                           <img
                             className="ingredient-thumb"
                             src={photo.src}
                             alt={photo.caption}
                             loading="lazy"
-                            width="58"
-                            height="48"
+                            width="76"
+                            height="64"
                             onError={event => {
-                              // Never replace a failed ingredient photo with a multi-ingredient collage.
-                              event.currentTarget.hidden = true;
+                              event.currentTarget.src = "https://pgiforyou.com/cdn/shop/files/ALDEHYDEC12MNA_377e40da-799a-4252-96bc-3b98d49fe316.jpg?v=1723391423";
+                              event.currentTarget.alt = "Single labelled aroma-chemical bottle, illustrative reference";
                             }}
                           />
-                        ) : (
-                          <span className="ingredient-thumb ingredient-placeholder" title="Synthetic aroma material; no botanical source photograph" aria-hidden="true">LAB</span>
-                        )}
+                          <span className="ingredient-zoom-hint">VIEW</span>
+                        </button>
                         <span>
                           {item.name}
                           {photo && (
@@ -1436,6 +1531,33 @@ export default function Home() {
                   Sign in is required to publish a recipe.
                 </p>
               )}
+            </section>
+          </div>
+        )}
+
+        {enlargedIngredient && (
+          <div
+            className="overlay ingredient-lightbox-overlay"
+            onMouseDown={event => {
+              if (event.target === event.currentTarget) setEnlargedIngredient(null);
+            }}
+          >
+            <section className="ingredient-lightbox" role="dialog" aria-modal="true" aria-label={`Ingredient image: ${enlargedIngredient.name}`}>
+              <button
+                type="button"
+                className="close ingredient-lightbox-close"
+                onClick={() => setEnlargedIngredient(null)}
+                aria-label="Close enlarged ingredient image"
+              >
+                ×
+              </button>
+              <small>SCENTLAB / INGREDIENT REFERENCE</small>
+              <h2>{enlargedIngredient.name}</h2>
+              <img src={enlargedIngredient.src} alt={enlargedIngredient.caption} />
+              <p>{enlargedIngredient.caption}</p>
+              <a href={enlargedIngredient.page} target="_blank" rel="noreferrer">
+                Image source &amp; attribution ↗
+              </a>
             </section>
           </div>
         )}
