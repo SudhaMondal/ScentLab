@@ -802,7 +802,7 @@ export default function Home() {
 
       const master = context.createGain();
       master.gain.setValueAtTime(0, context.currentTime);
-      master.gain.setTargetAtTime(0.34, context.currentTime, 1.8);
+      master.gain.setTargetAtTime(0.56, context.currentTime, 1.8);
       master.connect(context.destination);
 
       // A gentle, locally synthesized interpretation of the public-domain
