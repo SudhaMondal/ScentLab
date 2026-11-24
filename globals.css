@@ -1555,3 +1555,291 @@ footer {
     transition: none;
   }
 }
+
+/* ==========================================
+   SCENTLAB — FULL PAGE DECORATIVE LAYER
+   ========================================== */
+
+:root {
+  --pink-gem: #e7b9c7;
+  --lilac-gem: #c9bee1;
+  --yellow-gem: #ead49a;
+  --sage-gem: #b8c9ac;
+  --cream-gem: #fff9eb;
+}
+
+/* TOP AND BOTTOM CHECKERED TRIMS */
+
+.site {
+  position: relative;
+}
+
+.nav {
+  border-top: 7px solid transparent;
+  border-image: repeating-linear-gradient(
+    90deg,
+    #d9c8df 0 14px,
+    #fff8e9 14px 28px,
+    #d9e4d1 28px 42px,
+    #fff8e9 42px 56px
+  ) 7;
+}
+
+footer {
+  position: relative;
+  border-top: 4px solid #c9b9cf;
+}
+
+footer::after {
+  content: "✦  ◆  ✧  ❀  ◆  ✦  ❀  ✧  ◆  ✦";
+  display: block;
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #a88eaa;
+  font-size: 13px;
+  letter-spacing: 13px;
+  pointer-events: none;
+}
+
+/* FLOATING DECORATIVE GEMS */
+
+.hero-art,
+.community-art {
+  position: relative;
+}
+
+.hero-art::before {
+  box-shadow:
+    0 -145px 0 -125px #e8b9c6,
+    145px 0 0 -125px #c9bee1,
+    -145px 0 0 -125px #ead49a;
+}
+
+.hero-art::after {
+  content: "✧  ◆";
+  font-size: 22px;
+  letter-spacing: 16px;
+  color: #b59ac0;
+}
+
+/* DECORATIVE CORNERS ON THE HERO */
+
+.hero-art {
+  border: 3px solid #c1ceb3;
+  outline: 1px dashed #b7a9c5;
+  outline-offset: 7px;
+}
+
+.hero-art .flower-one::after {
+  content: "✧";
+  display: inline-block;
+  margin-left: 12px;
+  color: #e8c979;
+  font-size: 20px;
+}
+
+/* SIDE DECORATION STRIPES */
+
+.hero {
+  background-image:
+    repeating-linear-gradient(
+      135deg,
+      transparent 0 28px,
+      rgba(197, 174, 195, .10) 28px 30px
+    );
+}
+
+/* DECORATIVE SECTION EDGES */
+
+.section {
+  position: relative;
+  border-top: 1px dashed #c9b9a7;
+  border-bottom: 1px dashed #c9b9a7;
+}
+
+.section::before {
+  content: "✦";
+  position: absolute;
+  left: 3%;
+  top: 45px;
+  color: #c5a4bd;
+  font-size: 27px;
+}
+
+.section::after {
+  content: "◆";
+  position: absolute;
+  right: 3%;
+  bottom: 40px;
+  color: #d6b96f;
+  font-size: 17px;
+}
+
+/* COMIC-STYLE RECIPE CARD EDGES */
+
+.recipe-art {
+  border: 2px solid #fffaf0;
+  outline: 1px solid #d8c5d1;
+  box-shadow: 4px 4px 0 #e4dce6;
+}
+
+.recipe-art::before {
+  content: "✧";
+  position: absolute;
+  bottom: 15px;
+  left: 17px;
+  color: #fff8e5;
+  font-size: 24px;
+  z-index: 2;
+}
+
+.recipe-art::after {
+  border: 1px dashed #ffffffa0;
+}
+
+/* LITTLE GEM TAGS */
+
+.note-tags span {
+  position: relative;
+  border-radius: 2px;
+  background: #e9e5ee;
+  border-color: #d5c9df;
+}
+
+.note-tags span:nth-child(2n) {
+  background: #f5e6e8;
+  border-color: #e8cbd2;
+}
+
+.note-tags span:nth-child(3n) {
+  background: #e7eadb;
+  border-color: #d2ddc6;
+}
+
+/* CHECKERED SECTION DIVIDERS */
+
+.ticker {
+  background-color: #405b46;
+  background-image:
+    linear-gradient(45deg, #ffffff0c 25%, transparent 25%),
+    linear-gradient(-45deg, #ffffff0c 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ffffff0c 75%),
+    linear-gradient(-45deg, transparent 75%, #ffffff0c 75%);
+  background-size: 20px 20px;
+  border-top: 5px solid #e8d8b8;
+  border-bottom: 5px solid #e8d8b8;
+}
+
+/* COMMUNITY — DECORATIVE FRAME */
+
+.community {
+  position: relative;
+  outline: 1px dashed #d7c6a4;
+  outline-offset: -14px;
+}
+
+.community::before {
+  content: "✿  ✧  ◆";
+  position: absolute;
+  top: 22px;
+  left: 25px;
+  color: #e8c7d1;
+  font-size: 17px;
+  letter-spacing: 8px;
+}
+
+.community::after {
+  content: "◆  ✧  ✿";
+  position: absolute;
+  bottom: 22px;
+  right: 25px;
+  color: #e8d49d;
+  font-size: 17px;
+  letter-spacing: 8px;
+}
+
+/* LITTLE DECORATIVE DETAILS ON THE NAV */
+
+.logo {
+  position: relative;
+}
+
+.logo::after {
+  content: "✧";
+  color: #c59cb6;
+  font-size: 15px;
+  position: absolute;
+  right: -16px;
+  top: -10px;
+}
+
+/* PIXEL GEM BUTTON HIGHLIGHTS */
+
+.pixel-btn {
+  position: relative;
+  overflow: visible;
+}
+
+.pixel-btn::after {
+  content: "◆";
+  position: absolute;
+  right: -8px;
+  top: -9px;
+  font-size: 11px;
+  color: #e6c77c;
+  text-shadow: 2px 2px #b48d58;
+}
+
+/* SMALL DECORATIVE DETAILS IN MODALS */
+
+.detail-modal,
+.small-modal {
+  background-image:
+    radial-gradient(#d9c5d5 1px, transparent 1px);
+  background-size: 15px 15px;
+}
+
+.detail-content,
+.small-modal > * {
+  position: relative;
+}
+
+/* MOBILE: KEEP THE DECORATION LIGHT AND VISIBLE */
+
+@media (max-width: 650px) {
+  .section::before {
+    left: 2%;
+    top: 18px;
+    font-size: 18px;
+  }
+
+  .section::after {
+    right: 3%;
+    bottom: 18px;
+    font-size: 13px;
+  }
+
+  .hero-art {
+    outline-offset: 4px;
+  }
+
+  .community::before {
+    font-size: 12px;
+    top: 17px;
+    left: 17px;
+  }
+
+  .community::after {
+    font-size: 12px;
+    bottom: 17px;
+    right: 17px;
+  }
+
+  footer::after {
+    letter-spacing: 5px;
+    font-size: 10px;
+  }
+}
