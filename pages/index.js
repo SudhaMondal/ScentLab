@@ -1300,6 +1300,10 @@ export default function Home() {
               </span>
 
               <span className="sun">✦</span>
+              <span className="gemstone gem-emerald" aria-hidden="true">◆</span>
+              <span className="gemstone gem-amethyst" aria-hidden="true">◆</span>
+              <span className="gemstone gem-ruby" aria-hidden="true">◆</span>
+              <span className="gemstone gem-citrine" aria-hidden="true">◆</span>
               <Bottle name="Rose + Moss" category="Botanical" />
               <span className="flower flower-one">✿</span>
               <span className="flower flower-two">✿</span>
