@@ -2091,3 +2091,79 @@ footer::after {
   font-size: 10px;
   line-height: 1.75;
 }
+
+
+/* Sourced, reference-checked perfume formula details */
+.formula-reference {
+  margin: 18px 0 22px;
+  padding: 16px;
+  border: 1px solid #d8cdbb;
+  border-radius: 12px;
+  background: rgba(250, 247, 239, 0.72);
+}
+.formula-reference-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  color: #514b40;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.formula-reference-top span {
+  color: #7d795f;
+  font-size: 9px;
+}
+.formula-reference-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.formula-reference-grid div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.formula-reference-grid small {
+  color: #918778;
+  font: 8px/1.4 var(--mono);
+  letter-spacing: .08em;
+}
+.formula-reference-grid strong {
+  color: #403a32;
+  font-size: 14px;
+}
+.formula-reference-status {
+  margin: 14px 0 8px;
+  color: #696052;
+  font-size: 10px;
+  line-height: 1.7;
+}
+.formula-reference-status b {
+  color: #56704e;
+}
+.formula-reference-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  font-size: 10px;
+}
+.formula-reference-links a {
+  color: #876c56;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.ingredient-placeholder {
+  display: grid;
+  place-items: center;
+  font: 8px var(--mono);
+  letter-spacing: .05em;
+}
+@media (max-width: 520px) {
+  .formula-reference { padding: 12px; }
+  .formula-reference-grid { gap: 10px; }
+}
