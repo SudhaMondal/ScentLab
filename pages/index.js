@@ -1072,12 +1072,14 @@ export default function Home() {
                 <div className="safety">
                   <b>LAB SAFETY NOTE</b>
                   <p>
-                    These are illustrative learning formulas, not
-                    validated skin-safe perfume formulations. Verify
-                    material identity, supplier safety documentation,
-                    dilution limits, current IFRA guidance and applicable
-                    regulations. Do not apply experimental mixtures
-                    to skin.
+                    These are educational 10.00 g accord blends: 9.00 g
+                    fragrance accords plus 1.00 g perfumer's alcohol. They
+                    are concentrated study blends, not finished wearable
+                    perfumes and are not validated for skin use. Verify each
+                    supplier's identity, safety data, IFRA limits and local
+                    regulations before any further development. Evaluate
+                    these starter batches on blotter strips only; do not
+                    apply them to skin.
                   </p>
                 </div>
 
