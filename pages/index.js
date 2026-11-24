@@ -319,7 +319,8 @@ function ingredientPhoto(name = "") {
     value.includes("rose") ? "rose" :
     value.includes("jasmine") ? "jasmine" :
     value.includes("musk") || value.includes("brassylate") ? "musk" :
-    value.includes("amber") || value.includes("ambroxan") || value.includes("labdanum") ? "amber" :
+    value.includes("ambroxan") || value.includes("vanillin") ? "aroma-chemical" :
+    value.includes("amber") || value.includes("labdanum") ? "amber" :
     value.includes("sandalwood") ? "sandalwood" :
     value.includes("lemon") ? "lemon" :
     value.includes("petitgrain") ? "petitgrain" :
@@ -431,11 +432,11 @@ function ingredientPhoto(name = "") {
       page: "https://www.alchemiaessenze.it/shop-on-line/sample-kits/neroli/"
     },
     petitgrain: {
-      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Orange.jpg",
-      author: "Wikimedia Commons contributor",
-      license: "See source page",
-      caption: "Citrus material reference",
-      page: "https://commons.wikimedia.org/wiki/File:Orange.jpg"
+      src: "https://commons.wikimedia.org/wiki/Special:FilePath/Citrus%20aurantium%20leaves.JPG",
+      author: "Dinkum",
+      license: "CC0",
+      caption: "Bitter orange leaves only",
+      page: "https://commons.wikimedia.org/wiki/File:Citrus_aurantium_leaves.JPG"
     },
     patchouli: {
       src: "https://commons.wikimedia.org/wiki/Special:FilePath/Patchouli1.JPG",
@@ -1205,8 +1206,15 @@ export default function Home() {
                             width="76"
                             height="64"
                             onError={event => {
-                              event.currentTarget.src = "https://pgiforyou.com/cdn/shop/files/ALDEHYDEC12MNA_377e40da-799a-4252-96bc-3b98d49fe316.jpg?v=1723391423";
-                              event.currentTarget.alt = "Single labelled aroma-chemical bottle, illustrative reference";
+                              const image = event.currentTarget;
+                              if (image.dataset.fallbackApplied) {
+                                image.hidden = true;
+                                return;
+                              }
+                              image.dataset.fallbackApplied = "true";
+                              const fallbackSrc = "https://pgiforyou.com/cdn/shop/files/ALDEHYDEC12MNA_377e40da-799a-4252-96bc-3b98d49fe316.jpg?v=1723391423";
+                              image.src = fallbackSrc;
+                              image.alt = "Single labelled aroma-chemical bottle, illustrative reference";
                             }}
                           />
                           <span className="ingredient-zoom-hint">VIEW</span>
