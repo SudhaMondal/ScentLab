@@ -1,20 +1,100 @@
+
 import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
 const supabase = supabaseUrl && supabaseKey
   ? createClient(supabaseUrl, supabaseKey)
   : null;
 
 const starterRecipes = [
-  { id: "seed-1", name: "Rosemary After Rain", category: "Fresh", mood: "A green garden after a summer storm.", notes: ["Rosemary", "Bergamot", "Cedarwood"], color: "#b8d4ad", ingredients: [{ name: "Rosemary accord", grams: 4 }, { name: "Bergamot accord", grams: 3 }, { name: "Cedarwood accord", grams: 2 }, { name: "Perfumer's alcohol", grams: 1 }] },
-  { id: "seed-2", name: "Midnight Cacao", category: "Gourmand", mood: "Dark chocolate, warm evenings and a little mystery.", notes: ["Cacao", "Vanilla", "Tonka"], color: "#c99c7e", ingredients: [{ name: "Cacao accord", grams: 4 }, { name: "Vanilla accord", grams: 3 }, { name: "Tonka accord", grams: 2 }, { name: "Perfumer's alcohol", grams: 1 }] },
-  { id: "seed-3", name: "Petals in Paris", category: "Floral", mood: "Soft rose petals with a clean, elegant finish.", notes: ["Rose", "Jasmine", "Musk"], color: "#edb7c8", ingredients: [{ name: "Rose accord", grams: 4 }, { name: "Jasmine accord", grams: 2 }, { name: "Musk accord", grams: 3 }, { name: "Perfumer's alcohol", grams: 1 }] },
-  { id: "seed-4", name: "Golden Hour", category: "Woody", mood: "Sun-warmed wood, soft amber and golden light.", notes: ["Amber", "Sandalwood", "Vanilla"], color: "#e4c27b", ingredients: [{ name: "Amber accord", grams: 4 }, { name: "Sandalwood accord", grams: 3 }, { name: "Vanilla accord", grams: 2 }, { name: "Perfumer's alcohol", grams: 1 }] },
-  { id: "seed-5", name: "Citrus Club", category: "Fresh", mood: "A bright citrus opening with a breezy finish.", notes: ["Lemon", "Sweet Orange", "Neroli"], color: "#e9d875", ingredients: [{ name: "Lemon accord", grams: 4 }, { name: "Sweet orange accord", grams: 3 }, { name: "Neroli accord", grams: 2 }, { name: "Perfumer's alcohol", grams: 1 }] },
-  { id: "seed-6", name: "Velvet Library", category: "Woody", mood: "Old books, polished wood and quiet confidence.", notes: ["Cedar", "Patchouli", "Vanilla"], color: "#aaa18e", ingredients: [{ name: "Cedarwood accord", grams: 4 }, { name: "Patchouli accord", grams: 3 }, { name: "Vanilla accord", grams: 2 }, { name: "Perfumer's alcohol", grams: 1 }] }
+  {
+    id: "seed-1",
+    name: "Rosemary After Rain",
+    category: "Fresh",
+    mood: "A green garden after a summer storm.",
+    notes: ["Rosemary", "Bergamot", "Cedarwood"],
+    color: "#b8d4ad",
+    ingredients: [
+      { name: "Rosemary accord", grams: 4 },
+      { name: "Bergamot accord", grams: 3 },
+      { name: "Cedarwood accord", grams: 2 },
+      { name: "Perfumer's alcohol", grams: 1 }
+    ]
+  },
+  {
+    id: "seed-2",
+    name: "Midnight Cacao",
+    category: "Gourmand",
+    mood: "Dark chocolate, warm evenings and a little mystery.",
+    notes: ["Cacao", "Vanilla", "Tonka"],
+    color: "#c99c7e",
+    ingredients: [
+      { name: "Cacao accord", grams: 4 },
+      { name: "Vanilla accord", grams: 3 },
+      { name: "Tonka accord", grams: 2 },
+      { name: "Perfumer's alcohol", grams: 1 }
+    ]
+  },
+  {
+    id: "seed-3",
+    name: "Petals in Paris",
+    category: "Floral",
+    mood: "Soft rose petals with a clean, elegant finish.",
+    notes: ["Rose", "Jasmine", "Musk"],
+    color: "#edb7c8",
+    ingredients: [
+      { name: "Rose accord", grams: 4 },
+      { name: "Jasmine accord", grams: 2 },
+      { name: "Musk accord", grams: 3 },
+      { name: "Perfumer's alcohol", grams: 1 }
+    ]
+  },
+  {
+    id: "seed-4",
+    name: "Golden Hour",
+    category: "Woody",
+    mood: "Sun-warmed wood, soft amber and golden light.",
+    notes: ["Amber", "Sandalwood", "Vanilla"],
+    color: "#e4c27b",
+    ingredients: [
+      { name: "Amber accord", grams: 4 },
+      { name: "Sandalwood accord", grams: 3 },
+      { name: "Vanilla accord", grams: 2 },
+      { name: "Perfumer's alcohol", grams: 1 }
+    ]
+  },
+  {
+    id: "seed-5",
+    name: "Citrus Club",
+    category: "Fresh",
+    mood: "A bright citrus opening with a breezy finish.",
+    notes: ["Lemon", "Sweet Orange", "Neroli"],
+    color: "#e9d875",
+    ingredients: [
+      { name: "Lemon accord", grams: 4 },
+      { name: "Sweet orange accord", grams: 3 },
+      { name: "Neroli accord", grams: 2 },
+      { name: "Perfumer's alcohol", grams: 1 }
+    ]
+  },
+  {
+    id: "seed-6",
+    name: "Velvet Library",
+    category: "Woody",
+    mood: "Old books, polished wood and quiet confidence.",
+    notes: ["Cedar", "Patchouli", "Vanilla"],
+    color: "#aaa18e",
+    ingredients: [
+      { name: "Cedarwood accord", grams: 4 },
+      { name: "Patchouli accord", grams: 3 },
+      { name: "Vanilla accord", grams: 2 },
+      { name: "Perfumer's alcohol", grams: 1 }
+    ]
+  }
 ];
 
 const families = ["All", "Fresh", "Floral", "Gourmand", "Woody"];
@@ -51,8 +131,13 @@ export default function Home() {
   const [notice, setNotice] = useState("");
   const [onlySaved, setOnlySaved] = useState(false);
   const [loading, setLoading] = useState(true);
+
   const [form, setForm] = useState({
-    name: "", category: "Fresh", mood: "", notes: "", ingredients: ""
+    name: "",
+    category: "Fresh",
+    mood: "",
+    notes: "",
+    ingredients: ""
   });
 
   useEffect(() => {
@@ -96,15 +181,23 @@ export default function Home() {
     let active = true;
 
     Promise.all([
-      supabase.from("saved_recipes").select("recipe_id").eq("user_id", user.id),
-      supabase.from("recipe_likes").select("recipe_id").eq("user_id", user.id)
+      supabase.from("saved_recipes")
+        .select("recipe_id")
+        .eq("user_id", user.id),
+
+      supabase.from("recipe_likes")
+        .select("recipe_id")
+        .eq("user_id", user.id)
     ]).then(([saves, liked]) => {
       if (!active) return;
+
       setSaved((saves.data || []).map(x => x.recipe_id));
       setLikes((liked.data || []).map(x => x.recipe_id));
     });
 
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, [user]);
 
   useEffect(() => {
@@ -123,14 +216,18 @@ export default function Home() {
   const filtered = useMemo(() => {
     return recipes.filter(recipe => {
       const searchable = [
-        recipe.name, recipe.category, recipe.mood,
+        recipe.name,
+        recipe.category,
+        recipe.mood,
         ...(recipe.notes || []),
         ...(recipe.ingredients || []).map(x => x.name)
       ].join(" ").toLowerCase();
 
-      return searchable.includes(search.toLowerCase()) &&
+      return (
+        searchable.includes(search.toLowerCase()) &&
         (family === "All" || recipe.category === family) &&
-        (!onlySaved || saved.includes(recipe.id));
+        (!onlySaved || saved.includes(recipe.id))
+      );
     });
   }, [recipes, search, family, onlySaved, saved]);
 
@@ -142,7 +239,9 @@ export default function Home() {
     setAuthMessage("");
 
     if (!supabase) {
-      setAuthMessage("Supabase is not configured. Add the Vercel environment variables first.");
+      setAuthMessage(
+        "Supabase is not configured. Add the Vercel environment variables first."
+      );
       return;
     }
 
@@ -153,25 +252,13 @@ export default function Home() {
     if (result.error) {
       setAuthMessage(result.error.message);
     } else if (authMode === "signup") {
-      setAuthMessage("Account created. Check your email to confirm your address.");
+      setAuthMessage(
+        "Account created. Check your email to confirm your address."
+      );
     } else {
       setAuthOpen(false);
       setPassword("");
     }
-  }
-
-  async function googleSignIn() {
-    if (!supabase) {
-      setAuthMessage("Supabase is not configured.");
-      return;
-    }
-
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: window.location.origin }
-    });
-
-    if (error) setAuthMessage(error.message);
   }
 
   async function toggleSaved(id) {
@@ -182,21 +269,32 @@ export default function Home() {
     }
 
     if (String(id).startsWith("seed-")) {
-      setNotice("Starter recipes become saveable after the database setup.");
+      setNotice(
+        "Starter recipes become saveable after the database setup."
+      );
       return;
     }
 
     const exists = saved.includes(id);
+
     setSaved(current => exists
       ? current.filter(item => item !== id)
-      : [...current, id]);
+      : [...current, id]
+    );
 
     const result = exists
-      ? await supabase.from("saved_recipes").delete().eq("recipe_id", id).eq("user_id", user.id)
-      : await supabase.from("saved_recipes").insert({ recipe_id: id, user_id: user.id });
+      ? await supabase.from("saved_recipes")
+          .delete()
+          .eq("recipe_id", id)
+          .eq("user_id", user.id)
+      : await supabase.from("saved_recipes")
+          .insert({ recipe_id: id, user_id: user.id });
 
     if (result.error) {
-      setSaved(current => exists ? [...current, id] : current.filter(item => item !== id));
+      setSaved(current => exists
+        ? [...current, id]
+        : current.filter(item => item !== id)
+      );
       setNotice(result.error.message);
     }
   }
@@ -213,13 +311,19 @@ export default function Home() {
     }
 
     const exists = likes.includes(id);
+
     setLikes(current => exists
       ? current.filter(item => item !== id)
-      : [...current, id]);
+      : [...current, id]
+    );
 
     const result = exists
-      ? await supabase.from("recipe_likes").delete().eq("recipe_id", id).eq("user_id", user.id)
-      : await supabase.from("recipe_likes").insert({ recipe_id: id, user_id: user.id });
+      ? await supabase.from("recipe_likes")
+          .delete()
+          .eq("recipe_id", id)
+          .eq("user_id", user.id)
+      : await supabase.from("recipe_likes")
+          .insert({ recipe_id: id, user_id: user.id });
 
     if (result.error) setNotice(result.error.message);
   }
@@ -233,10 +337,21 @@ export default function Home() {
       return;
     }
 
-    const ingredients = form.ingredients.split("\n").map(line => {
-      const [name, grams] = line.split("|");
-      return { name: (name || "").trim(), grams: Number((grams || "").trim()) };
-    }).filter(item => item.name && item.grams > 0 && Number.isFinite(item.grams));
+    const ingredients = form.ingredients
+      .split("\n")
+      .map(line => {
+        const [name, grams] = line.split("|");
+
+        return {
+          name: (name || "").trim(),
+          grams: Number((grams || "").trim())
+        };
+      })
+      .filter(item =>
+        item.name &&
+        item.grams > 0 &&
+        Number.isFinite(item.grams)
+      );
 
     if (!ingredients.length) {
       setNotice("Add ingredients using: ingredient name | grams");
@@ -248,13 +363,18 @@ export default function Home() {
       name: form.name.trim(),
       category: form.category,
       mood: form.mood.trim(),
-      notes: form.notes.split(",").map(x => x.trim()).filter(Boolean),
+      notes: form.notes.split(",")
+        .map(x => x.trim())
+        .filter(Boolean),
       ingredients,
       is_published: true
     };
 
     const { data, error } = await supabase
-      .from("recipes").insert(payload).select().single();
+      .from("recipes")
+      .insert(payload)
+      .select()
+      .single();
 
     if (error) {
       setNotice(error.message);
@@ -263,7 +383,15 @@ export default function Home() {
 
     setRecipes(current => [data, ...current]);
     setCreateOpen(false);
-    setForm({ name: "", category: "Fresh", mood: "", notes: "", ingredients: "" });
+
+    setForm({
+      name: "",
+      category: "Fresh",
+      mood: "",
+      notes: "",
+      ingredients: ""
+    });
+
     setNotice("Your recipe has been published!");
   }
 
@@ -275,7 +403,11 @@ export default function Home() {
       return;
     }
 
-    if (!selected || String(selected.id).startsWith("seed-") || !comment.trim()) return;
+    if (
+      !selected ||
+      String(selected.id).startsWith("seed-") ||
+      !comment.trim()
+    ) return;
 
     const { data, error } = await supabase.from("comments")
       .insert({
@@ -286,8 +418,9 @@ export default function Home() {
       .select("id,body,created_at,user_id")
       .single();
 
-    if (error) setNotice(error.message);
-    else {
+    if (error) {
+      setNotice(error.message);
+    } else {
       setComments(current => [...current, data]);
       setComment("");
     }
@@ -297,46 +430,95 @@ export default function Home() {
     <>
       <Head>
         <title>ScentLab — Pixel Perfumery Club</title>
-        <meta name="description" content="Discover fragrance recipes, craft your own scent and meet the ScentLab community." />
+        <meta
+          name="description"
+          content="Discover fragrance recipes, craft your own scent and meet the ScentLab community."
+        />
         <meta name="theme-color" content="#f7f4e9" />
       </Head>
 
       <div className="site">
         <header className="nav">
-          <a className="logo" href="#">✿ SCENT<span>LAB</span><small>PIXEL PERFUMERY CLUB</small></a>
+          <a className="logo" href="#">
+            ✿ SCENT<span>LAB</span>
+            <small>PIXEL PERFUMERY CLUB</small>
+          </a>
+
           <nav>
             <a href="#explore">Explore</a>
             <a href="#workbench">Workbench</a>
             <a href="#grove">Scent Grove</a>
             <a href="#community">Community</a>
           </nav>
+
           <div className="nav-actions">
             {user ? (
               <>
                 <span className="user-label">{user.email}</span>
-                <button className="plain" onClick={() => supabase.auth.signOut()}>Sign out</button>
+                <button
+                  className="plain"
+                  onClick={() => supabase.auth.signOut()}
+                >
+                  Sign out
+                </button>
               </>
             ) : (
-              <button className="plain" onClick={() => setAuthOpen(true)}>Sign in</button>
+              <button
+                className="plain"
+                onClick={() => setAuthOpen(true)}
+              >
+                Sign in
+              </button>
             )}
-            <button className="pixel-btn" onClick={() => setCreateOpen(true)}>＋ Create recipe</button>
+
+            <button
+              className="pixel-btn"
+              onClick={() => setCreateOpen(true)}
+            >
+              ＋ Create recipe
+            </button>
           </div>
         </header>
 
         <main>
           <section className="hero">
             <div>
-              <div className="eyebrow">✧ YOUR LITTLE CORNER OF SCENT MAGIC</div>
-              <h1>Make a scent.<br /><em>Make a story.</em></h1>
-              <p>A tiny pixel universe for curious noses. Discover fragrance recipes, mix your own little potion, and trade ideas with fellow scent-makers.</p>
-              <div className="hero-actions">
-                <a className="pixel-btn" href="#explore">Explore the library ↗</a>
-                <a className="plain" href="#workbench">Enter the workbench ↓</a>
+              <div className="eyebrow">
+                ✧ YOUR LITTLE CORNER OF SCENT MAGIC
               </div>
-              <div className="micro-stats">✿ COMMUNITY-MADE　 ▦ FORMULA NOTEBOOK　 ✧ PIXEL MAGIC</div>
+
+              <h1>
+                Make a scent.<br />
+                <em>Make a story.</em>
+              </h1>
+
+              <p>
+                A tiny pixel universe for curious noses. Discover
+                fragrance recipes, mix your own little potion, and
+                trade ideas with fellow scent-makers.
+              </p>
+
+              <div className="hero-actions">
+                <a className="pixel-btn" href="#explore">
+                  Explore the library ↗
+                </a>
+
+                <a className="plain" href="#workbench">
+                  Enter the workbench ↓
+                </a>
+              </div>
+
+              <div className="micro-stats">
+                ✿ COMMUNITY-MADE　 ▦ FORMULA NOTEBOOK　 ✧ PIXEL MAGIC
+              </div>
             </div>
+
             <div className="hero-art">
-              <span className="hero-label">SCENT LAB<br /><small>NO. 001 / DREAM IN PIXELS</small></span>
+              <span className="hero-label">
+                SCENT LAB<br />
+                <small>NO. 001 / DREAM IN PIXELS</small>
+              </span>
+
               <span className="sun">✦</span>
               <Bottle />
               <span className="flower flower-one">✿</span>
@@ -345,80 +527,179 @@ export default function Home() {
             </div>
           </section>
 
-          <div className="ticker">✦ FIND YOUR NOTES　 ✿　 MIX YOUR MAGIC　 ✿　 SHARE THE GOOD STUFF　 ✿　 FIND YOUR NOTES</div>
+          <div className="ticker">
+            ✦ FIND YOUR NOTES　 ✿　 MIX YOUR MAGIC　 ✿　 SHARE THE GOOD STUFF　 ✿　 FIND YOUR NOTES
+          </div>
 
           <section className="section" id="explore">
             <div className="section-heading">
               <div>
                 <small>01 / THE RECIPE LIBRARY</small>
-                <h2>Find your <em>next obsession.</em></h2>
+                <h2>
+                  Find your <em>next obsession.</em>
+                </h2>
                 <p>Little formulas, big imaginary worlds.</p>
               </div>
-              <strong>{recipes.length.toString().padStart(2, "0")}<small>RECIPES IN THE LAB</small></strong>
+
+              <strong>
+                {recipes.length.toString().padStart(2, "0")}
+                <small>RECIPES IN THE LAB</small>
+              </strong>
             </div>
 
             <div className="search-row">
-              <input value={search} onChange={e => setSearch(e.target.value)} placeholder="⌕  Search notes, moods, ingredients..." />
-              <button className={onlySaved ? "active-filter" : ""} onClick={() => {
-                if (!user && !onlySaved) { setAuthOpen(true); return; }
-                setOnlySaved(!onlySaved);
-              }}>♡ My saved lab</button>
+              <input
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                placeholder="⌕  Search notes, moods, ingredients..."
+              />
+
+              <button
+                className={onlySaved ? "active-filter" : ""}
+                onClick={() => {
+                  if (!user && !onlySaved) {
+                    setAuthOpen(true);
+                    return;
+                  }
+                  setOnlySaved(!onlySaved);
+                }}
+              >
+                ♡ My saved lab
+              </button>
             </div>
 
             <div className="filters">
               {families.map(item => (
-                <button key={item} className={family === item ? "active" : ""} onClick={() => setFamily(item)}>{item}</button>
+                <button
+                  key={item}
+                  className={family === item ? "active" : ""}
+                  onClick={() => setFamily(item)}
+                >
+                  {item}
+                </button>
               ))}
             </div>
 
-            {loading && <p className="muted">Waking up the scent sprites…</p>}
+            {loading && (
+              <p className="muted">Waking up the scent sprites…</p>
+            )}
 
             <div className="cards">
               {filtered.map((recipe, index) => (
                 <article className="recipe-card" key={recipe.id}>
-                  <div className="recipe-art" style={{ background: recipe.color || "#c9dcb8" }}>
-                    <small>FORMULA / {String(index + 1).padStart(2, "0")}</small>
-                    <button className="heart" onClick={() => toggleSaved(recipe.id)}>
+                  <div
+                    className="recipe-art"
+                    style={{ background: recipe.color || "#c9dcb8" }}
+                  >
+                    <small>
+                      FORMULA / {String(index + 1).padStart(2, "0")}
+                    </small>
+
+                    <button
+                      className="heart"
+                      onClick={() => toggleSaved(recipe.id)}
+                    >
                       {saved.includes(recipe.id) ? "♥" : "♡"}
                     </button>
-                    <button className="art-open" onClick={() => { setSelected(recipe); setBatch(10); }}>
+
+                    <button
+                      className="art-open"
+                      onClick={() => {
+                        setSelected(recipe);
+                        setBatch(10);
+                      }}
+                    >
                       <Bottle color={recipe.color || "#c9dcb8"} />
                       <span>✧ SCENT STUDY ✧</span>
                     </button>
                   </div>
-                  <div className="recipe-meta">{recipe.category} <span>✦ {(recipe.notes || []).length} NOTES</span></div>
-                  <button className="recipe-name" onClick={() => { setSelected(recipe); setBatch(10); }}>{recipe.name} ↗</button>
+
+                  <div className="recipe-meta">
+                    {recipe.category}
+                    <span>✦ {(recipe.notes || []).length} NOTES</span>
+                  </div>
+
+                  <button
+                    className="recipe-name"
+                    onClick={() => {
+                      setSelected(recipe);
+                      setBatch(10);
+                    }}
+                  >
+                    {recipe.name} ↗
+                  </button>
+
                   <p>{recipe.mood}</p>
-                  <div className="note-tags">{(recipe.notes || []).slice(0, 3).map(note => <span key={note}>{note}</span>)}</div>
+
+                  <div className="note-tags">
+                    {(recipe.notes || []).slice(0, 3).map(note => (
+                      <span key={note}>{note}</span>
+                    ))}
+                  </div>
                 </article>
               ))}
             </div>
 
-            {!filtered.length && <div className="empty">
-              <h3>No little bottles found.</h3>
-              <p>Try another note or clear your filters.</p>
-              <button className="plain" onClick={() => { setSearch(""); setFamily("All"); setOnlySaved(false); }}>Clear filters ↗</button>
-            </div>}
+            {!filtered.length && (
+              <div className="empty">
+                <h3>No little bottles found.</h3>
+                <p>Try another note or clear your filters.</p>
+
+                <button
+                  className="plain"
+                  onClick={() => {
+                    setSearch("");
+                    setFamily("All");
+                    setOnlySaved(false);
+                  }}
+                >
+                  Clear filters ↗
+                </button>
+              </div>
+            )}
           </section>
 
           <section className="workbench-section" id="workbench">
             <div className="section-heading">
               <div>
                 <small>02 / THE ENCHANTED WORKBENCH</small>
-                <h2>Mix a little <em>something.</em></h2>
+                <h2>
+                  Mix a little <em>something.</em>
+                </h2>
                 <p>Your formula starts with curiosity.</p>
               </div>
-              <span className="stamp">CRAFT<br />YOUR<br />SCENT</span>
+
+              <span className="stamp">
+                CRAFT<br />YOUR<br />SCENT
+              </span>
             </div>
+
             <div className="workbench">
               <div>
                 <small>CRAFTING TABLE / 3 × 3</small>
-                <h3>One idea.<br /><em>Nine little slots.</em></h3>
-                <p>Open a recipe to scale its batch, inspect ingredient ratios, and save it to your personal lab.</p>
-                <button className="pixel-btn" onClick={() => setCreateOpen(true)}>Start a new formula ↗</button>
+
+                <h3>
+                  One idea.<br />
+                  <em>Nine little slots.</em>
+                </h3>
+
+                <p>
+                  Open a recipe to scale its batch, inspect ingredient
+                  ratios, and save it to your personal lab.
+                </p>
+
+                <button
+                  className="pixel-btn"
+                  onClick={() => setCreateOpen(true)}
+                >
+                  Start a new formula ↗
+                </button>
               </div>
+
               <div className="craft-grid">
-                {["🌹", "🍋", "🌿", "＋", "🧪", "＋", "🪵", "＋", "✨"].map((item, i) => <span key={i}>{item}</span>)}
+                {["🌹", "🍋", "🌿", "＋", "🧪", "＋", "🪵", "＋", "✨"].map(
+                  (item, i) => <span key={i}>{item}</span>
+                )}
               </div>
             </div>
           </section>
@@ -427,10 +708,13 @@ export default function Home() {
             <div className="section-heading">
               <div>
                 <small>03 / THE SCENT GROVE</small>
-                <h2>Wander through <em>notes.</em></h2>
+                <h2>
+                  Wander through <em>notes.</em>
+                </h2>
                 <p>Choose a biome to explore its fragrance family.</p>
               </div>
             </div>
+
             <div className="biomes">
               {[
                 ["🌸", "Petal Meadow", "Rose · Jasmine · Iris", "Floral", "rose"],
@@ -438,12 +722,21 @@ export default function Home() {
                 ["🌲", "Woodland Hollow", "Cedar · Moss · Vetiver", "Woody", "forest"],
                 ["🍮", "Sugarcloud Peaks", "Vanilla · Cacao · Tonka", "Gourmand", "sugar"]
               ].map(([emoji, name, notes, category, style]) => (
-                <button className={"biome " + style} key={name} onClick={() => {
-                  setFamily(category);
-                  document.getElementById("explore").scrollIntoView({ behavior: "smooth" });
-                }}>
-                  <b>{emoji}</b><small>BIOME / {category.toUpperCase()}</small>
-                  <strong>{name}</strong><span>{notes}</span><i>EXPLORE NOTES ↗</i>
+                <button
+                  className={"biome " + style}
+                  key={name}
+                  onClick={() => {
+                    setFamily(category);
+                    document.getElementById("explore").scrollIntoView({
+                      behavior: "smooth"
+                    });
+                  }}
+                >
+                  <b>{emoji}</b>
+                  <small>BIOME / {category.toUpperCase()}</small>
+                  <strong>{name}</strong>
+                  <span>{notes}</span>
+                  <i>EXPLORE NOTES ↗</i>
                 </button>
               ))}
             </div>
@@ -451,17 +744,36 @@ export default function Home() {
 
           <section className="community" id="community">
             <div className="community-art">✦　🧴　✿</div>
+
             <div>
               <small>04 / THE COMMUNITY</small>
-              <h2>Good scents<br />are <em>better shared.</em></h2>
-              <p>Publish your experiments, save other makers' formulas, and leave a little encouragement on a blend you love.</p>
-              <button className="pixel-btn" onClick={() => user ? setCreateOpen(true) : setAuthOpen(true)}>Join the community ↗</button>
+
+              <h2>
+                Good scents<br />
+                are <em>better shared.</em>
+              </h2>
+
+              <p>
+                Publish your experiments, save other makers' formulas,
+                and leave a little encouragement on a blend you love.
+              </p>
+
+              <button
+                className="pixel-btn"
+                onClick={() => user ? setCreateOpen(true) : setAuthOpen(true)}
+              >
+                Join the community ↗
+              </button>
             </div>
           </section>
         </main>
 
         <footer>
-          <a className="logo" href="#">✿ SCENT<span>LAB</span><small>PIXEL PERFUMERY CLUB</small></a>
+          <a className="logo" href="#">
+            ✿ SCENT<span>LAB</span>
+            <small>PIXEL PERFUMERY CLUB</small>
+          </a>
+
           <p>Made of notes, pixels & a little imagination.</p>
           <small>© SCENTLAB 2026</small>
         </footer>
@@ -470,87 +782,328 @@ export default function Home() {
           <a href="#explore">⌕<small>Explore</small></a>
           <a href="#workbench">▦<small>Craft</small></a>
           <a href="#community">✿<small>Club</small></a>
-          <button onClick={() => user ? setCreateOpen(true) : setAuthOpen(true)}>♙<small>My Lab</small></button>
+
+          <button
+            onClick={() => user ? setCreateOpen(true) : setAuthOpen(true)}
+          >
+            ♙<small>My Lab</small>
+          </button>
         </nav>
 
-        {notice && <button className="notice" onClick={() => setNotice("")}>{notice}　×</button>}
+        {notice && (
+          <button className="notice" onClick={() => setNotice("")}>
+            {notice}　×
+          </button>
+        )}
 
-        {selected && <div className="overlay" onMouseDown={e => { if (e.target === e.currentTarget) setSelected(null); }}>
-          <section className="detail-modal">
-            <button className="close" onClick={() => setSelected(null)}>×</button>
-            <div className="detail-art" style={{ background: selected.color || "#c9dcb8" }}><Bottle color={selected.color || "#c9dcb8"} /></div>
-            <div className="detail-content">
-              <small>{selected.category} / FORMULA</small>
-              <h2>{selected.name}</h2>
-              <p>{selected.mood}</p>
-              <div className="note-tags">{(selected.notes || []).map(note => <span key={note}>{note}</span>)}</div>
-              <div className="formula-heading">
-                <h3>Ingredient recipe</h3>
-                <label>Target batch <input type="number" min="1" max="10000" value={batch} onChange={e => setBatch(Math.max(1, Number(e.target.value) || 1))} /> g</label>
-              </div>
-              {(selected.ingredients || []).map((item, i) => (
-                <div className="ingredient" key={i}><span>{item.name}</span><b>{(Number(item.grams || 0) * batch / (ingredientTotal || 1)).toFixed(2)} g</b></div>
-              ))}
-              <div className="ingredient total"><span>FORMULA TOTAL</span><b>{batch} g</b></div>
-              <div className="safety">
-                <b>LAB SAFETY NOTE</b>
-                <p>These are illustrative learning formulas, not validated skin-safe perfume formulations. Verify material identity, supplier safety documentation, dilution limits, current IFRA guidance and applicable regulations. Do not apply experimental mixtures to skin.</p>
-              </div>
-              <div className="detail-actions">
-                <button className="pixel-btn" onClick={() => toggleSaved(selected.id)}>{saved.includes(selected.id) ? "♥ Saved" : "♡ Save recipe"}</button>
-                <button className="like" onClick={() => toggleLike(selected.id)}>♥ {likes.includes(selected.id) ? "Liked" : "Like"}</button>
-              </div>
-              <div className="comments">
-                <h3>Little notes from the community</h3>
-                {comments.map(item => <p key={item.id}><b>Scent maker · {item.user_id.slice(0, 6)}</b><br />{item.body}</p>)}
-                {!comments.length && <small className="muted">No comments yet. Be the first to leave a note.</small>}
-                {user && !String(selected.id).startsWith("seed-") && (
-                  <form onSubmit={postComment}>
-                    <input value={comment} onChange={e => setComment(e.target.value)} placeholder="Leave a kind note…" />
-                    <button>Post ↗</button>
-                  </form>
-                )}
-              </div>
-            </div>
-          </section>
-        </div>}
+        {selected && (
+          <div
+            className="overlay"
+            onMouseDown={e => {
+              if (e.target === e.currentTarget) setSelected(null);
+            }}
+          >
+            <section className="detail-modal">
+              <button
+                className="close"
+                onClick={() => setSelected(null)}
+              >
+                ×
+              </button>
 
-        {authOpen && <div className="overlay" onMouseDown={e => { if (e.target === e.currentTarget) setAuthOpen(false); }}>
-          <section className="small-modal">
-            <button className="close" onClick={() => setAuthOpen(false)}>×</button>
-            <small>WELCOME TO YOUR LITTLE LAB</small>
-            <h2>{authMode === "signup" ? "Create your account." : "Come on in."}</h2>
-            <p>Save your favourite formulas and share your own experiments.</p>
-            <form onSubmit={handleAuth}>
-              <label>Email<input type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="you@example.com" /></label>
-              <label>Password<input type="password" minLength="6" required value={password} onChange={e => setPassword(e.target.value)} placeholder="At least 6 characters" /></label>
-              <button className="pixel-btn full">{authMode === "signup" ? "Create account" : "Sign in"} ↗</button>
-            </form>
-            <button className="google" onClick={googleSignIn}>Continue with Google</button>
-            <button className="plain switch" onClick={() => { setAuthMode(authMode === "signup" ? "signin" : "signup"); setAuthMessage(""); }}>
-              {authMode === "signup" ? "Already registered? Sign in" : "New here? Create an account"}
-            </button>
-            {authMessage && <p className="auth-message">{authMessage}</p>}
-          </section>
-        </div>}
+              <div
+                className="detail-art"
+                style={{ background: selected.color || "#c9dcb8" }}
+              >
+                <Bottle color={selected.color || "#c9dcb8"} />
+              </div>
 
-        {createOpen && <div className="overlay" onMouseDown={e => { if (e.target === e.currentTarget) setCreateOpen(false); }}>
-          <section className="small-modal create-modal">
-            <button className="close" onClick={() => setCreateOpen(false)}>×</button>
-            <small>THE ENCHANTED WORKBENCH</small>
-            <h2>Make a little <em>magic.</em></h2>
-            <p>Write down your formula and send it into the ScentLab library.</p>
-            <form onSubmit={publishRecipe}>
-              <label>Recipe name<input required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Sunday in the garden" /></label>
-              <label>Fragrance family<select value={form.category} onChange={e => setForm({ ...form, category: e.target.value })}>{families.filter(x => x !== "All").map(x => <option key={x}>{x}</option>)}</select></label>
-              <label>The mood<input value={form.mood} onChange={e => setForm({ ...form, mood: e.target.value })} placeholder="What does this scent feel like?" /></label>
-              <label>Notes<input value={form.notes} onChange={e => setForm({ ...form, notes: e.target.value })} placeholder="Rose, vanilla, cedar" /></label>
-              <label>Ingredients <small>One per line: ingredient | grams</small><textarea rows="5" required value={form.ingredients} onChange={e => setForm({ ...form, ingredients: e.target.value })} placeholder={"Rose accord | 4\nVanilla accord | 3\nCedarwood accord | 2\nPerfumer's alcohol | 1"} /></label>
-              <button className="pixel-btn full">Publish recipe ↗</button>
-            </form>
-            {!user && <p className="auth-message">Sign in is required to publish a recipe.</p>}
-          </section>
-        </div>}
+              <div className="detail-content">
+                <small>{selected.category} / FORMULA</small>
+                <h2>{selected.name}</h2>
+                <p>{selected.mood}</p>
+
+                <div className="note-tags">
+                  {(selected.notes || []).map(note => (
+                    <span key={note}>{note}</span>
+                  ))}
+                </div>
+
+                <div className="formula-heading">
+                  <h3>Ingredient recipe</h3>
+
+                  <label>
+                    Target batch
+                    <input
+                      type="number"
+                      min="1"
+                      max="10000"
+                      value={batch}
+                      onChange={e =>
+                        setBatch(Math.max(1, Number(e.target.value) || 1))
+                      }
+                    />
+                    g
+                  </label>
+                </div>
+
+                {(selected.ingredients || []).map((item, i) => (
+                  <div className="ingredient" key={i}>
+                    <span>{item.name}</span>
+                    <b>
+                      {(
+                        Number(item.grams || 0) *
+                        batch /
+                        (ingredientTotal || 1)
+                      ).toFixed(2)} g
+                    </b>
+                  </div>
+                ))}
+
+                <div className="ingredient total">
+                  <span>FORMULA TOTAL</span>
+                  <b>{batch} g</b>
+                </div>
+
+                <div className="safety">
+                  <b>LAB SAFETY NOTE</b>
+                  <p>
+                    These are illustrative learning formulas, not
+                    validated skin-safe perfume formulations. Verify
+                    material identity, supplier safety documentation,
+                    dilution limits, current IFRA guidance and applicable
+                    regulations. Do not apply experimental mixtures
+                    to skin.
+                  </p>
+                </div>
+
+                <div className="detail-actions">
+                  <button
+                    className="pixel-btn"
+                    onClick={() => toggleSaved(selected.id)}
+                  >
+                    {saved.includes(selected.id) ? "♥ Saved" : "♡ Save recipe"}
+                  </button>
+
+                  <button
+                    className="like"
+                    onClick={() => toggleLike(selected.id)}
+                  >
+                    ♥ {likes.includes(selected.id) ? "Liked" : "Like"}
+                  </button>
+                </div>
+
+                <div className="comments">
+                  <h3>Little notes from the community</h3>
+
+                  {comments.map(item => (
+                    <p key={item.id}>
+                      <b>Scent maker · {item.user_id.slice(0, 6)}</b>
+                      <br />
+                      {item.body}
+                    </p>
+                  ))}
+
+                  {!comments.length && (
+                    <small className="muted">
+                      No comments yet. Be the first to leave a note.
+                    </small>
+                  )}
+
+                  {user && !String(selected.id).startsWith("seed-") && (
+                    <form onSubmit={postComment}>
+                      <input
+                        value={comment}
+                        onChange={e => setComment(e.target.value)}
+                        placeholder="Leave a kind note…"
+                      />
+                      <button>Post ↗</button>
+                    </form>
+                  )}
+                </div>
+              </div>
+            </section>
+          </div>
+        )}
+
+        {authOpen && (
+          <div
+            className="overlay"
+            onMouseDown={e => {
+              if (e.target === e.currentTarget) setAuthOpen(false);
+            }}
+          >
+            <section className="small-modal">
+              <button
+                className="close"
+                onClick={() => setAuthOpen(false)}
+              >
+                ×
+              </button>
+
+              <small>WELCOME TO YOUR LITTLE LAB</small>
+
+              <h2>
+                {authMode === "signup"
+                  ? "Create your account."
+                  : "Come on in."}
+              </h2>
+
+              <p>
+                Save your favourite formulas and share your own experiments.
+              </p>
+
+              <form onSubmit={handleAuth}>
+                <label>
+                  Email
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    placeholder="you@example.com"
+                  />
+                </label>
+
+                <label>
+                  Password
+                  <input
+                    type="password"
+                    minLength="6"
+                    required
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    placeholder="At least 6 characters"
+                  />
+                </label>
+
+                <button className="pixel-btn full">
+                  {authMode === "signup" ? "Create account" : "Sign in"} ↗
+                </button>
+              </form>
+
+              <button
+                className="plain switch"
+                onClick={() => {
+                  setAuthMode(
+                    authMode === "signup" ? "signin" : "signup"
+                  );
+                  setAuthMessage("");
+                }}
+              >
+                {authMode === "signup"
+                  ? "Already registered? Sign in"
+                  : "New here? Create an account"}
+              </button>
+
+              {authMessage && (
+                <p className="auth-message">{authMessage}</p>
+              )}
+            </section>
+          </div>
+        )}
+
+        {createOpen && (
+          <div
+            className="overlay"
+            onMouseDown={e => {
+              if (e.target === e.currentTarget) setCreateOpen(false);
+            }}
+          >
+            <section className="small-modal create-modal">
+              <button
+                className="close"
+                onClick={() => setCreateOpen(false)}
+              >
+                ×
+              </button>
+
+              <small>THE ENCHANTED WORKBENCH</small>
+
+              <h2>
+                Make a little <em>magic.</em>
+              </h2>
+
+              <p>
+                Write down your formula and send it into the ScentLab library.
+              </p>
+
+              <form onSubmit={publishRecipe}>
+                <label>
+                  Recipe name
+                  <input
+                    required
+                    value={form.name}
+                    onChange={e =>
+                      setForm({ ...form, name: e.target.value })
+                    }
+                    placeholder="Sunday in the garden"
+                  />
+                </label>
+
+                <label>
+                  Fragrance family
+                  <select
+                    value={form.category}
+                    onChange={e =>
+                      setForm({ ...form, category: e.target.value })
+                    }
+                  >
+                    {families.filter(x => x !== "All").map(x => (
+                      <option key={x}>{x}</option>
+                    ))}
+                  </select>
+                </label>
+
+                <label>
+                  The mood
+                  <input
+                    value={form.mood}
+                    onChange={e =>
+                      setForm({ ...form, mood: e.target.value })
+                    }
+                    placeholder="What does this scent feel like?"
+                  />
+                </label>
+
+                <label>
+                  Notes
+                  <input
+                    value={form.notes}
+                    onChange={e =>
+                      setForm({ ...form, notes: e.target.value })
+                    }
+                    placeholder="Rose, vanilla, cedar"
+                  />
+                </label>
+
+                <label>
+                  Ingredients
+                  <small>One per line: ingredient | grams</small>
+                  <textarea
+                    rows="5"
+                    required
+                    value={form.ingredients}
+                    onChange={e =>
+                      setForm({ ...form, ingredients: e.target.value })
+                    }
+                    placeholder={"Rose accord | 4\nVanilla accord | 3\nCedarwood accord | 2\nPerfumer's alcohol | 1"}
+                  />
+                </label>
+
+                <button className="pixel-btn full">
+                  Publish recipe ↗
+                </button>
+              </form>
+
+              {!user && (
+                <p className="auth-message">
+                  Sign in is required to publish a recipe.
+                </p>
+              )}
+            </section>
+          </div>
+        )}
       </div>
     </>
   );
