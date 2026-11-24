@@ -773,10 +773,10 @@ export default function Home() {
     const context = musicContextRef.current;
     const master = musicMasterRef.current;
     if (context && master && context.state !== "closed") {
-      master.gain.setTargetAtTime(0, context.currentTime, 0.35);
+      master.gain.setTargetAtTime(0, context.currentTime, 0.45);
       window.setTimeout(() => {
         if (context.state !== "closed") context.close();
-      }, 1400);
+      }, 1800);
     }
     musicContextRef.current = null;
     musicMasterRef.current = null;
@@ -791,55 +791,79 @@ export default function Home() {
 
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
     if (!AudioContextClass) {
-      setNotice("This browser does not support the ScentLab background music.");
+      setNotice("Background music is not supported in this browser.");
       return;
     }
 
+    let context;
     try {
-      const context = new AudioContextClass();
+      context = new AudioContextClass();
       await context.resume();
+
       const master = context.createGain();
       master.gain.setValueAtTime(0, context.currentTime);
-      master.gain.setTargetAtTime(0.16, context.currentTime, 1.4);
+      master.gain.setTargetAtTime(0.34, context.currentTime, 1.8);
       master.connect(context.destination);
 
-      // Original, locally synthesised ambient music — no external track or autoplay.
-      [110, 164.81, 220].forEach((frequency, index) => {
+      // Original ScentLab ambient score: a slow botanical-jazz chord bed and a soft,
+      // repeating glassy melody. It is generated locally and never autoplays.
+      const chordProgression = [
+        [174.61, 220.00, 261.63, 329.63], // Fmaj7
+        [146.83, 196.00, 246.94, 293.66], // Dm7
+        [130.81, 196.00, 246.94, 329.63], // Cmaj7
+        [164.81, 196.00, 246.94, 293.66]  // Em7
+      ];
+      const padVoices = chordProgression[0].map((frequency, index) => {
         const oscillator = context.createOscillator();
         const voice = context.createGain();
-        oscillator.type = index === 1 ? "triangle" : "sine";
-        oscillator.frequency.value = frequency;
-        voice.gain.value = index === 0 ? 0.19 : 0.105;
+        oscillator.type = index === 3 ? "sine" : "triangle";
+        oscillator.frequency.setValueAtTime(frequency, context.currentTime);
+        voice.gain.value = index === 0 ? 0.075 : 0.043;
         oscillator.connect(voice);
         voice.connect(master);
         oscillator.start();
+        return oscillator;
       });
 
-      const notes = [440, 523.25, 659.25, 523.25, 392, 493.88, 587.33, 493.88];
+      const melody = [392.00, 493.88, 587.33, 493.88, 440.00, 523.25, 659.25, 523.25];
       let noteIndex = 0;
+      let chordIndex = 0;
       const playNote = () => {
         if (context.state !== "running") return;
+        const now = context.currentTime;
         const oscillator = context.createOscillator();
         const envelope = context.createGain();
-        const now = context.currentTime;
+        const tone = context.createBiquadFilter();
+        tone.type = "lowpass";
+        tone.frequency.value = 1800;
         oscillator.type = "sine";
-        oscillator.frequency.value = notes[noteIndex % notes.length];
+        oscillator.frequency.value = melody[noteIndex % melody.length];
         envelope.gain.setValueAtTime(0.0001, now);
-        envelope.gain.exponentialRampToValueAtTime(0.12, now + 0.12);
-        envelope.gain.exponentialRampToValueAtTime(0.0001, now + 2.1);
-        oscillator.connect(envelope);
+        envelope.gain.exponentialRampToValueAtTime(0.19, now + 0.16);
+        envelope.gain.exponentialRampToValueAtTime(0.0001, now + 2.35);
+        oscillator.connect(tone);
+        tone.connect(envelope);
         envelope.connect(master);
         oscillator.start(now);
-        oscillator.stop(now + 2.2);
+        oscillator.stop(now + 2.45);
         noteIndex += 1;
+
+        if (noteIndex % 4 === 0) {
+          chordIndex = (chordIndex + 1) % chordProgression.length;
+          chordProgression[chordIndex].forEach((frequency, index) => {
+            padVoices[index].frequency.setTargetAtTime(frequency, context.currentTime, 1.25);
+          });
+        }
       };
+
       playNote();
-      musicTimerRef.current = window.setInterval(playNote, 1750);
+      musicTimerRef.current = window.setInterval(playNote, 1650);
       musicContextRef.current = context;
       musicMasterRef.current = master;
       setMusicOn(true);
     } catch {
-      setNotice("The background music could not start. Please try again.");
+      if (context && context.state !== "closed") context.close();
+      setNotice("The ScentLab soundtrack could not start. Please try again.");
     }
   }
 
@@ -1173,10 +1197,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>ScentLab — The Pixel Perfumery Library</title>
+        <title>ScentLab — The Perfumer's Notebook</title>
         <meta
           name="description"
-          content="A little pixel-art perfumery library. Discover fragrance recipes, explore scent notes and share your own formulas."
+          content="A considered little scent atelier. Explore fragrance studies, collect olfactory notes and compose your own signature formulas."
         />
         <meta name="theme-color" content="#f4efe3" />
       </Head>
@@ -1185,7 +1209,7 @@ export default function Home() {
         <header className="nav">
           <a className="logo" href="#">
             ✿ SCENT<span>LAB</span>
-            <small>THE PIXEL PERFUMERY LIBRARY</small>
+            <small>THE PERFUMER'S NOTEBOOK</small>
           </a>
 
           <nav>
@@ -1218,10 +1242,10 @@ export default function Home() {
               className={`music-toggle ${musicOn ? "is-playing" : ""}`}
               onClick={toggleNotebookMusic}
               aria-pressed={musicOn}
-              title={musicOn ? "Turn background music off" : "Play original ScentLab background music"}
+              title={musicOn ? "Pause the ScentLab soundtrack" : "Play the original ScentLab soundtrack"}
             >
               <span aria-hidden="true">{musicOn ? "♫" : "♪"}</span>
-              {musicOn ? "BGM on" : "Play BGM"}
+              {musicOn ? "Pause music" : "Listen to ScentLab"}
             </button>
             <button
               className="pixel-btn"
@@ -1265,7 +1289,7 @@ export default function Home() {
               </div>
 
               <div className="micro-stats">
-                ✿ A CABINET OF SCENTS　 ▦ FORMULAS & FIELD NOTES　 ✧ MADE TO EXPLORE
+                ✿ BOTANICAL STUDIES　 ·　 FORMULAS & FIELD NOTES　 ·　 MADE TO DISCOVER
               </div>
             </div>
 
@@ -1563,7 +1587,7 @@ export default function Home() {
         <footer>
           <a className="logo" href="#">
             ✿ SCENT<span>LAB</span>
-            <small>THE PIXEL PERFUMERY LIBRARY</small>
+            <small>THE PERFUMER'S NOTEBOOK</small>
           </a>
 
           <p>Made of notes, pixels & a little imagination.</p>
