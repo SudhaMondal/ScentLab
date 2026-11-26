@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">ScentLab perfume and gemstone atelier</title>
+  <desc id="desc">A decorative lavender and rose banner with illustrated perfume bottles, faceted gemstones, botanical sprigs and subtle sparkle details.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbecf6"/>
+      <stop offset=".52" stop-color="#eee7ff"/>
+      <stop offset="1" stop-color="#e4f4ef"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#e7c9e8" stop-opacity=".78"/>
+    </linearGradient>
+    <linearGradient id="rose" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffb2c8"/>
+      <stop offset="1" stop-color="#bd477f"/>
+    </linearGradient>
+    <linearGradient id="amethyst" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d7b9ff"/>
+      <stop offset="1" stop-color="#7850bd"/>
+    </linearGradient>
+    <linearGradient id="emerald" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a9ead0"/>
+      <stop offset="1" stop-color="#23866c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="300" rx="28" fill="url(#bg)"/>
+  <path d="M0 225 C180 170 300 285 480 220 S790 160 950 220 S1100 265 1200 205 V300 H0Z" fill="#fff" opacity=".42"/>
+  <g fill="none" stroke="#b58bb8" stroke-width="2" opacity=".38">
+    <path d="M36 55 C90 12 132 20 166 68 M40 70 C88 38 117 40 145 83"/>
+    <path d="M1038 45 C1080 10 1132 22 1160 67 M1055 74 C1090 40 1125 43 1155 88"/>
+  </g>
+  <g transform="translate(100 85)">
+    <path d="M0 54 L34 0 L68 54 L34 108Z" fill="url(#amethyst)" stroke="#fff" stroke-width="3"/>
+    <path d="M34 0 V108 M0 54 H68 M0 54 L34 34 L68 54 L34 74Z" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="2"/>
+    <path d="M34 0 L50 54 L34 108 L18 54Z" fill="#fff" opacity=".16"/>
+  </g>
+  <g transform="translate(225 64)">
+    <rect x="31" y="0" width="48" height="27" rx="5" fill="#9b6b4b"/>
+    <rect x="23" y="23" width="64" height="20" rx="5" fill="#d9b17e"/>
+    <path d="M15 43 Q55 28 95 43 L105 155 Q105 176 84 176 H26 Q5 176 5 155Z" fill="url(#glass)" stroke="#b982ad" stroke-width="3"/>
+    <path d="M17 95 Q55 82 93 95 V153 Q93 162 82 162 H28 Q17 162 17 153Z" fill="url(#rose)" opacity=".82"/>
+    <rect x="24" y="105" width="62" height="34" rx="4" fill="#fff8f0" opacity=".94"/>
+    <text x="55" y="119" font-family="Georgia,serif" font-size="10" text-anchor="middle" fill="#754b70" letter-spacing="1">SCENT</text>
+    <text x="55" y="131" font-family="Georgia,serif" font-size="8" text-anchor="middle" fill="#754b70">No. 01</text>
+    <path d="M22 54 Q34 46 44 53" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".75"/>
+  </g>
+  <g transform="translate(875 79)">
+    <path d="M0 45 L32 0 L64 45 L32 90Z" fill="url(#emerald)" stroke="#fff" stroke-width="3"/>
+    <path d="M32 0 V90 M0 45 H64 M0 45 L32 28 L64 45 L32 62Z" fill="none" stroke="#fff" stroke-opacity=".72" stroke-width="2"/>
+  </g>
+  <g transform="translate(1000 65)">
+    <rect x="36" y="0" width="44" height="25" rx="4" fill="#b88b52"/>
+    <rect x="27" y="22" width="62" height="18" rx="4" fill="#e6c88e"/>
+    <path d="M17 40 Q58 28 99 40 L108 156 Q109 175 88 175 H28 Q7 175 8 156Z" fill="url(#glass)" stroke="#9a83bb" stroke-width="3"/>
+    <path d="M19 91 Q58 80 97 91 V151 Q97 162 84 162 H32 Q19 162 19 151Z" fill="#a9cbd0" opacity=".9"/>
+    <rect x="26" y="103" width="62" height="34" rx="4" fill="#fffdf7" opacity=".94"/>
+    <text x="57" y="117" font-family="Georgia,serif" font-size="10" text-anchor="middle" fill="#526a78" letter-spacing="1">SCENT</text>
+    <text x="57" y="129" font-family="Georgia,serif" font-size="8" text-anchor="middle" fill="#526a78">No. 02</text>
+    <path d="M26 52 Q39 45 49 52" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+  </g>
+  <g transform="translate(1100 145)">
+    <path d="M0 31 L22 0 L44 31 L22 62Z" fill="url(#rose)" stroke="#fff" stroke-width="2"/>
+    <path d="M22 0 V62 M0 31 H44" stroke="#fff" stroke-opacity=".72" stroke-width="1.5"/>
+  </g>
+  <g fill="#fff" stroke="#d7a84c" stroke-width="1.4">
+    <path d="M190 40 l5 13 13 5 -13 5 -5 13 -5 -13 -13 -5 13 -5Z"/>
+    <path d="M820 42 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4Z"/>
+    <path d="M960 225 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4Z"/>
+    <path d="M430 244 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3Z"/>
+  </g>
+  <g font-family="Georgia, 'Times New Roman', serif" text-anchor="middle">
+    <text x="600" y="126" font-size="54" font-weight="bold" fill="#49344f" letter-spacing="2">SCENTLAB</text>
+    <path d="M455 145 H745" stroke="#b58bb8" stroke-width="1.5"/>
+    <text x="600" y="178" font-size="17" fill="#765b7b" letter-spacing="4">THE PERFUMER'S NOTEBOOK</text>
+    <text x="600" y="211" font-size="13" fill="#806b80" letter-spacing="2">BLEND · DISCOVER · CREATE</text>
+  </g>
+</svg>
