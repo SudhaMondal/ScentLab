@@ -2,13 +2,24 @@
 
 ScentLab is a responsive Next.js App Router application for exploring perfume concepts, learning fragrance vocabulary, scaling formula examples, and recording personal experiments.
 
-## Live Preview
+## 💎 Live Preview · The Perfumer's Atelier 🧴
 
-Explore the deployed ScentLab experience:
+![ScentLab — illustrated perfume bottles and gemstones](./assets/readme-scentlab-banner.svg)
 
-**[Open the live ScentLab website](https://scent-lab-baritos.vercel.app/)**
+<p align="center">
+  <strong>✦ 💎 Discover the art of scent · Blend your imagination · Create something unforgettable 💎 ✦</strong>
+</p>
 
-The link above uses the project's Vercel production alias.
+<p align="center">
+  <a href="https://scent-lab-baritos.vercel.app/"><strong>🌸 OPEN THE LIVE SCENTLAB EXPERIENCE 🌸</strong></a>
+</p>
+
+<p align="center">
+  <sub>✧ A little sparkle, a beautiful bottle, and a world of fragrance notes. ✧</sub>
+</p>
+
+The preview link uses the project's Vercel production alias.
+
 
 ## Included features
 
