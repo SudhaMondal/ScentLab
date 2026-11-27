@@ -4584,3 +4584,126 @@ footer > * {
     gap: 4px;
   }
 }
+
+
+/* TEXT COLLISION FIX — keep copy in normal flow at every viewport */
+.site :where(h1, h2, h3, h4, p, li, label, small, strong, em) {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.site :where(h1, h2, h3, h4) {
+  height: auto;
+  min-height: 0;
+  line-height: 1.18;
+  white-space: normal;
+}
+
+.site :where(p, li) {
+  height: auto;
+  min-height: 0;
+  line-height: 1.65;
+}
+
+.site :where(section, article, form, label, .recipe-card, .scent-family-card,
+  .scent-system-card, .discovery-result, .french-family-list article,
+  .classic-groups-grid article, .detail-content, .small-modal) {
+  min-width: 0;
+}
+
+.recipe-card {
+  grid-template-rows: auto auto auto auto auto;
+  align-content: start;
+}
+
+.recipe-card .recipe-name {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  line-height: 1.22;
+  white-space: normal;
+  overflow: visible;
+}
+
+.recipe-card > p {
+  height: auto;
+  min-height: 0;
+  line-height: 1.6;
+}
+
+.scent-family-card,
+.scent-system-card,
+.discovery-result,
+.french-family-list article,
+.classic-groups-grid article {
+  height: auto;
+  min-height: 0;
+  align-content: start;
+}
+
+.scent-family-card :where(h2, h3, h4, p),
+.scent-system-card :where(h2, h3, h4, p),
+.discovery-result :where(h2, h3, h4, p),
+.french-family-list article :where(h2, h3, h4, p),
+.classic-groups-grid article :where(h2, h3, h4, p) {
+  position: static;
+  height: auto;
+  min-height: 0;
+  line-height: 1.45;
+  white-space: normal;
+  overflow: visible;
+}
+
+.detail-content :where(h2, h3, p, li),
+.small-modal :where(h2, h3, p, label, small) {
+  height: auto;
+  min-height: 0;
+  line-height: 1.55;
+}
+
+@media (max-width: 760px) {
+  .site :where(h1, h2, h3, h4) {
+    line-height: 1.2;
+    letter-spacing: normal;
+  }
+
+  .site :where(p, li, small, label) {
+    line-height: 1.6;
+  }
+
+  .recipe-card {
+    grid-template-rows: auto auto auto auto;
+    align-items: start;
+    row-gap: 2px;
+  }
+
+  .recipe-card .recipe-art {
+    align-self: stretch;
+    grid-row: 1 / span 4;
+  }
+
+  .recipe-card .recipe-meta,
+  .recipe-card .recipe-name,
+  .recipe-card > p,
+  .recipe-card .note-tags {
+    align-self: start;
+    min-width: 0;
+    margin-top: 8px;
+  }
+
+  .recipe-card .recipe-name {
+    margin-bottom: 4px;
+  }
+}
+
+@media (max-width: 380px) {
+  .recipe-card {
+    grid-template-columns: 82px minmax(0, 1fr);
+    column-gap: 9px;
+  }
+
+  .recipe-card .recipe-name {
+    font-size: 15px;
+  }
+}
