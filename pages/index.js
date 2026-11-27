@@ -1371,6 +1371,7 @@ export default function Home() {
           content="A considered little scent atelier. Explore fragrance studies, collect olfactory notes and compose your own signature formulas."
         />
         <meta name="theme-color" content="#f4efe3" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </Head>
 
       <div className="site">
