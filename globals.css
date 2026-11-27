@@ -4305,3 +4305,27 @@ button, a, input, select, textarea {
   .hero h1 { font-size: 39px; }
   .recipe-card { grid-template-columns: 94px minmax(0, 1fr); }
 }
+
+
+/* MOBILE TOUCH TARGETS — make frequently used controls easier to tap */
+@media (max-width: 760px) {
+  .nav nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .nav-actions .plain,
+  .music-toggle {
+    min-height: 44px;
+  }
+  .filters button {
+    min-height: 44px;
+  }
+  .heart,
+  .close {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
