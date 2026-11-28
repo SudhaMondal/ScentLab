@@ -4906,3 +4906,221 @@ footer > * {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+
+/* MOBILE ARCHIVE + PERFUME LABEL SPACING */
+@media (max-width: 760px) {
+  /* Give the archive heading, counter and rule their own breathing room. */
+  #explore {
+    padding-top: 48px;
+    padding-bottom: 58px;
+    scroll-margin-top: 14px;
+  }
+
+  #explore .section-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 0 0 24px;
+    width: 100%;
+  }
+
+  #explore .section-heading > div {
+    width: 100%;
+    min-width: 0;
+  }
+
+  #explore .section-heading h2 {
+    margin: 9px 0 8px;
+    line-height: 1.16;
+    letter-spacing: -.7px;
+    overflow-wrap: normal;
+  }
+
+  #explore .section-heading p {
+    margin: 0;
+    max-width: 34em;
+    line-height: 1.65;
+  }
+
+  #explore .section-heading > strong {
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    text-align: left;
+    line-height: 1.35;
+  }
+
+  #explore .library-rule {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 5px;
+    padding: 12px 0;
+    margin: 0 0 20px;
+    line-height: 1.65;
+    letter-spacing: .8px;
+  }
+
+  #explore .search-row {
+    margin-bottom: 14px;
+  }
+
+  #explore .filters {
+    margin: 0 0 26px;
+    row-gap: 9px;
+  }
+
+  #explore .cards {
+    align-items: start;
+    row-gap: 27px;
+  }
+
+  #explore .recipe-card {
+    min-width: 0;
+    align-content: start;
+    row-gap: 0;
+    padding-bottom: 18px;
+  }
+
+  /* Keep the miniature bottle and its label inside the artwork frame. */
+  #explore .art-open {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding: 8px 4px 7px;
+    gap: 7px;
+  }
+
+  #explore .art-open .bottle {
+    width: 126px;
+    height: 190px;
+    flex: 0 0 auto;
+    transform: scale(.68);
+    transform-origin: center center;
+    margin: -27px 0;
+  }
+
+  #explore .bottle-glass {
+    flex: 0 0 auto;
+  }
+
+  #explore .bottle-label {
+    width: 82%;
+    min-width: 0;
+    min-height: 48px;
+    padding: 6px 5px;
+    gap: 4px;
+  }
+
+  #explore .bottle-label small {
+    font-size: 7px;
+    line-height: 1.35;
+    letter-spacing: .8px;
+  }
+
+  #explore .bottle-label b {
+    display: block;
+    max-width: 100%;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  #explore .bottle-label em {
+    max-width: 100%;
+    font-size: 8px;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  #explore .bottle-edition {
+    max-width: 100%;
+    margin-top: 4px;
+    font-size: 6px;
+    line-height: 1.4;
+    letter-spacing: .55px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  #explore .art-open > span {
+    max-width: 100%;
+    font-size: 8px;
+    line-height: 1.5;
+    letter-spacing: .55px;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  #explore .cards {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  #explore .recipe-card {
+    grid-template-columns: minmax(112px, 34%) minmax(0, 1fr);
+    column-gap: 14px;
+  }
+
+  #explore .recipe-card .recipe-art {
+    min-width: 0;
+    min-height: 158px;
+    height: 100%;
+    grid-row: 1 / span 4;
+  }
+
+  #explore .recipe-card .recipe-meta {
+    margin-top: 4px;
+    line-height: 1.5;
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+  }
+
+  #explore .recipe-card .recipe-name {
+    margin: 9px 0 6px;
+    font-size: 18px;
+    line-height: 1.28;
+    letter-spacing: -.15px;
+    overflow-wrap: anywhere;
+  }
+
+  #explore .recipe-card > p {
+    line-height: 1.65;
+  }
+
+  #explore .recipe-card .note-tags {
+    margin-top: 9px;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 360px) {
+  #explore .recipe-card {
+    grid-template-columns: 104px minmax(0, 1fr);
+    column-gap: 11px;
+  }
+
+  #explore .recipe-card .recipe-art {
+    min-height: 148px;
+  }
+
+  #explore .art-open .bottle {
+    transform: scale(.62);
+    margin: -32px 0;
+  }
+
+  #explore .section-heading h2 {
+    font-size: 34px;
+  }
+}
