@@ -5124,3 +5124,112 @@ footer > * {
     font-size: 34px;
   }
 }
+
+
+/* MOBILE FOOTER CLEARANCE + HERO BOTTLE LAYOUT */
+@media (max-width: 760px) {
+  /* Keep the footer motto separate from the brand lockup and copyright. */
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 28px 6% calc(94px + env(safe-area-inset-bottom));
+    text-align: left;
+  }
+
+  footer > .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    width: 100%;
+    line-height: 1.4;
+  }
+
+  footer > .logo small {
+    display: block;
+    margin-top: 3px;
+    line-height: 1.6;
+    white-space: normal;
+  }
+
+  footer p {
+    order: initial;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 2px 0;
+    padding: 0;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+  }
+
+  footer > small {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+  }
+
+  /* Keep the desktop hero bottle composition from colliding on phone screens. */
+  .hero-art {
+    display: grid;
+    place-items: center;
+    min-height: 330px;
+    height: clamp(330px, 88vw, 390px);
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .hero-art > .bottle {
+    position: relative;
+    z-index: 2;
+    flex: 0 0 auto;
+    transform: scale(.9);
+    transform-origin: center center;
+    margin: 18px 0 0;
+  }
+
+  .hero-art > .hero-label {
+    z-index: 4;
+    max-width: calc(100% - 28px);
+    line-height: 1.7;
+  }
+
+  .hero-art > .hero-tag {
+    z-index: 4;
+    left: 12px;
+    top: auto;
+    bottom: 18px;
+    max-width: 45%;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-art > .hero-side-note {
+    z-index: 4;
+    right: 10px;
+    bottom: 12px;
+    max-height: 55%;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-art {
+    min-height: 310px;
+    height: 310px;
+  }
+
+  .hero-art > .bottle {
+    transform: scale(.82);
+    margin-top: 20px;
+  }
+
+  footer {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
